@@ -179,22 +179,28 @@
                 <div class="vt-editor">
                     <div class="vt-editor-titlebar">
                         <div class="vt-window-controls">
-                            <span class="vt-window-control close"></span>
+                            <!-- <span class="vt-window-control close"></span>
                             <span class="vt-window-control minimize"></span>
-                            <span class="vt-window-control maximize"></span>
+                            <span class="vt-window-control maximize"></span> -->
                         </div>
-                        <div class="vt-editor-title">awesome.jac</div>
-                        <button class="vt-play-toggle-btn" id="play-toggle-btn">
+                        <div class="vt-code-tabs">
+                            <button class="vt-code-tab active" data-lang="jac">jac</button>
+                            <button class="vt-code-tab" data-lang="python">python</button>
+                        </div>
+                        <!-- <div class="vt-editor-title">awesome.jac</div> -->
+                        <!-- <button class="vt-play-toggle-btn" id="play-toggle-btn">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M8 5v14l11-7z" />
                             </svg>
-                        </button>
+                        </button> -->
                     </div>
-                    <pre id="code-block"><code class="language-python"></code></pre>
-                    <div class="vt-output-section" id="output-section">
+                    <pre id="code-block-jac"><code class="language-python">print("Hello, Jac World!")</code></pre>
+    <pre id="code-block-python" style="display:none;"><code class="language-python">print("Hello, Python World!")</code></pre>
+                    <!-- <pre id="code-block"><code class="language-python"></code></pre> -->
+                    <!-- <div class="vt-output-section" id="output-section">
                         <div class="vt-output-header">Output:</div>
                         <pre class="vt-output-content" id="output-content"></pre>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
