@@ -1,6 +1,6 @@
 ---
-title: Home
-template: home.html
+title: Community
+template: community.html
 hide:
   - navigation
   - toc

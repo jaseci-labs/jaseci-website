@@ -5,18 +5,19 @@ use_directory_urls: true
 
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: docs/overrides
+  logo: assets/logo.png
   features:
-    - navigation.top
-    - header.autohide
+    - navigation.tabs
+    - navigation.tabs.sticky
+  font:
+    text: Inter
 
 nav:
   - Home: index.md
-  - Community: community.html
-  - About Us: aboutus.html
-  - Blog:
-      - blog/index.md
-      - blog/tags.md
+  - Community: community.md
+  - About Us: about-us.md
+  - Blog: blog/index.md
 
 plugins:
   - blog
@@ -31,9 +32,29 @@ plugins:
 
 extra_css:
   - stylesheets/blog.css
-  - stylesheets/no-sidebar.css
   - stylesheets/navbar.css
-  - css/landing.css
+  - stylesheets/landing.css
+  - stylesheets/aboutus.css
+  - stylesheets/community.css
+  - stylesheets/layout.css
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css
 
 extra_javascript:
-  - js/home-loader.js
+  - js/subscribe.js
+  - js/landing.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js
+
+extra:
+  header_links:
+    - label: Docs
+      url: /
+    - label: GitHub
+      url: https://github.com/Jaseci-Labs/jaseci
+      external: true
+    - label: Contact
+      url: mailto:hello@jaseci.org
+      cta: true
+
+hide:
+  - navigation
+  - toc

@@ -1,93 +1,112 @@
-/* Floating, pill-shaped top navbar inspired by the screenshot */
-
-:root {
-    --nav-bg: #2b2f3f;
-    --nav-border: #3b4052;
-    --nav-pill: rgba(255, 255, 255, 0.06);
-    --nav-text: #e6e8f2;
-    --nav-muted: #b8bfd5;
+.md-header__inner.md-grid {
+    display: none;
 }
 
-/* Container bar */
-.md-header {
-    background: transparent;
-    box-shadow: none;
+/* Floating navigation styles for MkDocs */
+.md-tabs.floating-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 1000;
+    background-color: transparent;
 }
 
-/* Use the inner grid as our floating pill container */
-.md-header__inner .md-grid {
+.md-tabs__inner.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+    background-color: #2d2d3a;
+    border-radius: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.md-tabs__item {
+    height: auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Logo styling */
+.logo {
     display: flex;
     align-items: center;
-    gap: .75rem;
-    justify-content: space-between;
-    background: var(--nav-bg);
-    border: 1px solid var(--nav-border);
-    border-radius: 999px;
-    padding: .5rem .75rem;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+    margin-bottom: 4px;
 }
 
-/* Constrain width and center */
-.md-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Logo + title */
-.md-header__button.md-logo {
-    margin-left: .25rem;
-}
-
-.md-header__title {
-    color: var(--nav-text);
-    font-weight: 600;
-}
-
-/* Show tabs row (navigation links) and make it subtle */
-.md-tabs {
-    background: transparent;
-    box-shadow: none;
+.logo a {
     display: flex;
-    justify-content: center;
-}
-
-.md-tabs__link {
-    border-radius: 999px;
-}
-
-.md-tabs__link[aria-current],
-.md-tabs__link:hover {
-    background: var(--nav-pill);
-}
-
-/* Header links area (right side) */
-.md-header__inner nav a,
-.md-header__link {
-    color: var(--nav-muted);
+    align-items: center;
+    color: white;
     text-decoration: none;
-    padding: .5rem 1rem;
-    border-radius: 999px;
+    font-weight: 600;
+    font-size: 18px;
+    gap: 8px;
+    margin-right: 8px;
 }
 
-/* Active/hover state pill */
-.md-header__inner nav a:hover,
-.md-header__inner nav a:focus,
-.md-header__inner nav a[aria-current="page"] {
-    background: var(--nav-pill);
-    color: var(--nav-text);
+.logo svg {
+    width: 24px;
+    height: 24px;
 }
 
-/* Contact-like outlined pill (last link) */
-.md-header__inner nav a:last-child {
-    border: 1px solid var(--nav-border);
+/* Navigation links */
+.md-tabs__list.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 0px;
 }
 
-/* Hide drawer button since we removed sidebars */
-.md-header__button[aria-label="Toggle navigation"] {
-    display: none !important;
+.md-tabs__link.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease;
+    margin-top: 0;
 }
 
-/* Ensure body top padding fits the floating header */
-.md-main {
-    padding-top: 3.75rem;
+.md-tabs__link.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .md-tabs__inner.nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+    }
+
+    .md-tabs__list.nav-links {
+        margin-top: 15px;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .md-tabs.floating-nav {
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .md-tabs__link.nav-link {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .md-tabs__list.nav-links {
+        gap: 10px;
+    }
+}
+
+/* Add some spacing to the main content to avoid overlap with the floating nav */
+.md-main__inner {
+    margin-top: 80px;
 }
