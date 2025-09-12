@@ -1,1 +1,39 @@
 site_name: Jaseci
+site_url: https://jaseci.org/
+docs_dir: docs
+use_directory_urls: true
+
+theme:
+  name: material
+  custom_dir: overrides
+  features:
+    - navigation.top
+    - header.autohide
+
+nav:
+  - Home: index.md
+  - Community: community.html
+  - About Us: aboutus.html
+  - Blog:
+      - blog/index.md
+      - blog/tags.md
+
+plugins:
+  - blog
+  - tags
+  - rss:
+      match_path: "blog/posts/.*"
+      date_from_meta:
+        as_creation: date.created
+        as_update: date.updated
+
+  - open-in-new-tab
+
+extra_css:
+  - stylesheets/blog.css
+  - stylesheets/no-sidebar.css
+  - stylesheets/navbar.css
+  - css/landing.css
+
+extra_javascript:
+  - js/home-loader.js

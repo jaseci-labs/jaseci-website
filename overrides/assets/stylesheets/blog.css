@@ -1,0 +1,52 @@
+:root {
+    --blog-card-bg: #0f1117;
+    --blog-card-border: #1f2430;
+    --blog-chip-bg: #1a1d29;
+    --blog-chip-text: #c7d1ff;
+}
+
+/* Blog index cards */
+.md-posts .md-post {
+    border: 1px solid var(--blog-card-border);
+    border-radius: 12px;
+    background: var(--blog-card-bg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.md-posts .md-post:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+/* Post title */
+.md-post__title {
+    font-weight: 700;
+    letter-spacing: .1px;
+}
+
+/* Meta chips (tags/categories) */
+.md-tag {
+    background: var(--blog-chip-bg);
+    color: var(--blog-chip-text);
+    padding: .15rem .5rem;
+    border-radius: 999px;
+}
+
+/* Post page header image if cover present */
+.md-content .md-post--cover .md-post__cover img {
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+}
+
+/* Sidebar author pill */
+.md-typeset .md-author {
+    border: 1px solid var(--blog-card-border);
+    border-radius: 10px;
+    padding: .5rem .75rem;
+}
+
+/* Read more button style on cards */
+.md-post__more .md-button {
+    border-radius: 999px;
+}

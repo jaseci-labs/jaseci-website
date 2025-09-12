@@ -1,0 +1,93 @@
+/* Floating, pill-shaped top navbar inspired by the screenshot */
+
+:root {
+    --nav-bg: #2b2f3f;
+    --nav-border: #3b4052;
+    --nav-pill: rgba(255, 255, 255, 0.06);
+    --nav-text: #e6e8f2;
+    --nav-muted: #b8bfd5;
+}
+
+/* Container bar */
+.md-header {
+    background: transparent;
+    box-shadow: none;
+}
+
+/* Use the inner grid as our floating pill container */
+.md-header__inner .md-grid {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    justify-content: space-between;
+    background: var(--nav-bg);
+    border: 1px solid var(--nav-border);
+    border-radius: 999px;
+    padding: .5rem .75rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+/* Constrain width and center */
+.md-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Logo + title */
+.md-header__button.md-logo {
+    margin-left: .25rem;
+}
+
+.md-header__title {
+    color: var(--nav-text);
+    font-weight: 600;
+}
+
+/* Show tabs row (navigation links) and make it subtle */
+.md-tabs {
+    background: transparent;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+}
+
+.md-tabs__link {
+    border-radius: 999px;
+}
+
+.md-tabs__link[aria-current],
+.md-tabs__link:hover {
+    background: var(--nav-pill);
+}
+
+/* Header links area (right side) */
+.md-header__inner nav a,
+.md-header__link {
+    color: var(--nav-muted);
+    text-decoration: none;
+    padding: .5rem 1rem;
+    border-radius: 999px;
+}
+
+/* Active/hover state pill */
+.md-header__inner nav a:hover,
+.md-header__inner nav a:focus,
+.md-header__inner nav a[aria-current="page"] {
+    background: var(--nav-pill);
+    color: var(--nav-text);
+}
+
+/* Contact-like outlined pill (last link) */
+.md-header__inner nav a:last-child {
+    border: 1px solid var(--nav-border);
+}
+
+/* Hide drawer button since we removed sidebars */
+.md-header__button[aria-label="Toggle navigation"] {
+    display: none !important;
+}
+
+/* Ensure body top padding fits the floating header */
+.md-main {
+    padding-top: 3.75rem;
+}

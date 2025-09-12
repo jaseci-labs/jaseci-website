@@ -1,0 +1,63 @@
+<!-- Main Card Container -->
+<div class="card">
+  <!-- Top section with background image -->
+  <a href="{{ post.url | url }}" tabindex="-1">
+    <div class="thumbnail-link">
+      {# Robust cover image resolution: prefer cover_image, then image;
+      normalize path for blog index #} {% set cover = post.meta.cover_image or
+      post.meta.image %} {% if cover %} {# If path is relative like
+      "images/foo.png", prefix with "blog/" so it resolves to /blog/images/...
+      on index #} {% if cover.startswith('http') or cover.startswith('/') %} {%
+      set cover_url = cover %} {% elif cover.startswith('blog/') %} {% set
+      cover_url = cover %} {% else %} {% set cover_url = 'blog/' ~ cover %} {%
+      endif %}
+      <img
+        src="/blog/{{ cover_url | url }}"
+        alt="{{ post.meta.title or post.title }}"
+      />
+      {% endif %}
+    </div>
+  </a>
+
+  <!-- Badge -->
+  {% if post.categories %}
+  <div class="badges-container">
+    {% for category in post.categories %}
+    <a href="{{ category.url | url }}" class="badge">{{- category.title -}}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Avatars -->
+  {% if post.authors %}
+  <div class="avatar-container">
+    {% for author in post.authors %}
+    <span class="md-author">
+      {% if author.avatar %}<img
+        src="{{ author.avatar | url }}"
+        alt="{{ author.name }}"
+      />{% endif %}
+    </span>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Bottom section with post details -->
+  <div class="card-bottom">
+    {% if post.meta.title %}
+    <h3 class="post-title">
+      <a href="{{ post.url | url }}">{{ post.meta.title }}</a>
+    </h3>
+    {% else %}
+    <h3 class="post-title">
+      <a href="{{ post.url | url }}">{{ post.title }}</a>
+    </h3>
+    {% endif %}
+
+    <div class="read-more-wrapper">
+      <a class="read-more" href="{{ post.url | url }}" tabindex="-1"
+        >Read More »</a
+      >
+    </div>
+  </div>
+</div>

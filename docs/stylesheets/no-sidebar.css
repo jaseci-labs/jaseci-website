@@ -1,0 +1,47 @@
+/* Hide both left and right sidebars, and the mobile drawer toggle; keep content full width */
+
+/* Remove primary (left) sidebar */
+.md-sidebar--primary {
+    display: none !important;
+}
+
+/* Remove secondary (right) table-of-contents sidebar */
+.md-sidebar--secondary {
+    display: none !important;
+}
+
+/* Center the main containers */
+.md-content {
+    margin: 0 auto !important;
+}
+
+.md-main__inner {
+    margin: 0 auto !important;
+}
+
+/* Hide the hamburger/drawer button since sidebars are gone */
+.md-header__button.md-icon[aria-label="Toggle navigation"] {
+    display: none !important;
+}
+
+/* Constrain and center inner grid/content for readability */
+.md-grid {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.md-content__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Optional tweaks on very wide screens */
+@media (min-width: 1400px) {
+    .md-grid {
+        max-width: 1280px !important;
+    }
+
+    .md-content__inner {
+        max-width: 1160px;
+    }
+}
