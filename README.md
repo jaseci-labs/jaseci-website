@@ -44,11 +44,27 @@ docs/
    ```sh
    # For Python 3.x
    cd jaseci-website
-   mkdocs serve
    ```
+   * Install dependencies
+
+    ```
+    npm install
+    ```
+
+    * Run locally
+
+    ```
+    npm run dev
+    ```
 
    Then visit [http://localhost:8000](http://localhost:8000) in your browser.
 
 ---
+
+After finishing all the customization, you can create a production build by running this command.
+
+```
+npm run build
+```
 
 For any issues or contributions, please visit the [main Jac & Jaseci GitHub repository](https://github.com/Jaseci-Labs/jaseci).
