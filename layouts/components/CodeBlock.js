@@ -5,7 +5,7 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import '../../lib/prism-jac';
 import 'prismjs/components/prism-python';
-import './CodeBlock.css'; // Your custom styles for code blocks
+import './CodeBlock.css';
 
 export const CodeBlock = ({
   code,
