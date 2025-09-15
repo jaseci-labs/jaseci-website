@@ -64,14 +64,16 @@ const Carousel = ({ slides, title, sectionId }) => {
                     <p className="text-dark-text mb-6 text-sm">
                       {card.description}
                     </p>
-                    <a
-                      href={card.link}
-                      className="card-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {card.linkText}
-                    </a>
+                    {card.link && (
+                      <a
+                        href={card.link}
+                        className="card-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {card.linkText}
+                      </a>
+                    )}
                   </div>
                 ))}
               </div>
