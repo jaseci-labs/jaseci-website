@@ -9,7 +9,7 @@ tags: ["AI + Business"]
 draft: false
 ---
 
-_This article is based on a talk by Jason Mars at the Michigan Technology Leaders Summit, presented by SIM Detroit, on the topic of Artificial Intelligence: Actual Use Cases._
+This article is based on a talk by Jason Mars at the Michigan Technology Leaders Summit, presented by SIM Detroit, on the topic of Artificial Intelligence: Actual Use Cases.
 
 ## What criteria do you use to prioritize AI projects in your portfolio and how often do you ensure alignment with broader business objectives?
 
