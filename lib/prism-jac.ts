@@ -38,7 +38,7 @@ Prism.languages.jac = {
   // 4. Keywords
   // ----------------------------
   keyword: {
-    pattern: /\b(?:async|await|continue|entry|exit|del|assert|check|break|finally|for|from|elif|else|if|except|pass|raise|return|try|while|with|to|by|spawn|ignore|visit|disengage|lambda|priv|protect|pub|static|override|let|abs|has|case|match|impl|can|def|walker|node|edge|class|test)\b/,
+    pattern: /\b(?:async|await|continue|entry|exit|del|assert|check|break|finally|sem|for|from|elif|else|if|except|pass|raise|return|try|while|with|to|by|spawn|ignore|visit|disengage|lambda|priv|protect|pub|static|override|let|abs|has|case|match|impl|can|def|walker|node|edge|class|test)\b/,
     lookbehind: false
   },
 
