@@ -91,34 +91,21 @@ const Header = () => {
       </div>
 
       <header className="w-full z-50 p-2 md:p-4 md:fixed md:top-12 transition-all duration-300">
-        <nav className="container max-w-full sm:max-w-[35rem] mx-auto px-1 sm:px-3 py-1 sm:py-2 md:rounded-full transition-all duration-300 bg-transparent md:bg-medium-bg/80 md:backdrop-blur-md md:shadow-lg md:border md:border-light-bg/50">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            {/* Logo */}
-            <div className="order-0 mr-2 sm:mr-4 flex-shrink-0">
+        <nav className="container max-w-full sm:max-w-[40rem] lg:max-w-[45rem] mx-auto px-1 sm:px-3 py-1 sm:py-2 md:rounded-full transition-all duration-300 bg-transparent md:bg-medium-bg/80 md:backdrop-blur-md md:shadow-lg md:border md:border-light-bg/50">
+          <div className="flex flex-wrap items-center gap-2 md:grid md:grid-cols-3 md:gap-0">
+            {/* Left section - Logo */}
+            <div className="order-0 mr-2 sm:mr-4 flex-shrink-0 md:flex md:justify-start">
               <Logo />
             </div>
 
             {/* Hidden checkbox drives mobile open/close state for labels and menu via CSS */}
             <input id="nav-toggle" type="checkbox" className="hidden peer" aria-label="Toggle navigation menu" />
 
-            {/* Search Icon (right side) */}
-            <div className="order-2 ml-auto md:order-2 md:ml-3">
-              <div
-                className="cursor-pointer p-2 text-lg text-dark-text hover:text-white hover:bg-white/10 rounded-full flex items-center justify-center transition-all"
-                onClick={() => setSearchModal(true)}
-                tabIndex={0}
-                aria-label="Open search"
-                role="button"
-              >
-                <IoSearch />
-              </div>
-            </div>
-
-            {/* Mobile Menu Toggler (right side) */}
+            {/* Mobile Menu Toggler (right side on mobile) */}
             <label
               id="show-button"
               htmlFor="nav-toggle"
-              className="order-3 ml-2 flex cursor-pointer items-center md:hidden"
+              className="order-3 ml-auto flex cursor-pointer items-center md:hidden"
               aria-label="Open menu"
             >
               <svg className="h-7 w-7 fill-current text-white" viewBox="0 0 20 20">
@@ -129,7 +116,7 @@ const Header = () => {
             <label
               id="hide-button"
               htmlFor="nav-toggle"
-              className="order-3 ml-2 hidden cursor-pointer items-center md:hidden"
+              className="order-3 ml-auto hidden cursor-pointer items-center md:hidden"
               aria-label="Close menu"
             >
               <svg className="h-7 w-7 fill-current text-white" viewBox="0 0 20 20">
@@ -141,16 +128,16 @@ const Header = () => {
               </svg>
             </label>
 
-            {/* Menu Items */}
+            {/* Center section - Menu Items */}
             <ul
               id="nav-menu"
-              className="navbar-nav order-[100] w-full mt-2 md:order-1 md:mt-0 md:flex md:w-auto md:space-x-1 md:items-center bg-medium-bg/95 md:bg-transparent rounded-xl md:rounded-none p-2 md:p-0 border border-light-bg/50 md:border-0 hidden peer-checked:block text-center space-y-2 md:space-y-0"
+              className="navbar-nav order-[100] w-full mt-2 md:order-1 md:mt-0 md:flex md:w-auto md:space-x-1 md:items-center md:justify-center bg-medium-bg/95 md:bg-transparent rounded-xl md:rounded-none p-2 md:p-0 border border-light-bg/50 md:border-0 hidden peer-checked:block text-center space-y-2 md:space-y-0"
             >
               {main.map((menuItem, i) => (
                 <React.Fragment key={`menu-${i}`}>
                   {menuItem.hasChildren ? (
                     <li className="nav-item nav-dropdown group relative">
-                      <span className="inline-flex items-center cursor-pointer text-dark-text hover:text-white transition-colors duration-200 px-4 py-2 rounded-md md:rounded-full">
+                      <span className="inline-flex items-center cursor-pointer text-dark-text hover:text-white transition-colors duration-200 px-4 py-2 rounded-md md:rounded-full whitespace-nowrap">
                         {menuItem.name}
                         <svg
                           className="h-4 w-4 fill-current ml-1"
@@ -167,7 +154,7 @@ const Header = () => {
                           >
                             <Link
                               href={child.url}
-                              className="nav-dropdown-link block text-dark-text hover:text-white px-3 py-2 rounded-md md:rounded-full transition-colors duration-200"
+                              className="nav-dropdown-link block text-dark-text hover:text-white px-3 py-2 rounded-md md:rounded-full transition-colors duration-200 whitespace-nowrap"
                             >
                               {child.name}
                             </Link>
@@ -179,7 +166,7 @@ const Header = () => {
                     <li className="nav-item">
                       <Link
                         href={menuItem.url}
-                        className={`block transition-all rounded-md md:rounded-full px-4 py-2 ${pathname === menuItem.url
+                        className={`block transition-all rounded-md md:rounded-full px-4 py-2 whitespace-nowrap ${pathname === menuItem.url
                           ? "bg-white/20 text-white"
                           : "text-dark-text hover:bg-white/10 hover:text-white"
                           }`}
@@ -192,8 +179,18 @@ const Header = () => {
               ))}
             </ul>
 
-            {/* Spacer to force right alignment on mobile when menu is closed */}
-            <div className="hidden md:block" />
+            {/* Right section - Search Icon */}
+            <div className="order-2 md:flex md:justify-end">
+              <div
+                className="cursor-pointer p-2 text-lg text-dark-text hover:text-white hover:bg-white/10 rounded-full flex items-center justify-center transition-all"
+                onClick={() => setSearchModal(true)}
+                tabIndex={0}
+                aria-label="Open search"
+                role="button"
+              >
+                <IoSearch />
+              </div>
+            </div>
           </div>
         </nav>
       </header>
