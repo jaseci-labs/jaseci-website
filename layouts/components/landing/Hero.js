@@ -109,13 +109,6 @@ const Hero = () => {
         >
           Get Started
         </a>
-        <a
-          href="https://www.jac-lang.org/playground"
-          className="bg-transparent text-dark-text px-8 py-3.5 border-2 border-light-bg rounded-lg text-base font-semibold no-underline transition-all duration-300 hover:border-primary-orange hover:text-primary-orange"
-          target="_blank"
-        >
-          Try Playground
-        </a>
       </div>
 
       <div className="text-center py-10 px-5 bg-dark-bg rounded-lg">
