@@ -1,0 +1,37 @@
+{
+  "main": [
+    {
+      "name": "About Us",
+      "url": "/about-us"
+    },
+
+    {
+      "name": "Docs",
+      "url": "https://www.jac-lang.org/learn/introduction/",
+      "target": "_blank",
+      "rel": "noopener noreferrer"
+    },
+    {
+      "name": "Community Hub",
+      "url": "/community"
+    }
+  ],
+  "footer": [
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact"
+    },
+    {
+      "name": "Elements",
+      "url": "/elements"
+    },
+    {
+      "name": "Privacy Policy",
+      "url": "/privacy-policy"
+    }
+  ]
+}
