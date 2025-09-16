@@ -2,6 +2,9 @@
 const nextConfig = {
   // You might have other configurations here
   reactStrictMode: true,
+  
+  // Enable standalone output for Docker production
+  output: 'standalone',
 
   // Add the images configuration below
   images: {
