@@ -73,7 +73,7 @@ const Header = () => {
   return (
     <>
       {/* Top Bar */}
-      <div className="top-bar w-full bg-dark-bg text-white text-sm py-2 px-2 flex justify-center items-center z-[100]">
+        <div className="top-bar w-full bg-dark-bg text-white text-sm py-2 px-2 flex justify-center items-center fixed top-0 left-0 z-[101]">
         <div className="top-bar-content flex flex-col sm:flex-row w-full max-w-5xl items-center justify-between gap-2 sm:gap-0">
           <div className="logo flex items-center gap-2 py-1 text-center sm:text-left">
             {/* <img src="/images/assets/logo.png" alt="Jaseci Logo" className="logo-img" style={{ width: 32, height: 32, borderRadius: 6 }} /> */}
@@ -90,7 +90,7 @@ const Header = () => {
         </div>
       </div>
 
-      <header className="w-full z-50 p-2 md:p-4 md:fixed md:top-12 transition-all duration-300">
+  <header className="w-full z-50 p-2 md:p-4 md:fixed md:top-[40px] transition-all duration-300">
         <nav className="container max-w-full sm:max-w-[40rem] lg:max-w-[45rem] mx-auto px-1 sm:px-3 py-1 sm:py-2 md:rounded-full transition-all duration-300 bg-transparent md:bg-medium-bg/80 md:backdrop-blur-md md:shadow-lg md:border md:border-light-bg/50">
           <div className="flex flex-wrap items-center gap-2 md:grid md:grid-cols-3 md:gap-0">
             {/* Left section - Logo */}
