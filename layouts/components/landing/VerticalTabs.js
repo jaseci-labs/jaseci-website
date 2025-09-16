@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import "../../../lib/prism-jac";
 import { CodeBlock } from "../CodeBlock";
 
 import { jacTabsData, pythonTabsData, tabsData } from "@lib/data/verticalTabs";

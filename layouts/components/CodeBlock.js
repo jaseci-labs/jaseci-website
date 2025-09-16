@@ -3,9 +3,9 @@ import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
-import '../../lib/prism-jac';
 import 'prismjs/components/prism-python';
-import './CodeBlock.css';
+import '../../lib/syntax/jacSyntax.css';
+import { highlightJacCode } from '../../lib/syntax/syntaxHighlighting';
 
 export const CodeBlock = ({
   code,
@@ -13,9 +13,19 @@ export const CodeBlock = ({
   className = ''
 }) => {
   const [copied, setCopied] = useState(false);
+  const [highlightedJac, setHighlightedJac] = useState('');
 
   useEffect(() => {
-    Prism.highlightAll();
+    if (language === 'jac') {
+      let isMounted = true;
+      (async () => {
+        const result = code ? await highlightJacCode(code.trim()) : '';
+        if (isMounted) setHighlightedJac(result);
+      })();
+      return () => { isMounted = false; };
+    } else {
+      Prism.highlightAll();
+    }
   }, [code, language]);
 
   const handleCopy = async () => {
@@ -24,17 +34,23 @@ export const CodeBlock = ({
     setTimeout(() => setCopied(false), 2000);
   };
 
+  if (language === 'jac') {
+    // Use custom Jac syntax highlighting with line numbers
+    return (
+      <div className={`relative group rounded-lg overflow-hidden ${className}`}>
+        <pre className="jac-code line-numbers p-4 overflow-x-auto">
+          <code
+            className="jac-code-block font-mono text-sm leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: highlightedJac }}
+          />
+        </pre>
+      </div>
+    );
+  }
+
+  // Use PrismJS for Python and other languages
   return (
     <div className={`relative group bg-[hsl(var(--code-bg))] rounded-lg overflow-hidden ${className}`}>
-      {/* <div className="flex items-center justify-between px-4 py-2 border-b border-white/10">
-        <button
-          onClick={handleCopy}
-          className="h-6 w-6 p-0 opacity-60 hover:opacity-100 text-white hover:text-white hover:bg-white/10"
-          style={{ border: 'none', background: 'none', cursor: 'pointer' }}
-        >
-          {copied ? '✔️' : '📋'}
-        </button>
-      </div> */}
       <pre className={`line-numbers p-4 overflow-x-auto`}>
         <code className={`language-${language} text-[hsl(var(--code-text))] font-mono text-sm leading-relaxed`}>
           {code.trim()}
