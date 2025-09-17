@@ -1,5 +1,8 @@
 # jaseci-org
-Hosted on jaseci.org
+jaseci.org
 
 # byllm
-To be hosted on byllm.ai
+byllm.ai
+
+
+For new releases - [Click here](https://github.com/jaseci-labs/jaseci-website/releases/new)
