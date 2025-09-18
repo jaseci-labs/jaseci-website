@@ -4,6 +4,7 @@ import TwSizeIndicator from "@layouts/components/TwSizeIndicator";
 import Footer from "@layouts/partials/Footer";
 import Header from "@layouts/partials/Header";
 import Providers from "@layouts/partials/Providers";
+import Analytics from "./Analytics";
 import "../styles/style.scss";
 
 export default function RootLayout({ children }) {
@@ -12,6 +13,21 @@ export default function RootLayout({ children }) {
   return (
     <html suppressHydrationWarning={true} lang="en">
       <head>
+        {/* Google tag (gtag.js) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-V1KRXTNCWJ"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-V1KRXTNCWJ');
+          `,
+          }}
+        />
         {/* responsive meta */}
         <meta
           name="viewport"
@@ -51,6 +67,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning={true}>
+        <Analytics />
         <Header />
         <main className="">
           <Providers>{children}</Providers>
