@@ -4,7 +4,6 @@
       "name": "About Us",
       "url": "/about-us"
     },
-
     {
       "name": "Docs",
       "url": "https://www.jac-lang.org/learn/introduction/",
@@ -12,8 +11,14 @@
       "rel": "noopener noreferrer"
     },
     {
-      "name": "Community Hub",
+      "name": "Community",
       "url": "/community"
+    },
+    {
+      "name": "Research",
+      "url": "https://jaseci.engin.umich.edu/",
+      "target": "_blank",
+      "rel": "noopener noreferrer"
     }
   ],
   "footer": [

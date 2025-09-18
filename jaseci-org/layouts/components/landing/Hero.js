@@ -4,10 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const phrases = [
-  "# Write once, scale everywhere",
-  "# AI-first programming language",
-  "# Object-Spatial Programming",
-  "# Cloud-native by design",
+  "# Enable fast, low-complexity development of AI-powered, scalable, launch-ready applications."
 ];
 
 const affiliations = [
@@ -61,7 +58,7 @@ const TypingAnimation = () => {
 const Hero = () => {
   return (
     <section className="text-center py-16">
-      <h1 className="text-6xl font-bold mb-5 bg-gradient-to-r from-primary-orange to-primary-yellow text-transparent bg-clip-text">
+      <h1 className="text-6xl font-bold mb-5 bg-gradient-to-r from-primary-orange to-primary-yellow text-transparent bg-clip-text lg:mt-10">
         <Image
           src="/images/logo.png"
           alt="Jaseci Logo"
@@ -72,14 +69,13 @@ const Hero = () => {
         Jac and Jaseci
       </h1>
       <p className="text-xl text-dark-text mb-10 max-w-2xl mx-auto">
-        The Jac programming language and Jaseci runtime stack supersets Python
-        with
+        The Jac programming language and Jaseci runtime stack builds on Python,
         <a
           href="https://arxiv.org/abs/2405.08965"
           target="_blank"
           className="fancy-link mx-1"
         >
-          AI-first constructs
+          introducing AI-first constructs,
         </a>
         ,
         <a
@@ -87,9 +83,9 @@ const Hero = () => {
           target="_blank"
           className="fancy-link mx-1"
         >
-          object spatial programming
+          Object-spatial programming
         </a>
-        , and
+         and
         <a
           href="https://arxiv.org/abs/2504.03109"
           target="_blank"
@@ -99,12 +95,12 @@ const Hero = () => {
         </a>
         .
       </p>
-      <div className="h-9 text-2xl mb-10">
+      <div className="h-9 text-xl mb-10">
         <TypingAnimation />
       </div>
       <div className="flex gap-5 justify-center mb-5">
         <a
-          href="https://www.jac-lang.org/learn/getting_started"
+          href="https://www.jac-lang.org/learn/installation/"
           onClick={() =>
             import("@lib/gtag").then(({ event }) =>
               event({
