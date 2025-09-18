@@ -164,15 +164,35 @@ const Header = () => {
                     </li>
                   ) : (
                     <li className="nav-item">
-                      <Link
-                        href={menuItem.url}
-                        className={`block transition-all rounded-md md:rounded-full px-4 py-2 whitespace-nowrap ${pathname === menuItem.url
-                          ? "bg-white/20 text-white"
-                          : "text-dark-text hover:bg-white/10 hover:text-white"
-                          }`}
-                      >
-                        {menuItem.name}
-                      </Link>
+                      {menuItem.target ? (
+                        <a
+                          href={menuItem.url}
+                          target={menuItem.target}
+                          rel={menuItem.rel}
+                          className={`block transition-all rounded-md md:rounded-full px-4 py-2 whitespace-nowrap relative ${pathname === menuItem.url
+                            ? "bg-white/20 text-white"
+                            : "text-dark-text hover:bg-white/10 hover:text-white"
+                            }`}
+                          style={{ zIndex: 1, position: 'relative' }}
+                        >
+                          <span className="relative z-10 block w-full h-full">
+                            {menuItem.name}
+                          </span>
+                        </a>
+                      ) : (
+                        <Link
+                          href={menuItem.url}
+                          className={`block transition-all rounded-md md:rounded-full px-4 py-2 whitespace-nowrap relative ${pathname === menuItem.url
+                            ? "bg-white/20 text-white"
+                            : "text-dark-text hover:bg-white/10 hover:text-white"
+                            }`}
+                          style={{ zIndex: 1, position: 'relative' }}
+                        >
+                          <span className="relative z-10 block w-full h-full">
+                            {menuItem.name}
+                          </span>
+                        </Link>
+                      )}
                     </li>
                   )}
                 </React.Fragment>
