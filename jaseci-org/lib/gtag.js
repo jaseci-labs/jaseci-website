@@ -14,13 +14,15 @@ export const pageview = (url) => {
 };
 
 // Track custom events
-export const event = ({ action, category, label, value }) => {
+// Supports extra GA params via rest (e.g., { transport_type: 'beacon' })
+export const event = ({ action, category, label, value, ...rest }) => {
   if (!GA_MEASUREMENT_ID) return;
   if (typeof window !== "undefined" && window.gtag) {
     window.gtag("event", action, {
       event_category: category,
       event_label: label,
       value: value,
+      ...rest,
     });
   }
 };
