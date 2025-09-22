@@ -27,7 +27,7 @@ const LandingPage = () => {
         <VerticalTabs />
         <Carousel
           slides={gettingStartedSlides}
-          title="Get Started with Jac"
+          title="Get Started with Jaseci Stack"
           sectionId="learn"
         />
         <div className="bg-[#222222]">
