@@ -14,86 +14,234 @@ const LearnMoreIcon = () => (
 const VerticalTabs = () => {
   const [activeVerticalTab, setActiveVerticalTab] = useState(0);
   const [activeLanguage, setActiveLanguage] = useState("jac");
+  const [jacExpanded, setJacExpanded] = useState(false);
+  const [pythonExpanded, setPythonExpanded] = useState(false);
 
   const handleVerticalTabClick = (index) => {
     setActiveVerticalTab(index);
     setActiveLanguage("jac"); // reset language on vertical tab change
+    setJacExpanded(false);
+    setPythonExpanded(false);
   };
 
   const currentJacCode = jacTabsData[activeVerticalTab].code;
   const currentPythonCode = pythonTabsData[activeVerticalTab].code;
 
   return (
-    <section className="py-10" id="what-is-jac">
-      <h2 className="text-center text-4xl font-semibold mb-12 text-white">
-        What is Jac?
-      </h2>
-      <div className="flex flex-col lg:flex-row max-w-7xl mx-auto min-h-[520px] rounded-2xl overflow-hidden shadow-2xl bg-black/50">
-        {/* Left: Vertical Tabs Navigation */}
-        <div className="w-full lg:w-[270px] flex flex-row lg:flex-col justify-around gap-3 lg:gap-3 bg-black p-4 lg:py-8">
-          {tabsData.map((tab, index) => (
-            <button
-              key={index}
-              onClick={() => handleVerticalTabClick(index)}
-              className={`relative text-left text-lg font-medium p-3 lg:py-3 lg:px-8 transition-colors duration-200 ease-in-out outline-none focus-visible:ring-2 focus-visible:ring-orange-500
-                ${activeVerticalTab === index ? "text-white" : "text-gray-500 hover:text-gray-300"}`}
-            >
-              <span
-                className={`absolute left-2 lg:left-5 top-1/2 -translate-y-1/2 w-1 h-3/5 rounded-r-sm transition-all duration-200 ease-in-out
-                  ${activeVerticalTab === index ? "bg-orange-500 opacity-100" : "bg-gray-500 opacity-30"}`}
-              ></span>
-              <span className="flex-grow pl-2 lg:pl-0">{tab.title}</span>
-              <a
-                href={tab.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="hidden lg:inline-block absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-orange-500"
-                aria-label="Learn more"
-              >
-                <LearnMoreIcon />
-              </a>
-            </button>
-          ))}
+    <section className="py-8 sm:py-12 lg:py-16 bg-dark-bg relative overflow-hidden" id="what-is-jac">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-5 overflow-hidden">
+        <div className="absolute top-16 sm:top-32 right-8 sm:right-20 w-20 sm:w-32 lg:w-40 h-20 sm:h-32 lg:h-40 bg-gradient-to-br from-primary-orange to-primary-yellow rounded-full blur-xl animate-pulse delay-300"></div>
+        <div className="absolute bottom-16 sm:bottom-32 left-6 sm:left-16 w-16 sm:w-24 lg:w-32 h-16 sm:h-24 lg:h-32 bg-gradient-to-br from-primary-yellow to-primary-orange rounded-full blur-lg animate-pulse delay-1000"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
+        {/* Header */}
+        <div
+          className="text-center mb-8 sm:mb-10"
+          style={{ animation: 'fadeInUp 0.6s ease-out both' }}
+        >
+          <div className="inline-block">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 bg-gradient-to-r from-white via-primary-orange to-primary-yellow bg-clip-text text-transparent">
+              Why is Jac?
+            </h2>
+            <div className="h-1 bg-gradient-to-r from-transparent via-primary-orange to-transparent mx-auto w-24 mb-3"></div>
+          </div>
+          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-normal">
+            Discover the power of Jac through interactive examples
+          </p>
         </div>
 
-        {/* Right: Content Area */}
-        <div className="w-full max-w-full lg:max-w-[inherit] bg-[#2d2d2d] p-6 sm:p-8 lg:p-12 flex flex-col rounded-t-2xl lg:rounded-l-none lg:rounded-r-2xl overflow-x-auto">
-          <div className="text-white text-lg font-medium min-h-[60px] leading-relaxed">
-            {tabsData[activeVerticalTab].summary}
+        {/* Horizontal Navigation Tabs */}
+        <div
+          className="mb-6 sm:mb-8"
+          style={{ animation: 'fadeInUp 0.6s ease-out 0.2s both' }}
+        >
+          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center px-2 sm:px-0">
+            {tabsData.map((tab, index) => (
+              <button
+                key={index}
+                onClick={() => handleVerticalTabClick(index)}
+                className={`group px-2 py-2 sm:px-4 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-1 sm:gap-2 backdrop-blur-sm border shadow-lg
+                  ${activeVerticalTab === index
+                    ? 'bg-gradient-to-r from-primary-orange to-primary-yellow text-white shadow-primary-orange/25 border-primary-orange/30'
+                    : 'bg-dark-bg/40 text-gray-300 hover:text-white hover:bg-dark-bg/60 border-light-bg/20 hover:border-primary-orange/30 hover:shadow-primary-orange/10'
+                  }`}
+                style={{ animation: `fadeInUp 0.6s ease-out ${0.4 + index * 0.1}s both` }}
+              >
+                <span className="font-semibold text-center leading-tight">{tab.title}</span>
+                <a
+                  href={tab.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="hidden sm:block opacity-70 hover:opacity-100 transition-all duration-300 p-1.5 hover:bg-white/10 rounded-lg hover:scale-110"
+                >
+                  <LearnMoreIcon />
+                </a>
+              </button>
+            ))}
           </div>
-          <div className="mt-4 flex-1 flex flex-col bg-[#282C34] rounded-xl shadow-lg overflow-hidden min-h-[350px]">
-            {/* Language Tabs */}
-            <div className="bg-[#3c4043] h-14 flex items-center justify-center px-4 relative">
-              <div className="flex p-1.5 gap-2 rounded-lg">
-                <button
-                  onClick={() => setActiveLanguage("jac")}
-                  className={`min-w-[90px] py-1.5 px-4 text-sm font-medium rounded-md transition-all duration-300
-                    ${activeLanguage === "jac" ? "bg-gradient-to-r from-orange-500 to-yellow-500 text-white shadow-md" : "bg-[#2b2f36] text-gray-300 hover:bg-[#343941]"}`}
-                >
-                  jac
-                </button>
-                <button
-                  onClick={() => setActiveLanguage("python")}
-                  className={`min-w-[90px] py-1.5 px-4 text-sm font-medium rounded-md transition-all duration-300
-                    ${activeLanguage === "python" ? "bg-gradient-to-r from-orange-500 to-yellow-500 text-white shadow-md" : "bg-[#2b2f36] text-gray-300 hover:bg-[#343941]"}`}
-                >
-                  python
-                </button>
+        </div>
+
+        {/* Description */}
+        <div
+          className="text-center mb-6 sm:mb-8"
+          style={{ animation: 'fadeInUp 0.6s ease-out 0.8s both' }}
+        >
+          <div className="bg-gradient-to-r from-dark-bg/60 via-dark-bg/40 to-dark-bg/60 backdrop-blur-sm rounded-xl border border-light-bg/20 p-3 sm:p-4 lg:p-6 shadow-xl mx-2 sm:mx-0">
+            <p className="text-gray-200 text-sm sm:text-base lg:text-lg leading-normal max-w-3xl mx-auto">
+              {tabsData[activeVerticalTab].summary}
+            </p>
+          </div>
+        </div>
+
+        {/* Side by Side Code Comparison */}
+        <div
+          className="bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-light-bg/20 overflow-hidden shadow-2xl hover:border-primary-orange/30 transition-all duration-500 mx-2 sm:mx-0"
+          style={{ animation: 'fadeInUp 0.6s ease-out 1s both' }}
+        >
+          <div className="grid lg:grid-cols-2 min-h-[400px] sm:min-h-[500px]">
+
+            {/* Jac Code */}
+            <div className="flex flex-col border-b lg:border-b-0 lg:border-r border-light-bg/20">
+              <div
+                className="bg-gradient-to-r from-primary-orange/20 to-primary-yellow/20 backdrop-blur-sm p-2 sm:p-3 lg:p-4 border-b border-light-bg/20"
+                style={{ animation: 'fadeInUp 0.6s ease-out 1.2s both' }}
+              >
+                <h3 className="text-primary-orange font-bold text-sm sm:text-base lg:text-lg flex items-center gap-1 sm:gap-2">
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-r from-primary-orange to-primary-yellow rounded-full shadow-lg shadow-primary-orange/50"></div>
+                  Jac Code
+                </h3>
+              </div>
+              <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden relative flex flex-col">
+                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="flex-1 flex flex-col">
+                  <div className={`transition-all duration-500 ease-in-out overflow-hidden relative flex-1 ${jacExpanded ? 'max-h-none' : 'max-h-[300px] sm:max-h-[400px] lg:max-h-[500px]'
+                    }`}>
+                    <div className="flex h-full">
+                      <div className="bg-gray-800/50 p-2 sm:p-3 lg:p-4 border-r border-light-bg/20 min-w-[40px] sm:min-w-[50px] flex-shrink-0">
+                        {currentJacCode.trim().split('\n').map((_, index) => (
+                          <div key={index} className="text-gray-500 text-xs sm:text-sm leading-5 sm:leading-6 text-right pr-1 sm:pr-2">
+                            {index + 1}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex-1 p-2 sm:p-3 lg:p-4 overflow-x-auto">
+                        <div className="break-words overflow-wrap-anywhere text-sm">
+                          <CodeBlock code={currentJacCode.trim()} language="jac" />
+                        </div>
+                      </div>
+                    </div>
+                    {/* Gradient fade overlay when not expanded and content exceeds visible area */}
+                    {!jacExpanded && currentJacCode.trim().split('\n').length > 25 && (
+                      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#161b22] via-[#161b22]/80 to-transparent pointer-events-none"></div>
+                    )}
+                  </div>
+                  {/* Expand/Collapse Button */}
+                  {currentJacCode.trim().split('\n').length > 25 && (
+                    <div className="border-t border-light-bg/20 bg-gradient-to-r from-primary-orange/10 to-primary-yellow/10 flex-shrink-0">
+                      <button
+                        onClick={() => setJacExpanded(!jacExpanded)}
+                        className="w-full py-1.5 sm:py-2 px-2 sm:px-3 text-primary-orange hover:text-primary-yellow transition-colors duration-200 flex items-center justify-center gap-1 sm:gap-2 hover:bg-white/5 text-xs sm:text-sm"
+                      >
+                        <span className="font-medium">{jacExpanded ? 'Collapse' : 'Expand'}</span>
+                        <svg
+                          className={`w-4 h-4 transition-transform duration-200 ${jacExpanded ? 'rotate-180' : ''}`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
-            {/* Code Blocks */}
-            <div className="flex-1 overflow-auto p-4 text-xs max-h-[50vh]">
-              {activeLanguage === "jac" ? (
-                <CodeBlock code={currentJacCode.trim()} language="jac" />
-              ) : (
-                <CodeBlock code={currentPythonCode.trim()} language="python" />
-              )}
+            {/* Python Code */}
+            <div className="flex flex-col">
+              <div
+                className="bg-gradient-to-r from-blue-500/20 to-blue-400/20 backdrop-blur-sm p-2 sm:p-3 lg:p-4 border-b border-light-bg/20"
+                style={{ animation: 'fadeInUp 0.6s ease-out 1.2s both' }}
+              >
+                <h3 className="text-blue-400 font-bold text-sm sm:text-base lg:text-lg flex items-center gap-1 sm:gap-2">
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-r from-blue-400 to-blue-300 rounded-full shadow-lg shadow-blue-400/50"></div>
+                  Python Equivalent
+                </h3>
+              </div>
+              <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden relative flex flex-col">
+                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="flex-1 flex flex-col">
+                  <div className={`transition-all duration-500 ease-in-out overflow-hidden relative flex-1 ${pythonExpanded ? 'max-h-none' : 'max-h-[300px] sm:max-h-[400px] lg:max-h-[500px]'
+                    }`}>
+                    <div className="flex h-full">
+                      <div className="bg-gray-800/50 p-2 sm:p-3 lg:p-4 border-r border-light-bg/20 min-w-[40px] sm:min-w-[50px] flex-shrink-0">
+                        {currentPythonCode.trim().split('\n').map((_, index) => (
+                          <div key={index} className="text-gray-500 text-xs sm:text-sm leading-5 sm:leading-6 text-right pr-1 sm:pr-2">
+                            {index + 1}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex-1 p-2 sm:p-3 lg:p-4 overflow-x-auto">
+                        <div className="break-words overflow-wrap-anywhere text-xs sm:text-sm">
+                          <CodeBlock code={currentPythonCode.trim()} language="python" />
+                        </div>
+                      </div>
+                    </div>
+                    {/* Gradient fade overlay when not expanded and content exceeds visible area */}
+                    {!pythonExpanded && currentPythonCode.trim().split('\n').length > 25 && (
+                      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#161b22] via-[#161b22]/80 to-transparent pointer-events-none"></div>
+                    )}
+                  </div>
+                  {/* Expand/Collapse Button */}
+                  {currentPythonCode.trim().split('\n').length > 25 && (
+                    <div className="border-t border-light-bg/20 bg-gradient-to-r from-blue-500/10 to-blue-400/10 flex-shrink-0">
+                      <button
+                        onClick={() => setPythonExpanded(!pythonExpanded)}
+                        className="w-full py-1.5 sm:py-2 px-2 sm:px-3 text-blue-400 hover:text-blue-300 transition-colors duration-200 flex items-center justify-center gap-1 sm:gap-2 hover:bg-white/5 text-xs sm:text-sm"
+                      >
+                        <span className="font-medium">{pythonExpanded ? 'Collapse' : 'Expand'}</span>
+                        <svg
+                          className={`w-4 h-4 transition-transform duration-200 ${pythonExpanded ? 'rotate-180' : ''}`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        /* Hide scrollbars but keep functionality */
+        .code-container {
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        
+        .code-container::-webkit-scrollbar {
+          display: none; /* WebKit */
+        }
+      `}</style>
     </section>
   );
 };

@@ -50,13 +50,32 @@ const Carousel = ({ slides, title, sectionId }) => {
   }, [showNav, totalGroups]);
 
   return (
-    <section className="py-16" id={sectionId}>
-      <div className="max-w-6xl mx-auto px-5">
+    <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-[#1a1a1a] to-dark-bg relative overflow-hidden" id={sectionId}>
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-5 overflow-hidden">
+        <div className="absolute top-16 sm:top-32 left-8 sm:left-20 w-20 sm:w-32 lg:w-40 h-20 sm:h-32 lg:h-40 bg-gradient-to-br from-primary-orange to-primary-yellow rounded-full blur-xl animate-pulse delay-300"></div>
+        <div className="absolute bottom-16 sm:bottom-32 right-6 sm:right-16 w-16 sm:w-24 lg:w-32 h-16 sm:h-24 lg:h-32 bg-gradient-to-br from-primary-yellow to-primary-orange rounded-full blur-lg animate-pulse delay-1000"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
         {title && (
-          <h2 className="text-center text-4xl font-semibold mb-12">{title}</h2>
+          <div
+            className="text-center mb-8 sm:mb-10"
+            style={{ animation: 'fadeInUp 0.6s ease-out both' }}
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 bg-gradient-to-r from-white via-primary-orange to-primary-yellow bg-clip-text text-transparent">
+              {title}
+            </h2>
+            <div className="h-1 bg-gradient-to-r from-transparent via-primary-orange to-transparent mx-auto w-24 mb-3"></div>
+            <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-normal">
+              Explore the core components of the Jaseci ecosystem
+            </p>
+          </div>
         )}
+        
         <div
-          className="relative overflow-hidden rounded-2xl pt-3.5"
+          className="relative overflow-hidden"
+          style={{ animation: 'fadeInUp 0.6s ease-out 0.3s both' }}
           onMouseEnter={stopAutoPlay}
           onMouseLeave={startAutoPlay}
         >
@@ -67,30 +86,46 @@ const Carousel = ({ slides, title, sectionId }) => {
             {grouped.map((group, groupIndex) => (
               <div
                 key={groupIndex}
-                className="min-w-full flex flex-col md:flex-row gap-8 px-2.5"
+                className="min-w-full flex flex-col lg:flex-row gap-6 lg:gap-8 px-2"
               >
                 {group.map((card, cardIndex) => (
                   <div
                     key={cardIndex}
-                    className="flex-1 min-w-[280px] bg-medium-bg rounded-2xl p-8 md:p-10 text-center transition-all duration-300 border border-light-bg relative overflow-hidden group hover:-translate-y-2 hover:shadow-2xl"
+                    className="flex-1 bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl border border-light-bg/20 p-6 sm:p-8 shadow-2xl hover:border-primary-orange/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary-orange/10 group mx-2 sm:mx-0"
+                    style={{ animation: `fadeInUp 0.6s ease-out ${0.5 + cardIndex * 0.1}s both` }}
                   >
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-orange to-primary-yellow opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="text-5xl mb-5">{card.icon}</div>
-                    <h3 className="text-2xl font-semibold mb-4">
-                      {card.title}
-                    </h3>
-                    <p className="text-dark-text mb-6 text-sm">
+                    {/* Card Header */}
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary-orange/20 to-primary-yellow/20 backdrop-blur-sm rounded-xl border border-primary-orange/30 flex items-center justify-center text-2xl sm:text-3xl group-hover:scale-110 transition-transform duration-300">
+                        {card.icon}
+                      </div>
+                      <div>
+                        <h3 className="text-white font-bold text-lg sm:text-xl group-hover:text-primary-orange transition-colors duration-300">
+                          {card.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Card Content */}
+                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
                       {card.description}
                     </p>
+
+                    {/* Card Action */}
                     {card.link && (
-                      <a
-                        href={card.link}
-                        className="card-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {card.linkText}
-                      </a>
+                      <div className="flex justify-start">
+                        <a
+                          href={card.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-primary-orange/20 to-primary-yellow/20 text-primary-orange font-medium rounded-lg border border-primary-orange/30 hover:bg-gradient-to-r hover:from-primary-orange hover:to-primary-yellow hover:text-white transition-all duration-300 transform hover:scale-105 text-sm"
+                        >
+                          {card.linkText}
+                          <svg className="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
+                          </svg>
+                        </a>
+                      </div>
                     )}
                   </div>
                 ))}
@@ -99,10 +134,13 @@ const Carousel = ({ slides, title, sectionId }) => {
           </div>
 
           {showNav && (
-            <div className="flex justify-center items-center gap-5 mt-8">
+            <div 
+              className="flex justify-center items-center gap-4 mt-8"
+              style={{ animation: 'fadeInUp 0.6s ease-out 0.8s both' }}
+            >
               <button
                 onClick={prevSlide}
-                className="bg-gradient-to-r from-primary-orange to-primary-yellow text-white w-11 h-11 rounded-full flex items-center justify-center cursor-pointer transition-transform duration-300 text-lg font-bold hover:scale-110"
+                className="bg-gradient-to-r from-primary-orange to-primary-yellow text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 text-lg font-bold hover:scale-110 hover:shadow-lg hover:shadow-primary-orange/25"
                 aria-label="Previous slides"
               >
                 ‹
@@ -112,14 +150,18 @@ const Carousel = ({ slides, title, sectionId }) => {
                   <div
                     key={index}
                     onClick={() => setCurrentSlide(index)}
-                    className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${currentSlide === index ? "bg-gradient-to-r from-primary-orange to-primary-yellow scale-125" : "bg-gray-600"}`}
+                    className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full cursor-pointer transition-all duration-300 ${
+                      currentSlide === index 
+                        ? "bg-gradient-to-r from-primary-orange to-primary-yellow scale-125 shadow-lg shadow-primary-orange/50" 
+                        : "bg-gray-600 hover:bg-gray-500"
+                    }`}
                     aria-label={`Go to group ${index + 1}`}
                   />
                 ))}
               </div>
               <button
                 onClick={nextSlide}
-                className="bg-gradient-to-r from-primary-orange to-primary-yellow text-white w-11 h-11 rounded-full flex items-center justify-center cursor-pointer transition-transform duration-300 text-lg font-bold hover:scale-110"
+                className="bg-gradient-to-r from-primary-orange to-primary-yellow text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 text-lg font-bold hover:scale-110 hover:shadow-lg hover:shadow-primary-orange/25"
                 aria-label="Next slides"
               >
                 ›
@@ -128,6 +170,20 @@ const Carousel = ({ slides, title, sectionId }) => {
           )}
         </div>
       </div>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 };

@@ -2,6 +2,7 @@
 
 import SeoMeta from "@layouts/partials/SeoMeta";
 import Hero from "@layouts/components/landing/Hero";
+import JacSuperset from "@layouts/components/landing/JacSuperset";
 import Carousel from "@layouts/components/landing/Carousel";
 import {
   featuresSlides,
@@ -24,6 +25,7 @@ const LandingPage = () => {
         <main className="max-w-none mx-auto px-5">
           <Hero />
         </main>
+        <JacSuperset />
         <VerticalTabs />
         <Carousel
           slides={gettingStartedSlides}

@@ -553,22 +553,10 @@ print("Run this with: uvicorn main:app --reload")
 
 export const tabsData = [
   {
-    title: "Jac Supersets Python",
-    summary:
-      "Jac is a drop-in replacement and superset of Python, like TypeScript for JavaScript, offering full Python interoperability while adding features to simplify and accelerate AI application development.",
-    link: "https://www.jac-lang.org/jac_book/chapter_1/#comparison-with-python-and-traditional-languages",
-  },
-  {
     title: "Programming Abstractions for Al",
     summary:
       "Jac introduces programming abstractions designed for AI, making it easy to integrate LLMs and multimodal models directly into your code with minimal effort.",
     link: "https://www.jac-lang.org/learn/jac-byllm/with_llm/",
-  },
-  {
-    title: "An Agentic Programming Model",
-    summary:
-      "Jac enables an agentic programming model, allowing you to build complex, multi-agent systems with simple, readable code.",
-    link: "https://www.jac-lang.org/learn/introduction/#beyond-oop-an-agentic-programming-model",
   },
   {
     title: "Object-spatial programming",
