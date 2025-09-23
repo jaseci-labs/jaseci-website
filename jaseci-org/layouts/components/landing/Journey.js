@@ -5,7 +5,7 @@ import { useMemo } from "react";
 const journeyMilestones = [
   {
     description:
-      "Prologue: In 2020, the concept of a new way of developing software in the AI era is conceived and later described in a Forbes blog article.",
+      "In 2020, the concept of a new way of developing software in the AI era is conceived and later described in a Forbes blog article.",
     link: "https://www.forbes.com/sites/forbesbooksauthors/2021/05/18/whats-in-store-for-the-next-generation-of-ai-the-jaseci-perspective/",
     linkText: "Forbes Article",
   },
@@ -67,77 +67,168 @@ const Journey = () => {
   );
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-dark-bg relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary-orange to-primary-yellow rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-br from-primary-yellow to-primary-orange rounded-full blur-lg animate-pulse delay-1000"></div>
+    <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 xl:py-16 overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMUg0MFYwSDBWMVoiIGZpbGw9InVybCgjZ3JpZCkiLz4KPHA+PC9wYXRoPgo8cGF0aCBkPSJNMSAwVjQwSDBWMEgxWiIgZmlsbD0idXJsKCNncmlkKSIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmlkIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMCI+CjxzdG9wIHN0b3AtY29sb3I9IiNmZjk1MDAiIHN0b3Atb3BhY2l0eT0iMC4wNSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=')] opacity-10 sm:opacity-20"></div>
+        <div className="absolute top-1/4 left-1/6 sm:left-1/4 w-32 h-32 sm:w-64 sm:h-64 lg:w-96 lg:h-96 bg-gradient-to-r from-orange-500/10 to-orange-400/10 rounded-full blur-2xl sm:blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/6 sm:right-1/4 w-24 h-24 sm:w-48 sm:h-48 lg:w-80 lg:h-80 bg-gradient-to-r from-orange-400/10 to-orange-300/10 rounded-full blur-xl sm:blur-3xl animate-pulse delay-1000"></div>
       </div>
 
-      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-8 sm:mb-12">
-          <div className="inline-block">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-6 sm:mb-8">
+              <div className="inline-block">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 bg-gradient-to-r from-white via-primary-orange to-primary-yellow bg-clip-text text-transparent">
-              Journey of Jaseci
-            </h2>
-            <div className="h-1 bg-gradient-to-r from-transparent via-primary-orange to-transparent mx-auto w-32"></div>
-          </div>
-          <p className="text-primary-orange italic mt-3 text-sm sm:text-base font-medium">
-            ~ The story of an idea realized ~
-          </p>
+                  Journey of Jaseci
+                </h2>
+                <div className="h-1 bg-gradient-to-r from-transparent via-primary-orange to-transparent mx-auto w-32"></div>
+              </div>
+              <p className="text-primary-orange italic mt-3 text-sm sm:text-base font-medium">
+                ~ The story of an idea realized ~
+              </p>
+            </div>
+            </div>
+
         </div>
 
+
         <div className="relative">
-          <div className="absolute left-4 sm:left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary-orange via-primary-yellow to-primary-orange/20 shadow-[0_0_10px_rgba(255,149,0,0.3)]" />
+          {/* Mobile Timeline - Single Column */}
+          <div className="block md:hidden">
+            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary-orange via-primary-yellow to-primary-orange/20 shadow-[0_0_10px_rgba(255,149,0,0.3)]"></div>
+            
+            <div className="space-y-6">
+              {items.map((item, i) => (
+                <div
+                  key={i}
+                  className="relative flex items-start"
+                  style={{
+                    animation: `slideInLeft 0.8s ease-out ${i * 0.2}s both`
+                  }}
+                >
+                  <div className="absolute left-3 w-6 h-6 bg-gradient-to-br from-primary-orange to-primary-yellow rounded-full flex items-center justify-center z-10 shadow-lg shadow-primary-orange/25">
+                    <span className="text-xs font-bold text-white drop-shadow-sm">
+                      {item.number}
+                    </span>
+                  </div>
 
-          <div className="space-y-6 sm:space-y-6">
-            {items.map((item, i) => (
-              <div
-                key={i}
-                className="relative flex items-start group"
-                style={{
-                  animation: `fadeInUp 0.6s ease-out ${i * 0.1}s both`
-                }}
-              >
-                <div className="absolute left-2 sm:left-4 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-primary-orange to-primary-yellow rounded-full flex items-center justify-center z-10 shadow-lg shadow-primary-orange/25 group-hover:shadow-primary-orange/50 transition-all duration-300 group-hover:scale-110">
-                  <span className="text-xs sm:text-xs font-bold text-white drop-shadow-sm">
-                    {item.number}
-                  </span>
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-orange to-primary-yellow opacity-0 group-hover:opacity-30 group-hover:scale-150 transition-all duration-500"></div>
-                </div>
-
-                <div className="ml-12 sm:ml-16 flex-1 max-w-3xl">
-                  <div className="bg-gradient-to-br from-dark-bg/60 via-dark-bg/40 to-dark-bg/60 backdrop-blur-sm border border-light-bg/20 rounded-xl p-3 sm:p-4 hover:border-primary-orange/40 transition-all duration-300 group-hover:transform group-hover:scale-[1.02] group-hover:shadow-xl group-hover:shadow-xl group-hover:shadow-primary-orange/10">
-                    <div className="flex items-center justify-between mb-2 sm:mb-3">
-                      <div className="flex items-center gap-3">
-                        <span className="relative inline-flex items-center px-2 py-1 text-xs sm:text-sm font-bold text-primary-orange bg-primary-orange/10 border border-primary-orange/30 rounded-md hover:bg-primary-orange/20 hover:border-primary-orange/50 transition-all duration-300 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-primary-orange/5 before:to-transparent before:rounded-md before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300">
-                          {item.year}
-                        </span>
-                        {item.title && (
-                          <span className="text-sm sm:text-base text-primary-orange font-semibold hidden sm:block group-hover:text-primary-yellow transition-colors duration-300">
-                            {item.title}
+                  <div className="ml-12 flex-1">
+                    <div className="bg-gradient-to-br from-dark-bg/90 via-dark-bg/80 to-dark-bg/90 backdrop-blur-sm border border-light-bg/20 rounded-xl p-3 hover:border-primary-orange/40 transition-all duration-300 hover:shadow-lg hover:shadow-primary-orange/10 hover:transform hover:scale-[1.02]">
+                      <div className="flex flex-col gap-3 mb-3">
+                        <div className="flex items-center justify-between">
+                          <span className="inline-flex items-center px-2 py-1 text-xs font-bold text-primary-orange bg-primary-orange/10 border border-primary-orange/30 rounded-md">
+                            <div className="w-1.5 h-1.5 bg-primary-orange rounded-full mr-2 animate-pulse"></div>
+                            {item.year}
                           </span>
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-primary-orange hover:text-white bg-primary-orange/10 hover:bg-primary-orange rounded-full transition-all duration-300"
+                          >
+                            <span>Read</span>
+                            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                          </a>
+                        </div>
+                        {item.title && (
+                          <h3 className="text-sm font-bold text-primary-orange">
+                            {item.title}
+                          </h3>
                         )}
                       </div>
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm text-primary-orange hover:text-white bg-primary-orange/10 hover:bg-primary-orange rounded-full transition-all duration-300 hover:transform hover:scale-105 flex-shrink-0"
-                      >
-                        <span className="font-medium">{item.linkText}</span>
-                        <svg className="w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:rotate-45" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      </a>
+                      <p className="text-sm text-dark-text leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
-
-                    <p className="text-sm sm:text-base text-dark-text leading-relaxed group-hover:text-white/90 transition-colors duration-300">
-                      {item.description}
-                    </p>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop/Tablet Timeline - Alternating */}
+          <div className="hidden md:block">
+            <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary-orange via-primary-yellow to-primary-orange/20 shadow-[0_0_10px_rgba(255,149,0,0.3)]"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary-orange/50 via-transparent to-transparent animate-pulse"></div>
+
+            <div className="space-y-8 lg:space-y-10 xl:space-y-12">
+              {items.map((item, i) => (
+                <div
+                  key={i}
+                  className={`relative flex items-center ${
+                    i % 2 === 0 ? 'justify-start' : 'justify-end'
+                  }`}
+                  style={{
+                    animation: `slideIn${i % 2 === 0 ? 'Left' : 'Right'} 0.8s ease-out ${i * 0.2}s both`
+                  }}
+                >
+                  <div className="absolute left-1/2 transform -translate-x-1/2 z-20">
+                    <div className="relative w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-primary-orange to-primary-yellow rounded-full flex items-center justify-center hover:scale-110 transition-all duration-500 shadow-lg shadow-primary-orange/25">
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-orange to-primary-yellow opacity-30 blur-sm animate-pulse"></div>
+                      <span className="relative text-xs lg:text-sm font-bold text-white z-10 drop-shadow-sm">
+                        {item.number}
+                      </span>
+                      
+                      <div className="absolute inset-0 rounded-full border-2 border-primary-orange/50 animate-ping"></div>
+                    </div>
+                  </div>
+
+                  {/* Content Card */}
+                  <div className={`relative w-full max-w-sm lg:max-w-md xl:max-w-lg ${
+                    i % 2 === 0 ? 'mr-auto pr-6 lg:pr-8' : 'ml-auto pl-6 lg:pl-8'
+                  }`}>
+                    <div className="relative group">
+                      <div className={`absolute top-6 lg:top-8 w-6 lg:w-8 h-px bg-gradient-to-r ${
+                        i % 2 === 0 
+                          ? 'from-primary-orange to-transparent right-0' 
+                          : 'from-transparent to-primary-orange left-0'
+                      }`}></div>
+
+                      <div className="relative bg-gradient-to-br from-dark-bg/90 via-dark-bg/80 to-dark-bg/90 backdrop-blur-sm border border-light-bg/20 rounded-xl p-3 lg:p-4 hover:border-primary-orange/40 transition-all duration-300 hover:shadow-xl hover:shadow-primary-orange/10 hover:transform hover:scale-[1.02]">
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary-orange/5 via-transparent to-primary-yellow/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div className="flex items-center justify-between mb-2 lg:mb-3">
+                          <div className="relative">
+                            <span className="relative inline-flex items-center px-2 py-1 text-xs sm:text-sm font-bold text-primary-orange bg-primary-orange/10 border border-primary-orange/30 rounded-md hover:bg-primary-orange/20 hover:border-primary-orange/50 transition-all duration-300">
+                              <div className="w-1.5 h-1.5 bg-primary-orange rounded-full mr-2 animate-pulse"></div>
+                              {item.year}
+                            </span>
+                          </div>
+
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group/link relative inline-flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm font-medium text-primary-orange hover:text-white bg-primary-orange/10 hover:bg-primary-orange rounded-full transition-all duration-300 hover:transform hover:scale-105"
+                          >
+                            <span className="relative z-10 hidden sm:inline">{item.linkText}</span>
+                            <span className="relative z-10 sm:hidden">Read</span>
+                            <svg className="w-3 h-3 lg:w-4 lg:h-4 transition-transform duration-300 group-hover/link:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+
+                          </a>
+                        </div>
+
+                        {item.title && (
+                          <h3 className="text-sm sm:text-base font-semibold text-primary-orange mb-2 group-hover:text-primary-yellow transition-colors duration-300">
+                            {item.title}
+                          </h3>
+                        )}
+
+                        <p className="text-sm text-dark-text leading-relaxed group-hover:text-white/90 transition-colors duration-300">
+                          {item.description}
+                        </p>
+                        <div className="absolute bottom-0 left-3 lg:left-4 right-3 lg:right-4 h-px bg-gradient-to-r from-transparent via-primary-orange/30 to-transparent"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -153,17 +244,27 @@ const Journey = () => {
             transform: translateY(0);
           }
         }
-        
-        .bg-size-200 {
-          background-size: 200% 100%;
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
         }
         
-        .bg-pos-0 {
-          background-position: 0% 50%;
-        }
-        
-        .bg-pos-100 {
-          background-position: 100% 50%;
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
         }
       `}</style>
     </section>
