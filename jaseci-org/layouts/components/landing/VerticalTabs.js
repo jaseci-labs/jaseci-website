@@ -111,12 +111,12 @@ const VerticalTabs = () => {
                 </h3>
               </div>
               <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
-                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="h-96 overflow-auto custom-scrollbar-orange">
+                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="h-[420px] overflow-auto custom-scrollbar-orange">
                   <div className="flex min-w-full">
                     {/* Line Numbers - Fixed positioning */}
                     <div className="bg-[#161b22]/80 border-r border-gray-700/50 flex-shrink-0 select-none sticky left-0 z-10">
                       <div className="px-3 py-4 font-mono leading-[1.4] text-gray-500" style={{ fontSize: '0.8rem' }}>
-                        {Array.from({ length: Math.max(20, currentJacCode.trim().split('\n').length) }, (_, index) => (
+                        {Array.from({ length: Math.max(25, currentJacCode.trim().split('\n').length) }, (_, index) => (
                           <div key={index} className="text-right min-h-[1.4em] flex items-center justify-end">
                             {index + 1}
                           </div>
@@ -146,12 +146,12 @@ const VerticalTabs = () => {
                 </h3>
               </div>
               <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
-                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="h-96 overflow-auto custom-scrollbar-blue">
+                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="h-[420px] overflow-auto custom-scrollbar-blue">
                   <div className="flex min-w-full">
                     {/* Line Numbers - Fixed positioning */}
                     <div className="bg-[#161b22]/80 border-r border-gray-700/50 flex-shrink-0 select-none sticky left-0 z-10">
                       <div className="px-3 py-4 font-mono leading-[1.4] text-gray-500" style={{ fontSize: '0.8rem' }}>
-                        {Array.from({ length: Math.max(20, currentPythonCode.trim().split('\n').length) }, (_, index) => (
+                        {Array.from({ length: Math.max(25, currentPythonCode.trim().split('\n').length) }, (_, index) => (
                           <div key={index} className="text-right min-h-[1.4em] flex items-center justify-end">
                             {index + 1}
                           </div>
