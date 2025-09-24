@@ -21,6 +21,7 @@ import fig23 from '../assets/fig23.png';
 import evaluationPECode from '../assets/evalPE.py?raw';
 import evaluationDSPyCode from '../assets/evaldspy.py?raw';
 import evaluationJacCode from '../assets/byllmeval.jac?raw';
+import evaluationPyCode from '../assets/byllmeval.py?raw';  
 
 // Import JAC examples
 import firstexampleCode from '../assets/firstexample.jac?raw';
@@ -31,6 +32,9 @@ import wikisearchCode from '../assets/wikisearch.jac?raw';
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('areyouai');
+  const [isNoteExpanded, setIsNoteExpanded] = useState(false);
+  const [isApiNoteExpanded, setIsApiNoteExpanded] = useState(false);
+  const [isLiteLLMNoteExpanded, setIsLiteLLMNoteExpanded] = useState(false);
 
   const examples = [
     {
@@ -101,11 +105,11 @@ const Index = () => {
 
                   {/* Text on the right */}
                   <div className="flex flex-col">
-                    <h1 className="text-5xl font-bold leading-tight bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+                    <h1 className="text-6xl font-bold leading-tight bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
                       <strong>byLLM</strong>
                     </h1>
-                    <p className="text-body-large text-muted-foreground mt-1">
-                      Prompt No More!
+                    <p className="text-lg text-muted-foreground mt-1">
+                      Coding, Less Prompting
                     </p>
                   </div>
                 </div>
@@ -116,7 +120,7 @@ const Index = () => {
 
               <div className="bg-card border rounded-xl p-8 mb-12 text-left max-w-3xl mx-auto">
                 <p className="text-body leading-relaxed text-card-foreground">
-                  <strong>byLLM</strong> is a lightweight framework that simplifies building AI-powered applications by eliminating much of the manual prompt engineering process. Using its Meaning-Typed Programming paradigm, developers can express intent directly in code, while byLLM automatically generates optimized prompts. This approach reduces development time, cuts down lines of code, and improves the accuracy of AI-driven tasks. byLLM integrates seamlessly with the <a href="https://jac-lang.org" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Jaseci ecosystem</a>, but can also be used as a standalone Python library.
+                  <strong>byLLM</strong> is a lightweight framework that simplifies building AI-powered applications by eliminating much of the manual prompt engineering process. Using its Meaning-Typed Programming paradigm, developers can express intent directly in code, while byLLM automatically generates optimized prompts. This approach reduces development time, cuts down lines of code, and improves the accuracy of AI-driven tasks. byLLM integrates seamlessly with the <a href="https://jaseci.org" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Jaseci ecosystem</a>, but can also be used as a standalone Python library.
 
                 </p>
               </div>
@@ -169,7 +173,7 @@ const Index = () => {
                   <div className="flex-1">
                     <h3 className="text-xl font-bold mb-3">No Prompt Engineering</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Write natural function signatures and let byLLM handle prompt generation automatically. High accuracy right out of the box relative to DSPy and LMQL frameworks. 
+                      Write natural function signatures and let byLLM handle prompt generation automatically. High accuracy right out of the box relative to DSPy and LMQL frameworks.
                     </p>
                   </div>
                 </div>
@@ -237,51 +241,70 @@ const Index = () => {
             <div className="max-w-4xl mx-auto">
               <CodeBlock code="pip install byllm" language="bash" />
               <div className="bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20 rounded-lg p-4 mt-2 mb-8">
-                <div className="flex items-center gap-2 mb-1">
+                <div 
+                  className="flex items-center gap-2 mb-1 cursor-pointer"
+                  onClick={() => setIsApiNoteExpanded(!isApiNoteExpanded)}
+                >
                   <Info className="h-4 w-4 text-primary" />
                   <span className="font-medium text-sm text-primary">Note</span>
+                  <ChevronDown className={`h-4 w-4 text-primary transition-transform duration-200 ${isApiNoteExpanded ? 'rotate-180' : ''}`} />
                 </div>
-                <p className="text-sm text-muted-foreground ml-6">You'll need access to a language model, either via an API provider or a locally hosted model. Make sure to save your API key as a secret in your environment variables. For example:</p>
-                <CodeBlock code="export OPENAI_API_KEY='your-api-key'" language="bash" />
+                {isApiNoteExpanded && (
+                  <>
+                    <p className="text-sm text-muted-foreground ml-6">You'll need access to a language model, either via an API provider or a locally hosted model. Make sure to save your API key as a secret in your environment variables. For example:</p>
+                    <CodeBlock code="export OPENAI_API_KEY='your-api-key'" language="bash" />
+                  </>
+                )}
               </div>
 
               <div className="text-center mb-16">
-              <h4 className="text-section mb-4">How to use byLLM?</h4>
-            </div>
+                <h4 className="text-section mb-4">How to use byLLM?</h4>
+              </div>
 
-          <div className="max-w-4xl mx-auto mb-8">
-              <Tabs defaultValue="jac" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 mb-4">
-                  <TabsTrigger value="jac">Jac</TabsTrigger>
-                  <TabsTrigger value="python">Python</TabsTrigger>
-                </TabsList>
-                <TabsContent value="jac">
-                  <CodeBlock code={firstexampleCode} language="jac" />
-                </TabsContent>
-                <TabsContent value="python">
-                  <CodeBlock code={firstexamplecodepython} language="python" />
-                </TabsContent>
-              </Tabs>
-            </div>
+              <div className="max-w-4xl mx-auto mb-8">
+                <Tabs defaultValue="jac" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2 mb-4">
+                    <TabsTrigger value="jac">Jac</TabsTrigger>
+                    <TabsTrigger value="python">Python</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="jac">
+                    <CodeBlock code={firstexampleCode} language="jac" />
+                  </TabsContent>
+                  <TabsContent value="python">
+                    <CodeBlock code={firstexamplecodepython} language="python" />
+                  </TabsContent>
+                </Tabs>
+              </div>
+
+              <div className="bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20 rounded-lg p-4 mt-2 mb-8">
+                <div 
+                  className="flex items-center gap-2 mb-1 cursor-pointer"
+                  onClick={() => setIsNoteExpanded(!isNoteExpanded)}
+                >
+                  <Info className="h-4 w-4 text-primary" />
+                  <span className="font-medium text-sm text-primary">Note</span>
+                  <ChevronDown className={`h-4 w-4 text-primary transition-transform duration-200 ${isNoteExpanded ? 'rotate-180' : ''}`} />
+                </div>
+                {isNoteExpanded && (
+                  <>
+                    <p className="text-sm text-muted-foreground ml-6">To run your jac program </p>
+                    <CodeBlock code="jac run file.jac" language="bash" />
+                  </>
+                )}
+              </div>
 
               <div className="text-center mb-16">
-              <p className="text-base font-semibold italic text-primary mb-4">IT IS THAT SIMPLE!</p>
-            </div>
+                <p className="text-base font-semibold italic text-primary mb-4">IT IS THAT SIMPLE!</p>
+              </div>
 
               <div className="text-center mb-8">
                 <h3 className="text-section mb-4">Let's look at some simple examples to understand how byLLM is used.</h3>
               </div>
 
-              <div className="bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20 rounded-lg p-4 mt-2 mb-8">
-                <div className="flex items-center gap-2 mb-1">
-                  <Info className="h-4 w-4 text-primary" />
-                  <span className="font-medium text-sm text-primary">Note</span>
-                </div>
-                <p className="text-sm text-muted-foreground ml-6">The Model class in byLLM serves as an interface to <a href="https://docs.litellm.ai/docs/providers" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">LiteLLM</a>. This means any model supported by LiteLLM can be used with byLLM. When configuring a model, refer to the LiteLLM documentation to see which variables are required, and pass those same variables to Model in byLLM.</p>
-              </div>
+              
 
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 mb-8">
+                <TabsList className="grid w-full grid-cols-3 md:grid-cols-3 mb-8">
                   <TabsTrigger value="areyouai">AreYouAI</TabsTrigger>
                   <TabsTrigger value="personalityfinder">PersonalityFinder</TabsTrigger>
                   <TabsTrigger value="wikisearch">WikiSearch</TabsTrigger>
@@ -300,6 +323,20 @@ const Index = () => {
                   </TabsContent>
                 ))}
               </Tabs>
+
+              <div className="bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20 rounded-lg p-4 mt-2 mb-8">
+                <div 
+                  className="flex items-center gap-2 mb-1 cursor-pointer"
+                  onClick={() => setIsLiteLLMNoteExpanded(!isLiteLLMNoteExpanded)}
+                >
+                  <Info className="h-4 w-4 text-primary" />
+                  <span className="font-medium text-sm text-primary">Note</span>
+                  <ChevronDown className={`h-4 w-4 text-primary transition-transform duration-200 ${isLiteLLMNoteExpanded ? 'rotate-180' : ''}`} />
+                </div>
+                {isLiteLLMNoteExpanded && (
+                  <p className="text-sm text-muted-foreground ml-6">The Model class in byLLM serves as an interface to <a href="https://docs.litellm.ai/docs/providers" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">LiteLLM</a>. This means any model supported by LiteLLM can be used with byLLM. When configuring a model, refer to the LiteLLM documentation to see which variables are required, and pass those same variables to Model in byLLM.</p>
+                )}
+              </div>
             </div>
           </div>
         </section>
@@ -383,9 +420,9 @@ const Index = () => {
             </div>
           </div>
         </section> */}
-        
+
         {/* How Users React to byLLM */}
-        <section className="py-12">
+        {/* <section className="py-12">
           <div className="container">
             <div className="text-center mb-12">
               <h2 className="text-section mb-4">How Users React to byLLM</h2>
@@ -401,107 +438,115 @@ const Index = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Runtime Speed and Cost Improvements */}
-        
-<section className="py-12">
-  <div className="container">
-    <div className="text-center mb-16">
-      <h2 className="text-section mb-8">Evaluation Metrices</h2>
-      <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">
-        Comparison of runtime performance and cost efficiency across frameworks
-      </p>
-    </div>
 
-    
-    {/* Figures */}
-<div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-4">
-  <Card>
-    <CardContent className="p-4 flex flex-col items-center justify-center">
-      <img
-        src={fig22}
-        alt="Figure 22: Runtime Speed Comparison"
-        className="max-h-72 w-auto object-contain"
-      />
-      <div className="text-xs text-muted-foreground mt-2 text-center">
-        Token usage comparison between MTP and DSPy.
-      </div>
-    </CardContent>
-  </Card>
-  <Card>
-    <CardContent className="p-4 flex flex-col items-center justify-center">
-      <img
-        src={fig23}
-        alt="Figure 23: Cost Efficiency Comparison"
-        className="max-h-72 w-auto object-contain"
-      />
-      <div className="text-xs text-muted-foreground mt-2 text-center">
-        Cost and runtime speed comparison between MTP and DSPy.
-      </div>
-    </CardContent>
-  </Card>
-</div>
-<div className="text-center mb-16">
-  <span className="text-base font-semibold text-primary">
-    Lower latency and cost on average
-  </span>
-</div>
-
-{/* Code Examples Section */}
-<div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
-
-  {/* Title below the grid */}
-  <div className="col-span-2 mb-4">
-    <h3 className="text-section text-center font-bold text-2xl">
-      Side-by-side code comparison
-    </h3>
-  </div>
-  
-  {/* Left Tabs */}
-  <div>
-    <Tabs defaultValue="jac" className="w-full">
-      <TabsList className="grid w-full grid-cols-2 mb-4">
-        <TabsTrigger value="jac">Prompt Engineering</TabsTrigger>
-        <TabsTrigger value="python">DSPy</TabsTrigger>
-      </TabsList>
-      <TabsContent value="jac">
-        <Card>
-          <CardContent className="p-4">
-            <CodeBlock code={evaluationPECode} language="python" />
-          </CardContent>
-        </Card>
-      </TabsContent>
-      <TabsContent value="python">
-        <Card>
-          <CardContent className="p-4">
-            <CodeBlock code={evaluationDSPyCode} language="python" />
-          </CardContent>
-        </Card>
-      </TabsContent>
-    </Tabs>
-  </div>
-
-  {/* Right Jac Tab */}
-  <div>
-    <Tabs defaultValue="jac-impl" className="w-full">
-      <TabsList className="grid w-full grid-cols-1 mb-4">
-        <TabsTrigger value="jac-impl">Jac Implementation</TabsTrigger>
-      </TabsList>
-      <TabsContent value="jac-impl">
-        <Card>
-          <CardContent className="p-4">
-            <CodeBlock code={evaluationJacCode} language="jac" />
-          </CardContent>
-        </Card>
-      </TabsContent>
-    </Tabs>
-  </div>
-</div>
+        <section className="py-12">
+          <div className="container">
+            {/* <div className="text-center mb-16">
+              <h2 className="text-section mb-8">Evaluation Metrices</h2>
+              <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">
+                Comparison of runtime performance and cost efficiency across frameworks
+              </p>
+            </div> */}
 
 
-  </div>
-</section>
+            {/* Figures */}
+            {/* <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-4">
+              <Card>
+                <CardContent className="p-4 flex flex-col items-center justify-center">
+                  <img
+                    src={fig22}
+                    alt="Figure 22: Runtime Speed Comparison"
+                    className="max-h-72 w-auto object-contain"
+                  />
+                  <div className="text-xs text-muted-foreground mt-2 text-center">
+                    Token usage comparison between MTP and DSPy.
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="p-4 flex flex-col items-center justify-center">
+                  <img
+                    src={fig23}
+                    alt="Figure 23: Cost Efficiency Comparison"
+                    className="max-h-72 w-auto object-contain"
+                  />
+                  <div className="text-xs text-muted-foreground mt-2 text-center">
+                    Cost and runtime speed comparison between MTP and DSPy.
+                  </div>
+                </CardContent>
+              </Card>
+            </div> */}
+            {/* <div className="text-center mb-16">
+              <span className="text-base font-semibold text-primary">
+                Lower latency and cost on average
+              </span>
+            </div> */}
+
+            {/* Code Examples Section */}
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
+
+              {/* Title below the grid */}
+              <div className="col-span-2 mb-4">
+                <h3 className="text-section text-center font-bold text-2xl">
+                  Side-by-side code comparison
+                </h3>
+              </div>
+
+              {/* Left Tabs */}
+              <div>
+                <Tabs defaultValue="jac" className="w-full">
+                  <TabsList className="grid w-full grid-cols-1 mb-4">
+                    <TabsTrigger value="jac">Prompt Engineering</TabsTrigger>
+                    {/* <TabsTrigger value="python">DSPy</TabsTrigger> */}
+                  </TabsList>
+                  <TabsContent value="jac">
+                    <Card>
+                      <CardContent className="p-4">
+                        <CodeBlock code={evaluationPECode} language="python" />
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+                  {/* <TabsContent value="python">
+                    <Card>
+                      <CardContent className="p-4">
+                        <CodeBlock code={evaluationDSPyCode} language="python" />
+                      </CardContent>
+                    </Card>
+                  </TabsContent> */}
+                </Tabs>
+              </div>
+
+              {/* Right Jac Tab */}
+              <div>
+                <Tabs defaultValue="jac-impl" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2 mb-4">
+                    <TabsTrigger value="jac-impl">byLLM Jac</TabsTrigger>
+                    <TabsTrigger value="py-impl">byLLM Python</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="jac-impl">
+                    <Card>
+                      <CardContent className="p-4">
+                        <CodeBlock code={evaluationJacCode} language="jac" />
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+                  <TabsContent value="py-impl">
+                    <Card>
+                      <CardContent className="p-4">
+                        <CodeBlock code={evaluationPyCode} language="python" />
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+                </Tabs>
+              </div>
+            </div>
+
+
+          </div>
+        </section>
 
 
         {/* How it Works */}
@@ -587,16 +632,13 @@ const Index = () => {
           </div>
         </section>
 
-        
+
 
         {/* References */}
         <section className="py-12">
           <div className="container">
             <div className="text-center mb-16">
               <h2 className="text-section mb-4">References</h2>
-              <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">
-                Research and academic foundations
-              </p>
             </div>
 
             <div className="max-w-4xl mx-auto">
@@ -610,7 +652,7 @@ const Index = () => {
                       <p className="text-body italic text-muted-foreground">
                         "MTP: A Meaning-Typed Language Abstraction for AI-Integrated Programming." : Proc. ACM Program. Lang. 9, OOPSLA2, Article 314 (October 2025), 29 pages.{" "}
                         <a
-                          href="https://doi.org/10.1145/3763092"
+                          href="https://doi.org/10.48550/arXiv.2405.08965"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary underline hover:text-primary/80"
