@@ -45,7 +45,7 @@ const Hero = () => {
 
   return (
     <>
-      <section ref={heroRef} className="min-h-[70vh] lg:min-h-[80vh] flex items-center py-12 sm:py-16 lg:py-20 bg-dark-bg relative overflow-hidden mt-5">
+      <section ref={heroRef} className="min-h-[70vh] lg:min-h-[80vh] flex items-center py-12 sm:py-16 lg:py-20 bg-dark-bg relative overflow-hidden mt-0">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 right-20 w-40 h-40 bg-gradient-to-br from-primary-orange to-primary-yellow rounded-full blur-xl animate-pulse"></div>
           <div className="absolute bottom-20 left-10 w-32 h-32 bg-gradient-to-br from-primary-yellow to-primary-orange rounded-full blur-lg animate-pulse delay-1000"></div>
