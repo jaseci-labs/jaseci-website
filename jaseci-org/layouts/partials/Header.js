@@ -19,6 +19,26 @@ const Header = () => {
 
   const [searchModal, setSearchModal] = useState(false);
   const [stats, setStats] = useState({ stars: '--', forks: '--' });
+  const [topBarHeight, setTopBarHeight] = useState(40);
+
+  useEffect(() => {
+    // Calculate top bar height dynamically
+    const calculateTopBarHeight = () => {
+      const topBar = document.querySelector('.top-bar');
+      if (topBar) {
+        const height = topBar.offsetHeight;
+        setTopBarHeight(height);
+      }
+    };
+
+    // Calculate on mount and on resize
+    calculateTopBarHeight();
+    window.addEventListener('resize', calculateTopBarHeight);
+
+    return () => {
+      window.removeEventListener('resize', calculateTopBarHeight);
+    };
+  }, []);
 
   useEffect(() => {
     // If we already have cached data, use it immediately
@@ -95,7 +115,10 @@ const Header = () => {
       </div>
 
       {/* Main Header */}
-      <header className="w-full z-50 px-4 py-2 md:px-6 md:py-4 fixed top-[32px] sm:top-[36px] transition-all duration-300">
+      <header 
+        className="w-full z-50 fixed transition-all duration-300"
+        style={{ top: `${topBarHeight}px` }}
+      >
         <nav className="container max-w-6xl mx-auto px-4 py-3 rounded-2xl transition-all duration-300 bg-medium-bg/90 backdrop-blur-lg shadow-xl border border-light-bg/30">
           <div className="flex items-center justify-between">
             {/* Left section - Logo and Brand */}

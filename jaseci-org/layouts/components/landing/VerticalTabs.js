@@ -111,12 +111,12 @@ const VerticalTabs = () => {
                 </h3>
               </div>
               <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
-                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="h-96 overflow-auto custom-scrollbar">
+                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="h-[420px] overflow-auto custom-scrollbar-orange">
                   <div className="flex min-w-full">
                     {/* Line Numbers - Fixed positioning */}
                     <div className="bg-[#161b22]/80 border-r border-gray-700/50 flex-shrink-0 select-none sticky left-0 z-10">
                       <div className="px-3 py-4 font-mono leading-[1.4] text-gray-500" style={{ fontSize: '0.8rem' }}>
-                        {currentJacCode.trim().split('\n').map((_, index) => (
+                        {Array.from({ length: Math.max(25, currentJacCode.trim().split('\n').length) }, (_, index) => (
                           <div key={index} className="text-right min-h-[1.4em] flex items-center justify-end">
                             {index + 1}
                           </div>
@@ -146,12 +146,12 @@ const VerticalTabs = () => {
                 </h3>
               </div>
               <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
-                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="h-96 overflow-auto custom-scrollbar">
+                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="h-[420px] overflow-auto custom-scrollbar-blue">
                   <div className="flex min-w-full">
                     {/* Line Numbers - Fixed positioning */}
                     <div className="bg-[#161b22]/80 border-r border-gray-700/50 flex-shrink-0 select-none sticky left-0 z-10">
                       <div className="px-3 py-4 font-mono leading-[1.4] text-gray-500" style={{ fontSize: '0.8rem' }}>
-                        {currentPythonCode.trim().split('\n').map((_, index) => (
+                        {Array.from({ length: Math.max(25, currentPythonCode.trim().split('\n').length) }, (_, index) => (
                           <div key={index} className="text-right min-h-[1.4em] flex items-center justify-end">
                             {index + 1}
                           </div>
@@ -188,29 +188,54 @@ const VerticalTabs = () => {
         
 
         
-        /* Custom scrollbar styling */
-        .custom-scrollbar {
+        /* Custom scrollbar styling - Orange (Jac) */
+        .custom-scrollbar-orange {
           scrollbar-width: thin;
           scrollbar-color: rgba(249, 115, 22, 0.5) rgba(255, 255, 255, 0.1);
         }
         
-        .custom-scrollbar::-webkit-scrollbar {
+        .custom-scrollbar-orange::-webkit-scrollbar {
           width: 8px;
         }
         
-        .custom-scrollbar::-webkit-scrollbar-track {
+        .custom-scrollbar-orange::-webkit-scrollbar-track {
           background: rgba(255, 255, 255, 0.1);
           border-radius: 4px;
         }
         
-        .custom-scrollbar::-webkit-scrollbar-thumb {
+        .custom-scrollbar-orange::-webkit-scrollbar-thumb {
           background: linear-gradient(135deg, rgba(249, 115, 22, 0.6) 0%, rgba(251, 191, 36, 0.6) 100%);
           border-radius: 4px;
           border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        .custom-scrollbar-orange::-webkit-scrollbar-thumb:hover {
           background: linear-gradient(135deg, rgba(249, 115, 22, 0.8) 0%, rgba(251, 191, 36, 0.8) 100%);
+        }
+
+        /* Custom scrollbar styling - Blue (Python) */
+        .custom-scrollbar-blue {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(59, 130, 246, 0.5) rgba(255, 255, 255, 0.1);
+        }
+        
+        .custom-scrollbar-blue::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        .custom-scrollbar-blue::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 4px;
+        }
+        
+        .custom-scrollbar-blue::-webkit-scrollbar-thumb {
+          background: linear-gradient(135deg, rgba(59, 130, 246, 0.6) 0%, rgba(96, 165, 250, 0.6) 100%);
+          border-radius: 4px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .custom-scrollbar-blue::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(96, 165, 250, 0.8) 100%);
         }
 
 
