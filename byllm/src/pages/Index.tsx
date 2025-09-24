@@ -105,8 +105,8 @@ const Index = () => {
                     <h1 className="text-6xl font-bold leading-tight bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
                       <strong>byLLM</strong>
                     </h1>
-                    <p className="text-base text-muted-foreground mt-1">
-                      Prompt Less, Code More!
+                    <p className="text-lg text-muted-foreground mt-1">
+                      Coding, Less Prompting
                     </p>
                   </div>
                 </div>
@@ -117,7 +117,7 @@ const Index = () => {
 
               <div className="bg-card border rounded-xl p-8 mb-12 text-left max-w-3xl mx-auto">
                 <p className="text-body leading-relaxed text-card-foreground">
-                  <strong>byLLM</strong> is a lightweight framework that simplifies building AI-powered applications by eliminating much of the manual prompt engineering process. Using its Meaning-Typed Programming paradigm, developers can express intent directly in code, while byLLM automatically generates optimized prompts. This approach reduces development time, cuts down lines of code, and improves the accuracy of AI-driven tasks. byLLM integrates seamlessly with the <a href="https://jac-lang.org" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Jaseci ecosystem</a>, but can also be used as a standalone Python library.
+                  <strong>byLLM</strong> is a lightweight framework that simplifies building AI-powered applications by eliminating much of the manual prompt engineering process. Using its Meaning-Typed Programming paradigm, developers can express intent directly in code, while byLLM automatically generates optimized prompts. This approach reduces development time, cuts down lines of code, and improves the accuracy of AI-driven tasks. byLLM integrates seamlessly with the <a href="https://jaseci.org" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Jaseci ecosystem</a>, but can also be used as a standalone Python library.
 
                 </p>
               </div>
@@ -469,7 +469,7 @@ const Index = () => {
                   <TabsContent value="jac">
                     <Card>
                       <CardContent className="p-4">
-                        <CodeBlock code={evaluationPECode} language="jac" />
+                        <CodeBlock code={evaluationPECode} language="python" />
                       </CardContent>
                     </Card>
                   </TabsContent>
@@ -500,7 +500,7 @@ const Index = () => {
                   <TabsContent value="py-impl">
                     <Card>
                       <CardContent className="p-4">
-                        <CodeBlock code={evaluationPyCode} language="jac" />
+                        <CodeBlock code={evaluationPyCode} language="python" />
                       </CardContent>
                     </Card>
                   </TabsContent>
