@@ -186,8 +186,7 @@ const NewsletterSection = () => {
               className="text-center text-green-400 font-semibold p-4 bg-green-500/10 rounded-lg"
               role="status"
             >
-              You&apos;re subscribed! 🎉 Check your inbox for a confirmation
-              email.
+              You&apos;re subscribed! 🎉
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="grid gap-4" noValidate>
