@@ -14,14 +14,10 @@ const LearnMoreIcon = () => (
 const VerticalTabs = () => {
   const [activeVerticalTab, setActiveVerticalTab] = useState(0);
   const [activeLanguage, setActiveLanguage] = useState("jac");
-  const [jacExpanded, setJacExpanded] = useState(false);
-  const [pythonExpanded, setPythonExpanded] = useState(false);
 
   const handleVerticalTabClick = (index) => {
     setActiveVerticalTab(index);
     setActiveLanguage("jac"); // reset language on vertical tab change
-    setJacExpanded(false);
-    setPythonExpanded(false);
   };
 
   const currentJacCode = jacTabsData[activeVerticalTab].code;
@@ -101,7 +97,7 @@ const VerticalTabs = () => {
           className="bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-light-bg/20 overflow-hidden shadow-2xl hover:border-primary-orange/30 transition-all duration-500 mx-2 sm:mx-0"
           style={{ animation: 'fadeInUp 0.6s ease-out 1s both' }}
         >
-          <div className="grid lg:grid-cols-2 min-h-[400px] sm:min-h-[500px]">
+          <div className="grid lg:grid-cols-2 min-h-[500px]">
 
             {/* Jac Code */}
             <div className="flex flex-col border-b lg:border-b-0 lg:border-r border-light-bg/20">
@@ -114,47 +110,26 @@ const VerticalTabs = () => {
                   Jac Code
                 </h3>
               </div>
-              <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden relative flex flex-col">
-                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="flex-1 flex flex-col">
-                  <div className={`transition-all duration-500 ease-in-out overflow-hidden relative flex-1 ${jacExpanded ? 'max-h-none' : 'max-h-[300px] sm:max-h-[400px] lg:max-h-[500px]'
-                    }`}>
-                    <div className="flex h-full">
-                      <div className="bg-gray-800/50 p-2 sm:p-3 lg:p-4 border-r border-light-bg/20 min-w-[40px] sm:min-w-[50px] flex-shrink-0">
+              <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
+                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="h-96 overflow-auto custom-scrollbar">
+                  <div className="flex min-w-full">
+                    {/* Line Numbers - Fixed positioning */}
+                    <div className="bg-[#161b22]/80 border-r border-gray-700/50 flex-shrink-0 select-none sticky left-0 z-10">
+                      <div className="px-3 py-4 font-mono leading-[1.4] text-gray-500" style={{fontSize: '0.8rem'}}>
                         {currentJacCode.trim().split('\n').map((_, index) => (
-                          <div key={index} className="text-gray-500 text-xs sm:text-sm leading-5 sm:leading-6 text-right pr-1 sm:pr-2">
+                          <div key={index} className="text-right min-h-[1.4em] flex items-center justify-end">
                             {index + 1}
                           </div>
                         ))}
                       </div>
-                      <div className="flex-1 p-2 sm:p-3 lg:p-4 overflow-x-auto">
-                        <div className="break-words overflow-wrap-anywhere text-sm">
-                          <CodeBlock code={currentJacCode.trim()} language="jac" />
-                        </div>
+                    </div>
+                    {/* Code Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="px-4 py-4 font-mono leading-[1.4] whitespace-pre" style={{fontSize: '0.8rem'}}>
+                        <CodeBlock code={currentJacCode.trim()} language="jac" />
                       </div>
                     </div>
-                    {/* Gradient fade overlay when not expanded and content exceeds visible area */}
-                    {!jacExpanded && currentJacCode.trim().split('\n').length > 25 && (
-                      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#161b22] via-[#161b22]/80 to-transparent pointer-events-none"></div>
-                    )}
                   </div>
-                  {/* Expand/Collapse Button */}
-                  {currentJacCode.trim().split('\n').length > 25 && (
-                    <div className="border-t border-light-bg/20 bg-gradient-to-r from-primary-orange/10 to-primary-yellow/10 flex-shrink-0">
-                      <button
-                        onClick={() => setJacExpanded(!jacExpanded)}
-                        className="w-full py-1.5 sm:py-2 px-2 sm:px-3 text-primary-orange hover:text-primary-yellow transition-colors duration-200 flex items-center justify-center gap-1 sm:gap-2 hover:bg-white/5 text-xs sm:text-sm"
-                      >
-                        <span className="font-medium">{jacExpanded ? 'Collapse' : 'Expand'}</span>
-                        <svg
-                          className={`w-4 h-4 transition-transform duration-200 ${jacExpanded ? 'rotate-180' : ''}`}
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      </button>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
@@ -170,47 +145,26 @@ const VerticalTabs = () => {
                   Python Equivalent
                 </h3>
               </div>
-              <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden relative flex flex-col">
-                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="flex-1 flex flex-col">
-                  <div className={`transition-all duration-500 ease-in-out overflow-hidden relative flex-1 ${pythonExpanded ? 'max-h-none' : 'max-h-[300px] sm:max-h-[400px] lg:max-h-[500px]'
-                    }`}>
-                    <div className="flex h-full">
-                      <div className="bg-gray-800/50 p-2 sm:p-3 lg:p-4 border-r border-light-bg/20 min-w-[40px] sm:min-w-[50px] flex-shrink-0">
+              <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
+                <div style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }} className="h-96 overflow-auto custom-scrollbar">
+                  <div className="flex min-w-full">
+                    {/* Line Numbers - Fixed positioning */}
+                    <div className="bg-[#161b22]/80 border-r border-gray-700/50 flex-shrink-0 select-none sticky left-0 z-10">
+                      <div className="px-3 py-4 font-mono leading-[1.4] text-gray-500" style={{fontSize: '0.8rem'}}>
                         {currentPythonCode.trim().split('\n').map((_, index) => (
-                          <div key={index} className="text-gray-500 text-xs sm:text-sm leading-5 sm:leading-6 text-right pr-1 sm:pr-2">
+                          <div key={index} className="text-right min-h-[1.4em] flex items-center justify-end">
                             {index + 1}
                           </div>
                         ))}
                       </div>
-                      <div className="flex-1 p-2 sm:p-3 lg:p-4 overflow-x-auto">
-                        <div className="break-words overflow-wrap-anywhere text-xs sm:text-sm">
-                          <CodeBlock code={currentPythonCode.trim()} language="python" />
-                        </div>
+                    </div>
+                    {/* Code Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="px-4 py-4 font-mono leading-[1.4] whitespace-pre" style={{fontSize: '0.8rem'}}>
+                        <CodeBlock code={currentPythonCode.trim()} language="python" />
                       </div>
                     </div>
-                    {/* Gradient fade overlay when not expanded and content exceeds visible area */}
-                    {!pythonExpanded && currentPythonCode.trim().split('\n').length > 25 && (
-                      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#161b22] via-[#161b22]/80 to-transparent pointer-events-none"></div>
-                    )}
                   </div>
-                  {/* Expand/Collapse Button */}
-                  {currentPythonCode.trim().split('\n').length > 25 && (
-                    <div className="border-t border-light-bg/20 bg-gradient-to-r from-blue-500/10 to-blue-400/10 flex-shrink-0">
-                      <button
-                        onClick={() => setPythonExpanded(!pythonExpanded)}
-                        className="w-full py-1.5 sm:py-2 px-2 sm:px-3 text-blue-400 hover:text-blue-300 transition-colors duration-200 flex items-center justify-center gap-1 sm:gap-2 hover:bg-white/5 text-xs sm:text-sm"
-                      >
-                        <span className="font-medium">{pythonExpanded ? 'Collapse' : 'Expand'}</span>
-                        <svg
-                          className={`w-4 h-4 transition-transform duration-200 ${pythonExpanded ? 'rotate-180' : ''}`}
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      </button>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
@@ -232,14 +186,29 @@ const VerticalTabs = () => {
           }
         }
         
-        /* Hide scrollbars but keep functionality */
-        .code-container {
-          scrollbar-width: none; /* Firefox */
-          -ms-overflow-style: none; /* Internet Explorer 10+ */
+        /* Custom scrollbar styling */
+        .custom-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(249, 115, 22, 0.5) rgba(255, 255, 255, 0.1);
         }
         
-        .code-container::-webkit-scrollbar {
-          display: none; /* WebKit */
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: linear-gradient(135deg, rgba(249, 115, 22, 0.6) 0%, rgba(251, 191, 36, 0.6) 100%);
+          border-radius: 4px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(135deg, rgba(249, 115, 22, 0.8) 0%, rgba(251, 191, 36, 0.8) 100%);
         }
       `}</style>
     </section>
