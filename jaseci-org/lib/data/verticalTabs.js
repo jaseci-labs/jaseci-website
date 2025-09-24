@@ -78,41 +78,16 @@ with entry {
     {
         filename: "cloud_scaling.jac",
         code: `
-# The code you write is a simple, logical workflow. When deployed on Jac Cloud
-# via \`jac serve\`, this same code can handle one request or millions of requests
-# without any changes, as the platform manages state and scaling automatically.
+walker memories {
+    has current_user: str = "";
 
-import from mtllm.llm  { Model, Image }
-import from typing { List }
-
-glob llm = Model(model_name="gpt-4.1");
-
-obj Response {
-    has follow_up_questions: str;
-    has summary: str;
-    has when: str;
-    has who: List[str];
-    has what: str;
-    has location_type: str;
-}
-
-def extract_memory_details(
-    image: Image, 
-    city: str = "",
-    date: str = "",
-    people: List[str] = []
-) -> Response by llm();
-
-walker create_memory {
-    has memory_data: dict;
-    
-    can process_memory with memory entry {
-        memory_details = extract_memory_details(self.memory_data.image, 
-                                               self.memory_data.city, 
-                                               self.memory_data.people);
+    can get_memories with \`root entry {
+        report {
+            "message": 
+                  f"Hello {self.current_user}, here are your memories!"
+        };
     }
-}
-`,
+}`,
     },
 ];
 
@@ -218,28 +193,90 @@ tourist.start_trip(places)
     {
         filename: "cloud_scaling.py",
         code: `
-# This code is a conceptual representation.
-# A real implementation would involve FastAPI, SQLAlchemy, and other libraries.
+from fastapi import FastAPI, Depends, HTTPException
+from fastapi.security import OAuth2PasswordBearer
+from pydantic import BaseModel
+from datetime import datetime, timedelta
+import jwt, pymongo, hashlib
 
-from fastapi import FastAPI, Depends, Request
-
+# --- App & Security Setup ---
 app = FastAPI()
+SECRET_KEY = "secret123"
+ALGORITHM = "HS256"
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
-# Database and authentication boilerplate
-def get_current_user():
-    # Logic to get user from token
-    return {"username": "testuser"}
+# --- MongoDB Setup ---
+client = pymongo.MongoClient("mongodb://localhost:27017/")
+db = client["mydb"]
+users_collection = db["users"]
 
-@app.post("/memories/")
-async def create_memory(memory_data: dict, current_user: dict = Depends(get_current_user)):
-    # AI integration logic would go here
-    # e.g., process_with_ai(memory_data['image'], ...)
-    
-    # Business logic mixed with boilerplate
-    print("Saving memory to database...")
-    return {"status": "success", "memory_id": "123"}
+# --- Models ---
+class User(BaseModel):
+    username: str
+    password: str
 
-print("Run this with: uvicorn main:app --reload")
+
+# --- Auth Helpers ---
+def create_token(username: str):
+    """Generate JWT token for a user."""
+    payload = {
+        "sub": username,
+        "exp": datetime.utcnow() + timedelta(hours=1)
+    }
+    return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
+
+def verify_token(token: str = Depends(oauth2_scheme)):
+    """Decode and validate JWT token."""
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload["sub"]
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token expired")
+    except jwt.InvalidTokenError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+
+# --- Routes ---
+@app.post("/signup")
+def signup(user: User):
+    """Register a new user with hashed password."""
+    hashed_pw = hashlib.sha256(user.password.encode()).hexdigest()
+
+    if users_collection.find_one({"username": user.username}):
+        raise HTTPException(status_code=400, detail="User already exists")
+
+    users_collection.insert_one({
+        "username": user.username, 
+        "password": hashed_pw
+    })
+    return {"message": "User created successfully"}
+
+
+@app.post("/login")
+def login(user: User):
+    """Authenticate user and return JWT token."""
+    hashed_pw = hashlib.sha256(user.password.encode()).hexdigest()
+    db_user = users_collection.find_one({
+        "username": user.username, 
+        "password": hashed_pw
+    })
+
+    if not db_user:
+        raise HTTPException(
+            status_code=400, 
+            detail="Invalid username or password"
+        )
+    access_token = create_token(user.username)
+    return {"access_token": access_token, "token_type": "bearer"}
+
+
+
+@app.get("/memories/")
+def get_memories(current_user: str = Depends(verify_token)):
+    """Protected route: requires valid JWT token."""
+    return {
+        "message": f"Hello {current_user}, here are your memories!"
+    }
 `,
     },
 ];

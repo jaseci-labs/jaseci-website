@@ -116,7 +116,7 @@ const VerticalTabs = () => {
                     {/* Line Numbers - Fixed positioning */}
                     <div className="bg-[#161b22]/80 border-r border-gray-700/50 flex-shrink-0 select-none sticky left-0 z-10">
                       <div className="px-3 py-4 font-mono leading-[1.4] text-gray-500" style={{ fontSize: '0.8rem' }}>
-                        {currentJacCode.trim().split('\n').map((_, index) => (
+                        {Array.from({ length: Math.max(20, currentJacCode.trim().split('\n').length) }, (_, index) => (
                           <div key={index} className="text-right min-h-[1.4em] flex items-center justify-end">
                             {index + 1}
                           </div>
@@ -151,7 +151,7 @@ const VerticalTabs = () => {
                     {/* Line Numbers - Fixed positioning */}
                     <div className="bg-[#161b22]/80 border-r border-gray-700/50 flex-shrink-0 select-none sticky left-0 z-10">
                       <div className="px-3 py-4 font-mono leading-[1.4] text-gray-500" style={{ fontSize: '0.8rem' }}>
-                        {currentPythonCode.trim().split('\n').map((_, index) => (
+                        {Array.from({ length: Math.max(20, currentPythonCode.trim().split('\n').length) }, (_, index) => (
                           <div key={index} className="text-right min-h-[1.4em] flex items-center justify-end">
                             {index + 1}
                           </div>
