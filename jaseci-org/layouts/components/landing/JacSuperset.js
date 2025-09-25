@@ -97,7 +97,7 @@ with entry{
                     <div className="w-full min-w-0">
                       <h3 className="text-primary-orange font-bold text-lg mb-2">Use Jac in Python as a library</h3>
                       <div className="overflow-x-auto overflow-y-auto max-h-64 rounded-lg border border-gray-700/50">
-                        <div className="min-w-max p-8">
+                        <div className="min-w-max p-4">
                           <CodeBlock 
                             code={JacInPythonCode} 
                             language="python"
@@ -144,7 +144,7 @@ with entry{
                     <h3 className="text-primary-orange font-bold text-base sm:text-lg mb-2">Use Jac in Python as a library</h3>
                   </div>
                   <div className="w-full overflow-x-auto rounded-lg border border-gray-700/50">
-                    <div className="min-w-max p-5 sm:p-8">
+                    <div className="min-w-max p-5 sm:p-4">
                       <CodeBlock 
                         code={JacInPythonCode} 
                         language="python"
@@ -162,7 +162,7 @@ with entry{
                     <h3 className="text-blue-400 font-bold text-base sm:text-lg mb-2">100% Python Compatible, use all Python libraries in Jac</h3>
                   </div>
                   <div className="w-full overflow-x-auto rounded-lg border border-gray-700/50">
-                    <div className="min-w-max p-2 sm:p-4">
+                    <div className="min-w-max p-5 sm:p-4">
                       <CodeBlock 
                         code={PythonInJacCode} 
                         language="jac"
