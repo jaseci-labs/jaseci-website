@@ -36,6 +36,11 @@ code.language-python.line-numbers .line-numbers-rows {
   display: none !important;
 }
 
+/* Make Python strings match Jac string color */
+.language-python .token.string {
+  color: #ce9178 !important;
+}
+
 code[class*="language-"], .jac-code-block {
   font-size: 0.8rem !important;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
