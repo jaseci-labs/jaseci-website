@@ -12,6 +12,9 @@ obj MemoryDetails {
     has where: str;
 }
 sem MemoryDetails = "Extract people, event, place, and time from a photo";
+sem MemoryDetails.who = "Names of people in the photo";  
+sem MemoryDetails.what = "What is happening in the scene";
+sem MemoryDetails.where = "Location or setting of the photo";
 
 def extract_memory_details(
     image: Image, city: str
@@ -78,6 +81,7 @@ with entry {
     {
         filename: "cloud_scaling.jac",
         code: `
+# walker automatically becomes an endpoint
 walker memories {
     has current_user: str = "";
 
@@ -87,7 +91,10 @@ walker memories {
                   f"Hello {self.current_user}, here are your memories!"
         };
     }
-}`,
+}
+# Auth & database handled by Jac-cloud behind the scenes
+# No boilerplate here
+`,
     },
 ];
 
@@ -116,7 +123,24 @@ tools = [{
     }
 }]
 
-SYS_PROMPT = "Extract people, event, place, and time from the photo."
+SYS_PROMPT = """
+# Goal
+Extract structured memory details from the photo.
+
+# Fields
+- who: list of people or animals involved
+- what: short description of the activity or event
+- where: location or place mentioned
+
+# Rules
+- Only use details from the photo and user input
+- Do not hallucinate or invent missing information
+- Always return using the \`process_memory\` tool
+
+# Guidance
+- If some fields are missing, leave them empty
+- Keep responses factual and concise
+"""
 
 with open("image.png", "rb") as f:
     image_b64 = base64.b64encode(f.read()).decode("utf-8")
@@ -128,7 +152,8 @@ messages = [
         "content": [
             {"type": "text", "text": "Photo took in Paris."},
             {"type": "image_url", "image_url": {
-                "url": f"data:image/png;base64,{image_b64}"
+                "url": f"data:image/png;base64,{image_b64}"}
+            }
         ]
     }
 ]
@@ -171,6 +196,7 @@ class Local:
 class Tourist:
     def __init__(self):
         self.visited = []
+
     def start_trip(self, places):
         print("🚶 Begins the journey")
         for place in places:
