@@ -81,6 +81,7 @@ with entry {
     {
         filename: "cloud_scaling.jac",
         code: `
+# walker automatically becomes an endpoint
 walker memories {
     has current_user: str = "";
 
@@ -90,7 +91,10 @@ walker memories {
                   f"Hello {self.current_user}, here are your memories!"
         };
     }
-}`,
+}
+# Auth & database handled by Jac-cloud behind the scenes
+# No boilerplate here
+`,
     },
 ];
 
@@ -192,6 +196,7 @@ class Local:
 class Tourist:
     def __init__(self):
         self.visited = []
+
     def start_trip(self, places):
         print("🚶 Begins the journey")
         for place in places:

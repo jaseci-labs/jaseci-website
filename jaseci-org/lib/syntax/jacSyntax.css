@@ -36,9 +36,13 @@ code.language-python.line-numbers .line-numbers-rows {
   display: none !important;
 }
 
-/* Make Python strings match Jac string color */
+/* Make Python strings and comments match Jac colors */
 .language-python .token.string {
   color: #ce9178 !important;
+}
+.language-python .token.comment {
+  color: #6a9955 !important;
+  font-style: italic !important;
 }
 
 code[class*="language-"], .jac-code-block {
