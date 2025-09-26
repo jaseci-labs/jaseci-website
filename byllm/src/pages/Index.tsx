@@ -6,6 +6,13 @@ import { CodeBlock } from '../components/CodeBlock';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from '../components/ui/carousel';
 
 // Import example images
 import example1 from '../assets/example-1.png';
@@ -31,7 +38,8 @@ import personalityfinderCode from '../assets/personalityfinder.jac?raw';
 import wikisearchCode from '../assets/wikisearch.jac?raw';
 
 const Index = () => {
-  const [activeTab, setActiveTab] = useState('areyouai');
+  // Default to the left-most example tab so the page opens with PersonalityFinder selected
+  const [activeTab, setActiveTab] = useState('personalityfinder');
   const [isNoteExpanded, setIsNoteExpanded] = useState(false);
   const [isApiNoteExpanded, setIsApiNoteExpanded] = useState(false);
   const [isLiteLLMNoteExpanded, setIsLiteLLMNoteExpanded] = useState(false);
@@ -84,6 +92,16 @@ const Index = () => {
       code: wikisearchCode,
     }
   };
+
+  const tutorials = [
+    {
+      title: 'Build an AI-integrated RPG (code-along)',
+      description: 'Code-along: build an AI-integrated RPG using byLLM to generate dynamic level maps. Follow the video and docs to reproduce the project.',
+      youtubeId: 'FSIZmwfQD1s',
+      // Link to the documentation example page as requested by the user
+      repoLink: 'https://www.jac-lang.org/learn/examples/mtp_examples/rpg_game/',
+    },
+  ];
 
   return (
     <ThemeProvider>
@@ -633,6 +651,54 @@ const Index = () => {
         </section>
 
 
+
+        {/* Tutorials */}
+        <section id="tutorials" className="py-12 bg-muted/30">
+          <div className="container">
+            <div className="text-center mb-8">
+              <h2 className="text-section mb-4">Tutorials</h2>
+              <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">Watch video walkthroughs and grab the example repo for each tutorial.</p>
+            </div>
+
+            <div className="max-w-4xl mx-auto relative">
+              <Carousel>
+                <CarouselContent className="gap-4">
+                  {tutorials.map((t, idx) => (
+                    <CarouselItem key={idx}>
+                      <Card className="card-interactive">
+                        <div className="aspect-video overflow-hidden rounded-t-lg">
+                          <iframe
+                            src={`https://www.youtube.com/embed/${t.youtubeId}`}
+                            title={t.title}
+                            className="w-full h-full"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                        <CardHeader>
+                          <div className="flex items-center justify-between">
+                            <CardTitle className="text-lg">{t.title}</CardTitle>
+                          </div>
+                          <CardDescription>{t.description}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="p-4">
+                          <div className="flex justify-end">
+                            <Button variant="outline" onClick={() => window.open(t.repoLink, '_blank')}>
+                              View Docs
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+            </div>
+          </div>
+        </section>
 
         {/* References */}
         <section className="py-12">
