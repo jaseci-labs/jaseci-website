@@ -27,6 +27,8 @@ with entry {
     {
         filename: "oop_example.jac",
         code: `
+# --- Build a living, interconnected world with nodes and walkers ---
+
 node Landmark {
     has name: str;
     can react with Tourist entry {
@@ -38,7 +40,7 @@ node Landmark {
 node Cafe {
     can react with Tourist entry {
         print("☕ Tourist gets coffee and continues exploring.");
-        visit [-->];
+        visit [-->]; # flows to connected nodes
     }
 }
 
