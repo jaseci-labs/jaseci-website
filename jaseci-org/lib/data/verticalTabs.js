@@ -79,19 +79,42 @@ with entry {
     {
         filename: "cloud_scaling.jac",
         code: `
-# walker automatically becomes an endpoint
-walker memories {
-    has current_user: str = "";
+# nodes + walkers + jac-cloud --> auto-endpoint magic
+# Auth & database handled behind the scenes
 
-    can get_memories with \`root entry {
+node Memory {
+    has memories: list[str] = [];
+
+    can add_memory with add_memory entry {
+        # Simple append, no DB worries
+        self.memories.append(visitor.memory);
         report {
-            "message": 
-                  f"Hello {self.current_user}, here are your memories!"
+            "message": f"Memory added: {visitor.memory}"
         };
     }
+    can list_memories with get_memories entry {
+        report { "memories": self.memories };
+    }
 }
-# Auth & database handled by Jac-cloud behind the scenes
-# No boilerplate here
+
+# Endpoint ready!, thanks to the walker abstraction
+walker add_memory {
+    has memory: str;
+
+    can add_memory with \`root entry {
+        visit [--> (\`?Memory)] else {
+            visit root ++> Memory();
+        }
+    }
+}
+
+walker get_memories {
+    can list_memories with \`root entry {
+        visit [--> (\`?Memory)] else {
+            report { "memories": [] };
+        }
+    }
+}
 `,
     },
 ];
@@ -275,12 +298,15 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["mydb"]
 users_collection = db["users"]
+memories_collection = db["memories"]
 
 # --- Models ---
 class User(BaseModel):
     username: str
     password: str
 
+class MemoryItem(BaseModel):
+    memory: str
 
 # --- Auth Helpers ---
 def create_token(username: str):
@@ -294,13 +320,18 @@ def create_token(username: str):
 def verify_token(token: str = Depends(oauth2_scheme)):
     """Decode and validate JWT token."""
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(
+            token, SECRET_KEY, algorithms=[ALGORITHM]
+        )
         return payload["sub"]
     except jwt.ExpiredSignatureError:
-        raise HTTPException(status_code=401, detail="Token expired")
+        raise HTTPException(
+            status_code=401, detail="Token expired"
+        )
     except jwt.InvalidTokenError:
-        raise HTTPException(status_code=401, detail="Invalid token")
-
+        raise HTTPException(
+            status_code=401, detail="Invalid token"
+        )
 
 # --- Routes ---
 @app.post("/signup")
@@ -309,14 +340,15 @@ def signup(user: User):
     hashed_pw = hashlib.sha256(user.password.encode()).hexdigest()
 
     if users_collection.find_one({"username": user.username}):
-        raise HTTPException(status_code=400, detail="User already exists")
+        raise HTTPException(
+            status_code=400, detail="User already exists"
+        )
 
     users_collection.insert_one({
         "username": user.username, 
         "password": hashed_pw
     })
     return {"message": "User created successfully"}
-
 
 @app.post("/login")
 def login(user: User):
@@ -336,15 +368,30 @@ def login(user: User):
     return {"access_token": access_token, "token_type": "bearer"}
 
 
+# --- the long road to a simple task --- 
+@app.post("/add_memory")
+def add_memory(
+    item: MemoryItem,
+    current_user: str = Depends(verify_token)
+):
+    """Add a memory for the current user."""
+    memories_collection.insert_one({
+        "username": current_user,
+        "memory": item.memory,
+        "timestamp": datetime.utcnow()
+    })
+    return {"message": f"Memory added: {item.memory}"}
 
-@app.get("/memories/")
-def get_memories(current_user: str = Depends(verify_token)):
-    """Protected route: requires valid JWT token."""
-    return {
-        "message": f"Hello {current_user}, here are your memories!"
-    }
-`,
-    },
+
+@app.get("/get_memories")
+def get_user_memories(current_user: str = Depends(verify_token)):
+    """Retrieve all memories for the current user."""
+    user_memories = list(memories_collection.find(
+        {"username": current_user},
+        {"_id": 0, "memory": 1, "timestamp": 1}
+    ))
+    return {"memories": user_memories}
+`},
 ];
 
 export const tabsData = [
