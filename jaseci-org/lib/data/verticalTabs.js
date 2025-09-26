@@ -6,19 +6,17 @@ import from byllm { Model, Image }
 
 glob llm = Model(model_name="gpt-4o");
 
+# One tiny object replaces a giant schem
 obj MemoryDetails {
     has who: list[str];
     has what: str;
     has where: str;
 }
-sem MemoryDetails = "Extract people, event, place, and time from a photo";
-sem MemoryDetails.who = "Names of people in the photo";  
-sem MemoryDetails.what = "What is happening in the scene";
-sem MemoryDetails.where = "Location or setting of the photo";
+sem MemoryDetails = "Extract people, event, place from the photo";
 
 def extract_memory_details(
     image: Image, city: str
-) -> MemoryDetails by llm();
+) -> MemoryDetails by llm(); # Magic happens
 
 with entry {
     img = Image("image.png");
@@ -103,48 +101,89 @@ export const pythonTabsData = [
         filename: "ai_sentiment_analysis.py",
         code: `
 import json, base64
+from datetime import datetime
 from openai import OpenAI
 
 client = OpenAI()
 
+# --- Lots of boilerplate just to define a schema ---
 tools = [{
     "type": "function",
     "function": {
         "name": "process_memory",
+        "description": 
+            "Extract structured memory details from the photo",
         "parameters": {
             "type": "object",
             "properties": {
-                "who": {"type": "array", "items": {"type": "string"}},
-                "what": {"type": "string"},
-                "where": {"type": "string"}
+                "who": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "Names of people in the photo"
+                },
+                "what": {
+                    "type": "string",
+                    "description": "What is happening in the scene"
+                },
+                "where": {
+                    "type": "string",
+                    "description": 
+                        "Location or setting of the photo"
+                }
             },
             "required": ["who", "what", "where"]
         }
     }
 }]
 
+# --- The prompt has to sit here like a Novel ---
 SYS_PROMPT = """
-# Goal
-Extract structured memory details from the photo.
+# Role and Objective
+Your goal is to extract structured memory details from
+referenced images and user context. Engage in a way that feels 
+natural, as if you were helping someone document their 
+experiences, but always return structured output.
 
-# Fields
-- who: list of people or animals involved
-- what: short description of the activity or event
-- where: location or place mentioned
+# Instructions
+- Extract details only based on the image and user input.
+- Avoid hallucinations or assumptions if information is missing.
+- Always call the \`process_memory\` tool to return results.
+- Keep results short, factual, and consistent.
 
-# Rules
-- Only use details from the photo and user input
-- Do not hallucinate or invent missing information
-- Always return using the \`process_memory\` tool
+# Sub-categories for more detailed instructions
+## First Turn
+- React to the image or context briefly.
+- Encourage clarification if information is incomplete.
 
-# Guidance
-- If some fields are missing, leave them empty
-- Keep responses factual and concise
+## Field Writing (for process_memory)
+- **who**: list of people, animals, or notable entities.
+- **what**: concise description of the activity or event 
+  (3-5 words).
+- **where**: specific place, city, or landmark provided 
+   or visible.
+
+### Reasoning Steps
+- If the user corrects existing information, update the fields.
+- If new information is provided, add it without discarding 
+  existing relevant details.
+- If a field is not mentioned or visible, leave it empty.
+
+## Response Writing
+- Keep responses factual and grounded in what's visible or given.
+- Never ask the user irrelevant questions.
+- Use the photo context to refine details when applicable.
+
+# Output Format
+Always return JSON via the \`process_memory\` tool with:
+- \`who\`: list of strings
+- \`what\`: string (short activity/event description)
+- \`where\`: string (location or place)
 """
 
 with open("image.png", "rb") as f:
     image_b64 = base64.b64encode(f.read()).decode("utf-8")
 
+# --- Verbose message construction ---
 messages = [
     {"role": "system", "content": SYS_PROMPT},
     {
@@ -171,6 +210,7 @@ response = client.chat.completions.create(
 result = json.loads(
     response.choices[0].message.tool_calls[0].function.arguments
 )
+
 print(result)
 `,
     },
