@@ -68,9 +68,11 @@ export async function POST(request) {
 
     const API_URL = `https://${dataCenter}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members`;
 
+    const DOUBLE_OPT_IN = String(process.env.MAILCHIMP_DOUBLE_OPT_IN || '').toLowerCase() === 'true';
+
     const payload = {
       email_address: email,
-      status: 'subscribed', // use 'pending' for double opt-in
+      status: DOUBLE_OPT_IN ? 'pending' : 'subscribed',
       merge_fields: {
         FNAME: firstName,
         LNAME: lastName,
@@ -86,7 +88,7 @@ export async function POST(request) {
       body: JSON.stringify(payload),
     });
 
-    if (!mcRes.ok) {
+  if (!mcRes.ok) {
       let errorData = null;
       try {
         errorData = await mcRes.json();
@@ -104,7 +106,7 @@ export async function POST(request) {
           const putUrl = `https://${dataCenter}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members/${hash}`;
           const upsertPayload = {
             email_address: email,
-            status_if_new: 'subscribed',
+            status_if_new: DOUBLE_OPT_IN ? 'pending' : 'subscribed',
             merge_fields: {
               FNAME: firstName,
               LNAME: lastName,
@@ -120,18 +122,27 @@ export async function POST(request) {
           });
 
           if (putRes.ok) {
-            return NextResponse.json({ message: 'You are already subscribed. Details updated.' }, { status: 200 });
+            const msg = DOUBLE_OPT_IN
+              ? 'You are on our list. If you haven\'t confirmed before, please check your email to confirm.'
+              : 'You are already subscribed. Details updated.';
+            return NextResponse.json({ message: msg }, { status: 200 });
           }
         } catch (e) {
           // Non-fatal; fall back to success message
         }
-        return NextResponse.json({ message: 'You are already subscribed.' }, { status: 200 });
+        return NextResponse.json({ message: DOUBLE_OPT_IN ? 'You are already on our list.' : 'You are already subscribed.' }, { status: 200 });
       }
 
       const message = title || 'There was an error subscribing to the newsletter.';
       return NextResponse.json({ error: message }, { status: 400 });
     }
 
+    if (DOUBLE_OPT_IN) {
+      return NextResponse.json(
+        { message: 'Please check your email to confirm your subscription.' },
+        { status: 202 },
+      );
+    }
     return NextResponse.json({ message: 'Success! You are now subscribed.' }, { status: 201 });
   } catch (err) {
     console.error('Subscribe API error:', err);

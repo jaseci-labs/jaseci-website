@@ -10,6 +10,7 @@ export default function NewsletterForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [serverMsg, setServerMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
 
@@ -29,7 +30,8 @@ export default function NewsletterForm() {
     if (isSubmitting || isSubmitDisabled) return;
     setIsSubmitting(true);
     setIsSuccess(false);
-    setErrorMsg('');
+  setErrorMsg('');
+  setServerMsg('');
 
     try {
       const res = await fetch('/api/subscribe', {
@@ -44,13 +46,14 @@ export default function NewsletterForm() {
         }),
       });
 
-      const data = await res.json().catch(() => ({}));
+  const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
         throw new Error(data?.error || 'Subscription failed.');
       }
 
-      setIsSuccess(true);
+  setIsSuccess(true);
+  if (data?.message) setServerMsg(data.message);
       setFormData({ email: '', firstName: '', lastName: '' });
       setTimeout(() => setIsSuccess(false), 3000);
     } catch (err) {
@@ -71,7 +74,7 @@ export default function NewsletterForm() {
 
           {isSuccess ? (
             <div className="text-center text-green-400 font-semibold p-4 bg-green-500/10 rounded-lg" role="status">
-              You&apos;re subscribed! 🎉
+              {serverMsg || "You're subscribed! 🎉"}
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="grid gap-4" noValidate>
