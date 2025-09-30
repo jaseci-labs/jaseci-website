@@ -27,56 +27,67 @@ with entry {
     {
         filename: "oop_example.jac",
         code: `
-# --- Build a living, interconnected world with nodes and walkers ---
-
-node Landmark {
-    has name: str;
-    can react with Tourist entry {
-        print("📸 Tourist visits", self.name);
-        visit [-->];
-    }
+node Library {
+    has location: str;
+    can search_shelves with borrower entry;
 }
 
-node Cafe {
-    can react with Tourist entry {
-        print("☕ Tourist gets coffee and continues exploring.");
-        visit [-->]; # flows to connected nodes
-    }
+node Shelf {
+    has category: str;
+    can check_books with borrower entry;
 }
 
-node Local {
-    can react with Tourist entry {
-        print("👋 Local greets the Tourist");
-    }
+node Book {
+    has title: str;
+    has available: bool;
 }
 
-walker Tourist {
-    has visited: list = [];
-
-    can start_trip with \`root entry {
-        print("🚶 Begins the journey at", here);
-        visit [-->];
-    }
-    can log_visit with Landmark exit {
-        self.visited.append(here.name);
-    }
-    can end_trip with exit {
-        print("🏁 Trip ended. Places seen:", self.visited);
-    }
+walker borrower {
+    has book_needed: str;
+    can find_book with \`root entry;
 }
 
 with entry {
-    # Build world
-    root ++> Local();
-    root ++> Landmark(name="Eiffel Tower");
-    root ++> Cafe();
-    root ++> Landmark(name="Colosseum");
+    # Building the world is just linking nodes
+    lib1 = root ++> Library("Central Library");
+    lib2 = root ++> Library("Community Library");
 
-    # Send Tourist walking
-    a = (root spawn Tourist());
-    print("Tourist entity ID:", a.visited);
+    shelf1 = lib1 ++> Shelf("Fiction");
+    shelf2 = lib1 ++> Shelf("Non-Fiction");
+    shelf3 = lib2 ++> Shelf("Science");
+
+    book1 = shelf1 ++> Book("1984", True);
+    book2 = shelf1 ++> Book("Brave New World", False);
+    book3 = shelf2 ++> Book("Sapiens", True);
+    book4 = shelf3 ++> Book("A Brief History of Time", False);
+    book5 = shelf3 ++> Book("The Selfish Gene", True);
+
+    borrower("1984") spawn root;
 }
-`,
+
+impl Library.search_shelves {
+    shelves = [self --> Shelf];
+    visit shelves; # No loops, just visit
+}
+
+impl Shelf.check_books {
+    found_book = [self --> (\`?Book)](
+        ?title == visitor.book_needed, available == True
+    );
+
+    if (found_book) {
+        print(f"Borrowed: {found_book}");
+        print(f"From Shelf: {self.category}");
+        disengage; # Stop traversal cleanly
+    } else {
+        print("Book not available in shelf", self.category);
+    }
+}
+
+impl borrower.find_book {
+    libraries = [here --> Library];
+    visit libraries;
+}`,
     },
     {
         filename: "cloud_scaling.jac",
@@ -242,43 +253,75 @@ print(result)
     {
         filename: "oop_example.py",
         code: `
-class Landmark:
-    def __init__(self, name):
+class Borrower:
+    def __init__(self, name, book_needed):
         self.name = name
-    
-    def react(self, tourist):
-        print("📸 Tourist visits", self.name)
-        tourist.visited.append(self.name)
+        self.book_needed = book_needed
+        self.libraries = []
 
-class Cafe:
-    def react(self, tourist):
-        print("☕ Tourist gets coffee and continues exploring.")
+class Library:
+    def __init__(self, location):
+        self.location = location
+        self.shelves = []
 
-class Local:
-    def react(self, tourist):
-        print("👋 Local greets the Tourist")
+class Shelf:
+    def __init__(self, category):
+        self.category = category
+        self.books = []
 
-class Tourist:
-    def __init__(self):
-        self.visited = []
+class Book:
+    def __init__(self, title, available=True):
+        self.title = title
+        self.available = available
 
-    def start_trip(self, places):
-        print("🚶 Begins the journey")
-        for place in places:
-            place.react(self)
-        print("🏁 Trip ended. Places seen:", self.visited)
+borrower = Borrower("Reader", book_needed="1984")
 
-# Build world
-places = [
-    Local(),
-    Landmark("Eiffel Tower"),
-    Cafe(),
-    Landmark("Colosseum")
-]
+lib1 = Library("Central Library")
+lib2 = Library("Community Library")
+borrower.libraries.extend([lib1, lib2])
 
-# Send Tourist walking
-tourist = Tourist()
-tourist.start_trip(places)
+shelf1 = Shelf("Fiction")
+shelf2 = Shelf("Non-Fiction")
+shelf3 = Shelf("Science")
+
+lib1.shelves.extend([shelf1, shelf2])
+lib2.shelves.append(shelf3)
+
+book1 = Book("1984", True)
+book2 = Book("Brave New World", False)
+book3 = Book("Sapiens", True)
+book4 = Book("A Brief History of Time", False)
+book5 = Book("The Selfish Gene", True)
+
+shelf1.books.extend([book1, book2])
+shelf2.books.append(book3)
+shelf3.books.extend([book4, book5])
+
+found_book = None
+found_shelf = None
+found_library = None
+libraries = borrower.libraries
+wanted = borrower.book_needed
+
+# Nested loops everywhere
+for lib in libraries:
+    for shelf in lib.shelves:
+        for book in shelf.books:
+            if book.title == wanted and book.available:
+                found_book = book
+                found_shelf = shelf
+                found_library = lib
+                break
+        if found_book:
+            break
+    if found_book:
+        break
+
+if found_book:
+    print(f"Borrowed: {found_book.title}")
+    print(f"From Shelf: {found_shelf.category}")
+else:
+    print("Book not available")
 `,
     },
     {
