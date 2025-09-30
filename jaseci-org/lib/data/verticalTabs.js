@@ -62,6 +62,7 @@ with entry {
     book4 = shelf3 ++> Book("A Brief History of Time", False);
     book5 = shelf3 ++> Book("The Selfish Gene", True);
 
+    # Send Borrower walking
     borrower("1984") spawn root;
 }
 
