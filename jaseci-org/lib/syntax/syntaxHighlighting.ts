@@ -90,6 +90,8 @@ export async function highlightJacCode(code: string): Promise<string> {
         return `<span class="jac-keyword">${escapeHtml(token.value)}</span>`;
       case 'special-keyword':
         return `<span class="jac-special-keyword">${escapeHtml(token.value)}</span>`;
+      case 'visit-keyword':
+        return `<span class="jac-visit-keyword">${escapeHtml(token.value)}</span>`;
       case 'type':
         return `<span class="jac-type">${escapeHtml(token.value)}</span>`;
       case 'class-name':
@@ -115,12 +117,14 @@ function tokenizeJacCode(code: string): Array<{type: string, value: string, leve
   const keywords = new Set([
     'node', 'edge', 'walker', 'can', 'with', 'entry', 'exit', 'def', 'class', 'obj',
     'enum', 'has', 'ability', 'if', 'else', 'elif', 'for', 'while', 'return',
-    'spawn', 'visit', 'disengage', 'yield', 'try', 'except', 'finally', 'assert',
+    'spawn', 'yield', 'try', 'except', 'finally', 'assert',
     'import', 'include', 'from', 'as', 'global', 'async', 'await', 'lambda',
     'here', 'self', 'root', 'super', 'init', 'postinit', 'visitor', 'impl',
     'and', 'or', 'not', 'in', 'is', 'True', 'False', 'None', 'break', 'continue',
     'pass', 'del', 'raise', 'test', 'check'
   ]);
+  
+  const visitKeywords = new Set(['visit', 'disengage']);
   
   const types = new Set(['str', 'int', 'float', 'bool', 'list', 'dict', 'tuple', 'set', 'any', 'type']);
   const operators = new Set(['=', '+', '-', '*', '/', '%', '==', '!=', '<', '>', '<=', '>=', '+=', '-=', '*=', '/=', '|', '&', '^', '~', '<<', '>>', '**']);
@@ -283,6 +287,8 @@ function tokenizeJacCode(code: string): Array<{type: string, value: string, leve
       // Special keywords like 'entry', 'exit' in certain contexts (check BEFORE general keywords)
       if (['entry', 'exit'].includes(identifier) && (isAfterWith || isAfterCan)) {
         tokens.push({ type: 'special-keyword', value: identifier });
+      } else if (visitKeywords.has(identifier)) {
+        tokens.push({ type: 'visit-keyword', value: identifier });
       } else if (keywords.has(identifier)) {
         tokens.push({ type: 'keyword', value: identifier });
       } else if (types.has(identifier)) {

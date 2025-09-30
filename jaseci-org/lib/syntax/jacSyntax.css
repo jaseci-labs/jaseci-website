@@ -129,6 +129,10 @@ pre[class*="language-"] {
   color: #c678dd;
 }
 
+.jac-visit-keyword {
+  color: #c678dd;
+}
+
 .jac-module {
   color: #4ec9b0;
 }
@@ -196,5 +200,9 @@ pre[class*="language-"] {
 }
 
 .light .jac-special-keyword {
+  color: #8250df;
+}
+
+.light .jac-visit-keyword {
   color: #8250df;
 }
