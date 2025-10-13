@@ -146,7 +146,7 @@ const Index = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   className="btn-hero group"
-                  onClick={() => window.open('https://arxiv.org/abs/2405.08965', '_blank')}
+                  onClick={() => window.open('https://dl.acm.org/doi/10.1145/3763092', '_blank')}
                 >
                   <FileText className="mr-2 h-5 w-5" />
                   Read Research Paper
@@ -717,7 +717,7 @@ const Index = () => {
                       <p className="text-body italic text-muted-foreground">
                         "MTP: A Meaning-Typed Language Abstraction for AI-Integrated Programming." : Proc. ACM Program. Lang. 9, OOPSLA2, Article 314 (October 2025), 29 pages.{" "}
                         <a
-                          href="https://doi.org/10.48550/arXiv.2405.08965"
+                          href="https://dl.acm.org/doi/10.1145/3763092"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary underline hover:text-primary/80"
