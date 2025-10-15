@@ -25,7 +25,7 @@ SLaM is a system that facilitates the process of hosting and evaluating language
 
 When investigating this feature in a real-world product, the authors have considered a ‘PEP-TALK’ feature in a task management and productivity application called ‘Myca’. When users log into the app at the start of their day, it gives them a positive message tailored to their previous day’s achievements, plans, and overall progress toward their goals. The ‘PEP-TALK’ feature combines the user’s past activities and plans into a prompt, fed into a language model, which generates a motivational response displayed to the user.
 
-So, this [paper](https://arxiv.org/pdf/2312.14972) discusses four questions related to moving from proprietary LLMs to self-hosted SLMs.
+So, this [paper](https://dl.acm.org/doi/10.1145/3763092) discusses four questions related to moving from proprietary LLMs to self-hosted SLMs.
 
 1. Is the quality of SLMs good enough for users?
 2. How well can AI-assisted tooling automate the process of identifying SLM alternatives?
