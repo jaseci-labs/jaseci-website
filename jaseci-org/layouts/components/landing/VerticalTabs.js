@@ -61,23 +61,21 @@ const VerticalTabs = () => {
   // Helper function to get the appropriate animation class
   const getTabAnimationName = (index) => {
     switch (index) {
-        case 0: // Left tab: comes from left
+        case 0:                         // Left tab: comes from left
             return `slideInLeft`;
-        case 1: // Middle tab: comes from down to up (default fadeInUp)
+        case 1:                         // Middle tab: comes from down to up (default fadeInUp)
             return `fadeInUp`;
-        case 2: // Right tab: comes from right
-            return `slideInRight`;
+        case 2:                         // Right tab: comes from right
+            return `slideInRight`;  
         default:
             return `fadeInUp`;
     }
   };
   
   const getChildAnimationStyle = (index) => {
-      // Determine the specific animation to use
-      const animationName = getTabAnimationName(index);
       
-      // Calculate a staggered delay: BASE_DELAY + (index * STAGGER_DELAY)
-      const delay = BASE_DELAY + (index * STAGGER_DELAY);
+      const animationName = getTabAnimationName(index);  // Determine the specific animation to use
+      const delay = BASE_DELAY + (index * STAGGER_DELAY);  // Calculate a staggered delay
       
       // Determine initial transform based on the target animation direction
       const initialTransform = 
@@ -91,12 +89,9 @@ const VerticalTabs = () => {
           animation: isVisible 
             ? `${animationName} ${ANIMATION_DURATION} ease-out forwards` 
             : 'none',
-          
-          // Apply initial hidden state transform
-          transform: isVisible ? 'none' : initialTransform, 
-          
-          // Apply the staggered delay
-          animationDelay: `${delay}s`,
+        
+          transform: isVisible ? 'none' : initialTransform,   
+          animationDelay: `${delay}s`,  
       };
   };
 

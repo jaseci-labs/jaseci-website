@@ -32,16 +32,13 @@ const useIntersectionObserver = (ref, options) => {
 
 
 
-// Carousel: expects a flat array of card objects; shows 3 at a time on desktop (chunked)
+// The system displays the flat array of card objects in chunks of three for desktop users.
 const Carousel = ({ slides, title, sectionId }) => {
-  // ---Add a safeguard check for the slides prop ---
+  // safeguard check for the slides prop
   if (!slides || !Array.isArray(slides) || slides.length === 0) {
-    // If the slides prop is missing, not an array, or empty, return null (don't render)
-    // This prevents the TypeError: Cannot read properties of undefined (reading 'length')
     return null; 
   }
  
-
   const GROUP_SIZE = 3; // cards per view on desktop
 
   // Refs for scroll animation
@@ -145,7 +142,7 @@ const Carousel = ({ slides, title, sectionId }) => {
                 {group.map((card, cardIndex) => (
                   <div
                     key={cardIndex}
-                    // --- UPDATED CLASS FOR POPUP EFFECT ---
+                    // --- Added Popup Effect ---
                     className="flex-1 bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl border border-light-bg/20 p-6 sm:p-8 shadow-2xl transition-all duration-300 hover:border-primary-orange/50 hover:shadow-3xl hover:shadow-primary-orange/20 hover:scale-[1.02] hover:-translate-y-2 group mx-2 sm:mx-0"
                     // --- Increased shadow, added scale and translateY on hover ---
                   >

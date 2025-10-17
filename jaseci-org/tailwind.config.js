@@ -100,9 +100,7 @@ module.exports = {
       fontFamily: {
         primary: [fontPrimary, fontPrimaryType],
         secondary: [fontSecondary, fontSecondaryType],
-        // --- NEW DISPLAY FONT ADDED HERE ---
-        // You can change "Lato" to any font you have available
-        display: ["Inter", "sans-serif"],         
+        display: ["Inter", "sans-serif"],      // New Display font added 
       },
       // Added animations for the new design
       animation: {

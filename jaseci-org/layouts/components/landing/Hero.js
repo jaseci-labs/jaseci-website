@@ -87,7 +87,7 @@ const Hero = () => {
           <div className="grid lg:grid-cols-8 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-5 text-center lg:text-left">
               <div className="mb-6">
-                <h1 className="font-display font-medium tracking-normal text-balance leading-tight text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
+                <h1 className="font-display font-medium tracking-tight text-balance leading-tight text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
                   <span 
                     className="block text-white"
                     style={{ animation: 'fadeInUp 0.6s ease-out 0s both' }}
