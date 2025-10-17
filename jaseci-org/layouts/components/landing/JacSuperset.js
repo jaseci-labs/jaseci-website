@@ -25,7 +25,7 @@ with entry{
 }
 `;
 
-  // --- Animation Logic (Faster: 0.6s duration) ---
+  // --- Animation Logic ---
   const ANIMATION_DURATION = '0.9s';
   const TRANSLATION_Y = '30px';
 

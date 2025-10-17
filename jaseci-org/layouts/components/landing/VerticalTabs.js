@@ -54,9 +54,8 @@ const VerticalTabs = () => {
   const currentJacCode = jacTabsData[activeVerticalTab].code;
   const currentPythonCode = pythonTabsData[activeVerticalTab].code;
 
-  const ANIMATION_DURATION = '0.7s'; 
-  // Base delay reduced as requested: 0.15s for the first element in the sequence
-  const BASE_DELAY = 0.60; 
+  const ANIMATION_DURATION = '0.8s'; 
+  const BASE_DELAY = 0.80; 
   const STAGGER_DELAY = 0.6; // Additional delay between staggered elements
 
   // Helper function to get the appropriate animation class
@@ -73,16 +72,6 @@ const VerticalTabs = () => {
     }
   };
   
-  const visibleStyle = isVisible
-    ? {
-        // Use reduced duration here
-        animation: `fadeInUp ${ANIMATION_DURATION} ease-out both`,
-      }
-    : {
-        opacity: 0,
-        transform: 'translateY(30px)', 
-      };
-
   const getChildAnimationStyle = (index) => {
       // Determine the specific animation to use
       const animationName = getTabAnimationName(index);
@@ -124,10 +113,10 @@ const VerticalTabs = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
-        {/* Header - Use reduced duration in visibleStyle */}
+        {/* Header */}
         <div
           className="text-center mb-8 sm:mb-10"
-          style={isVisible ? { animation: `fadeInUp ${ANIMATION_DURATION} ease-out both` } : visibleStyle}
+          style={getChildAnimationStyle(1)}
         >
           <div className="inline-block">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 bg-gradient-to-r from-white via-primary-orange to-primary-yellow bg-clip-text text-transparent">
@@ -140,7 +129,7 @@ const VerticalTabs = () => {
           </p>
         </div>
 
-        {/* Horizontal Navigation Tabs - Reduced delay to 0.15s (from 0.2s) */}
+        {/* Horizontal Navigation Tabs */}
         <div
           className="mb-6 sm:mb-8" 
         >
@@ -171,7 +160,7 @@ const VerticalTabs = () => {
           </div>
         </div>
 
-        {/* Description - Reduced delay to 0.4s (from 0.8s) */}
+        {/* Description */}
         <div
           className="text-center mb-6 sm:mb-8"
           style={isVisible ? { animation: `fadeInUp 0.8s ease-out 0.45s both` } : { opacity: 0, transform: 'translateY(30px)' }}
@@ -183,7 +172,7 @@ const VerticalTabs = () => {
           </div>
         </div>
 
-        {/* Side by Side Code Comparison - Reduced delay to 0.6s (from 1.0s) */}
+        {/* Side by Side Code Comparison */}
         <div
           className="bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-light-bg/20 overflow-hidden shadow-2xl hover:border-primary-orange/30 transition-all duration-500 mx-2 sm:mx-0"
           style={isVisible ? { animation: `fadeInUp 1s ease-out 0.45s both` } : { opacity: 0, transform: 'translateY(30px)' }}
@@ -194,8 +183,7 @@ const VerticalTabs = () => {
             <div className="flex flex-col border-b lg:border-b-0 lg:border-r border-light-bg/20">
               <div
                 className="bg-gradient-to-r from-primary-orange/20 to-primary-yellow/20 backdrop-blur-sm p-2 sm:p-3 lg:p-4 border-b border-light-bg/20"
-                // Reduced delay to 0.7s (from 1.2s)
-                style={getChildAnimationStyle(0.7)}
+                style={getChildAnimationStyle(1)}
               >
                 <h3 className="text-primary-orange font-bold text-sm sm:text-base lg:text-lg flex items-center gap-1 sm:gap-2">
                   <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-r from-primary-orange to-primary-yellow rounded-full shadow-lg shadow-primary-orange/50"></div>
@@ -204,8 +192,7 @@ const VerticalTabs = () => {
               </div>
               <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
                 <div 
-                  // Reduced delay to 0.8s (from 1.4s)
-                  style={getChildAnimationStyle(0.8)} 
+                  style={getChildAnimationStyle(1)} 
                   className="h-[420px] overflow-auto custom-scrollbar-orange"
                 >
                   <div className="flex min-w-full">
@@ -234,8 +221,7 @@ const VerticalTabs = () => {
             <div className="flex flex-col">
               <div
                 className="bg-gradient-to-r from-blue-500/20 to-blue-400/20 backdrop-blur-sm p-2 sm:p-3 lg:p-4 border-b border-light-bg/20"
-                // Reduced delay to 0.7s (from 1.2s)
-                style={getChildAnimationStyle(0.7)}
+                style={getChildAnimationStyle(1)}
               >
                 <h3 className="text-blue-400 font-bold text-sm sm:text-base lg:text-lg flex items-center gap-1 sm:gap-2">
                   <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-r from-blue-400 to-blue-300 rounded-full shadow-lg shadow-blue-400/50"></div>
@@ -244,8 +230,7 @@ const VerticalTabs = () => {
               </div>
               <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
                 <div 
-                  // Reduced delay to 0.8s (from 1.4s)
-                  style={getChildAnimationStyle(0.8)} 
+                  style={getChildAnimationStyle(1)} 
                   className="h-[420px] overflow-auto custom-scrollbar-blue"
                 >
                   <div className="flex min-w-full">
