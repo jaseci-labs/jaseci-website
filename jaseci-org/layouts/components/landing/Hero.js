@@ -84,10 +84,10 @@ const Hero = () => {
         </div>
 
         <div className="container mx-auto max-w-7xl px-4 relative z-10">
-          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
-            <div className="lg:col-span-3 text-center lg:text-left">
+          <div className="grid lg:grid-cols-8 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-5 text-center lg:text-left">
               <div className="mb-6">
-                <h1 className="font-display font-medium tracking-tight text-balance leading-tight text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
+                <h1 className="font-display font-medium tracking-normal text-balance leading-tight text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
                   <span 
                     className="block text-white"
                     style={{ animation: 'fadeInUp 0.6s ease-out 0s both' }}
@@ -107,7 +107,7 @@ const Hero = () => {
                     scalable applications
                   </span>
                 </h1>
-                <div className="h-1 bg-gradient-to-r from-transparent via-primary-orange to-transparent mx-auto lg:mx-0 w-32 mt-4" style={{ animation: 'fadeInUp 0.6s ease-out 0.6s both' }}></div>
+                <div className="h-1 bg-gradient-to-r from-transparent via-primary-orange to-transparent mx-auto lg:mx-0 w-64 mt-4" style={{ animation: 'fadeInUp 0.6s ease-out 0.6s both' }}></div>
               </div>
 
               <p 
@@ -154,7 +154,7 @@ const Hero = () => {
             </div>
 
             <div 
-              className="hidden lg:block lg:col-span-2 order-first lg:order-last"
+              className="hidden lg:block lg:col-span-3 order-first  lg:order-last transform translate-x-[-12px]"
               style={{ animation: 'fadeInUp 0.6s ease-out 0.4s both' }}
             >
               <div className="relative">
@@ -179,8 +179,8 @@ const Hero = () => {
                     <Image
                       src="/images/assets/hero.png"
                       alt="Jaseci Stack"
-                      width={3200}
-                      height={2000}
+                      width={3400}
+                      height={2600}
                       className="w-full h-auto max-w-2xl lg:max-w-5xl xl:max-w-6xl mx-auto animate-professional-float drop-shadow-[0_25px_50px_rgba(0,0,0,0.3)] transform-gpu"
                       priority
                     />
