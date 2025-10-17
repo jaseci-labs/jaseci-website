@@ -1,6 +1,35 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+
+// --- Custom Hook for Intersection Observer ---
+const useIntersectionObserver = (ref, options) => {
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      // We only care when it starts intersecting. Once it's in view, we stop observing.
+      if (entry.isIntersecting) {
+        setInView(true);
+        // Optional: stop observing once it has been revealed
+        observer.unobserve(entry.target);
+      }
+    }, options);
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [ref, options]);
+
+  return inView;
+};
+// ------------------------------------------
 
 const WhyWeBuilt = () => {
   const cards = [
@@ -62,6 +91,10 @@ const WhyWeBuilt = () => {
     }
   ];
 
+  // Create a ref for the header element
+  const headerRef = useRef(null);
+  const headerInView = useIntersectionObserver(headerRef, { threshold: 0.1 });
+
   return (
     <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-dark-bg to-[#1a1a1a] relative overflow-hidden">
       {/* Background decorative elements */}
@@ -73,9 +106,11 @@ const WhyWeBuilt = () => {
 
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
         {/* Header */}
-        <div
-          className="text-center mb-8 sm:mb-12"
-          style={{ animation: 'fadeInUp 0.6s ease-out both' }}
+    <div
+          ref={headerRef} // Attach ref for observation
+          className={`text-center mb-8 sm:mb-12 transition-all duration-700 ease-out ${
+            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 bg-gradient-to-r from-white via-blue-400 to-primary-orange bg-clip-text text-transparent">
             Why We Built Jaseci
@@ -88,50 +123,51 @@ const WhyWeBuilt = () => {
 
         {/* Cards Grid */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {cards.map((card, index) => (
-            <div
-              key={index}
-              className={`bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl border ${card.borderColor} ${card.hoverBorder} p-4 sm:p-6 shadow-2xl transition-all duration-500 hover:transform hover:scale-[1.02] hover:shadow-2xl mx-2 sm:mx-0 group`}
-              style={{ 
-                animation: `fadeInUp 0.6s ease-out ${0.2 + index * 0.1}s both` 
-              }}
-            >
-              {/* Card Icon Badge */}
-              <div className="flex items-start gap-4">
-                <div className={`w-10 h-10 sm:w-12 sm:h-12 ${card.iconBg} rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                  {card.icon}
+          {cards.map((card, index) => {
+            // Use a separate ref for each card
+            const cardRef = useRef(null);
+            const cardInView = useIntersectionObserver(cardRef, { threshold: 0.1 });
+            
+            return (
+              <div
+                key={index}
+                ref={cardRef} // Attach ref for observation
+                className={`
+                  bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl border ${card.borderColor} ${card.hoverBorder} p-4 sm:p-6 shadow-2xl transition-all duration-700 ease-out group mx-2 sm:mx-0
+                  // Scroll animation classes
+                  ${cardInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
+                  // Hover effects
+                  hover:transform hover:scale-[1.02] hover:shadow-2xl
+                `}
+                style={{ 
+                  transitionDelay: cardInView ? `${index * 0.15}s` : '0s' // Staggered delay only on reveal
+                }}
+              >
+                {/* Card Icon Badge */}
+                <div className="flex items-start gap-4">
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 ${card.iconBg} rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    {card.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className={`${card.titleColor} font-bold text-lg sm:text-xl group-hover:text-opacity-90 transition-colors duration-300`}>
+                      {card.title}
+                    </h3>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className={`${card.titleColor} font-bold text-lg sm:text-xl group-hover:text-opacity-90 transition-colors duration-300`}>
-                    {card.title}
-                  </h3>
-                </div>
-              </div>
 
-              {/* Card Content */}
-              <div className="pl-14 sm:pl-16">
-                <p className="text-gray-300 text-sm sm:text-base leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-                  {card.subtext}
-                </p>
+                {/* Card Content */}
+                <div className="pl-14 sm:pl-16">
+                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                    {card.subtext}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+ 
     </section>
   );
 };
