@@ -1,16 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CodeBlock } from "../CodeBlock";
 
 const JacSuperset = () => {
+  const [isVisible, setIsVisible] = useState(false); // State to track visibility
+  const sectionRef = useRef(null); // Ref for the intersection observer
+
   const JacInPythonCode = `
   import jaclang #enable .jac imports
 
 # Importing Jac module /app/logic.jac from the package "app/"
 import app.logic
 
-# Use exported classes and fucntions from the logic.jac
+# Use exported classes and functions from the logic.jac
 print(app.logic.some_function())`;
 const PythonInJacCode = `
 import math; #import python libraries
@@ -22,17 +25,64 @@ with entry{
 }
 `;
 
+  // --- Animation Logic ---
+  const ANIMATION_DURATION = '0.9s';
+  const TRANSLATION_Y = '30px';
+
+  // Intersection Observer setup
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [isVisible]);
+
+  // Helper function for staggered entry animation
+  const getChildAnimationStyle = (delayMultiplier) => ({
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? 'translateY(0)' : `translateY(${TRANSLATION_Y})`,
+    transition: `opacity ${ANIMATION_DURATION} ease-out ${delayMultiplier}s, transform ${ANIMATION_DURATION} ease-out ${delayMultiplier}s`,
+  });
+
+  const getHeaderAnimationStyle = isVisible
+    ? { animation: `fadeInUp ${ANIMATION_DURATION} ease-out both` }
+    : { opacity: 0, transform: `translateY(${TRANSLATION_Y})` };
+
   return (
-    <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-dark-bg to-[#1a1a1a] relative overflow-hidden">
+    <section 
+      className="py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-dark-bg to-[#1a1a1a] relative overflow-hidden"
+      ref={sectionRef} // Attach ref here
+    >
       <div className="absolute inset-0 opacity-5 overflow-hidden">
         <div className="absolute top-16 sm:top-32 right-8 sm:right-20 w-20 sm:w-32 lg:w-40 h-20 sm:h-32 lg:h-40 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full blur-xl animate-pulse delay-500"></div>
         <div className="absolute bottom-16 sm:bottom-32 left-6 sm:left-16 w-16 sm:w-24 lg:w-32 h-16 sm:h-24 lg:h-32 bg-gradient-to-br from-primary-orange to-primary-yellow rounded-full blur-xl animate-pulse delay-700"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
+        {/* Header - Stagger 0s */}
         <div
           className="text-center mb-8 sm:mb-10"
-          style={{ animation: 'fadeInUp 0.6s ease-out both' }}
+          style={getHeaderAnimationStyle}
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 bg-gradient-to-r from-white via-blue-400 to-primary-orange bg-clip-text text-transparent">
             Jac Supersets Python
@@ -44,9 +94,10 @@ with entry{
         </div>
 
         <div className="space-y-6 sm:space-y-8">
+          {/* Mobile Image Block - Stagger 0.2s */}
           <div
             className="lg:hidden"
-            style={{ animation: 'fadeInUp 0.6s ease-out 0.3s both' }}
+            style={getChildAnimationStyle(0.2)}
           >
             <div className="bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl border border-light-bg/20 p-4 sm:p-6 shadow-2xl hover:border-primary-orange/30 transition-all duration-500 mx-2 sm:mx-0">
               <div className="relative flex justify-center items-center">
@@ -58,11 +109,13 @@ with entry{
               </div>
             </div>
           </div>
+          
           <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center">
             
+            {/* Desktop Left Column (Image/Diagram) - Stagger 0.2s */}
             <div
               className="relative"
-              style={{ animation: 'fadeInUp 0.6s ease-out 0.3s both' }}
+              style={getChildAnimationStyle(0.2)}
             >
               <div className="bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl border border-light-bg/20 p-8 shadow-2xl hover:border-primary-orange/30 transition-all duration-500">
                 <div className="relative flex justify-center items-center">
@@ -86,9 +139,10 @@ with entry{
               </div>
             </div>
 
+            {/* Desktop Right Column (Code Examples) - Stagger 0.4s */}
             <div
               className="space-y-6"
-              style={{ animation: 'fadeInUp 0.6s ease-out 0.5s both' }}
+              style={getChildAnimationStyle(0.4)}
             >
               <div className="space-y-4">
                 <div className="bg-gradient-to-r from-dark-bg/60 via-dark-bg/40 to-dark-bg/60 backdrop-blur-sm rounded-xl border border-light-bg/20 p-4 shadow-xl hover:border-primary-orange/30 transition-all duration-300">
@@ -132,9 +186,10 @@ with entry{
             </div>
           </div>
 
+          {/* Mobile Code Examples Block - Stagger 0.4s */}
           <div
             className="lg:hidden space-y-4 sm:space-y-6"
-            style={{ animation: 'fadeInUp 0.6s ease-out 0.5s both' }}
+            style={getChildAnimationStyle(0.4)}
           >
             <div className="space-y-4">
               <div className="bg-gradient-to-r from-dark-bg/60 via-dark-bg/40 to-dark-bg/60 backdrop-blur-sm rounded-xl border border-light-bg/20 p-2 sm:p-4 shadow-xl hover:border-primary-orange/30 transition-all duration-300 mx-2 sm:mx-0">
@@ -154,30 +209,32 @@ with entry{
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div className="bg-gradient-to-r from-dark-bg/60 via-dark-bg/40 to-dark-bg/60 backdrop-blur-sm rounded-xl border border-light-bg/20 p-2 sm:p-4 shadow-xl hover:border-blue-400/30 transition-all duration-300 mx-2 sm:mx-0">
-                <div className="flex flex-col items-start gap-3">
-                  <div className="flex items-start gap-3 w-full">
-                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-r from-blue-400 to-blue-300 rounded-full mt-2 flex-shrink-0"></div>
-                    <h3 className="text-blue-400 font-bold text-base sm:text-lg mb-2">100% Python Compatible, use all Python libraries in Jac</h3>
-                  </div>
-                  <div className="w-full overflow-x-auto rounded-lg border border-gray-700/50">
-                    <div className="min-w-max p-5 sm:p-4">
-                      <CodeBlock 
-                        code={PythonInJacCode} 
-                        language="jac"
-                        className="text-xs sm:text-sm"
-                      />
-                    </div>
+            <div className="bg-gradient-to-r from-dark-bg/60 via-dark-bg/40 to-dark-bg/60 backdrop-blur-sm rounded-xl border border-light-bg/20 p-2 sm:p-4 shadow-xl hover:border-blue-400/30 transition-all duration-300 mx-2 sm:mx-0">
+              <div className="flex flex-col items-start gap-3">
+                <div className="flex items-start gap-3 w-full">
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-r from-blue-400 to-blue-300 rounded-full mt-2 flex-shrink-0"></div>
+                  <h3 className="text-blue-400 font-bold text-base sm:text-lg mb-2">100% Python Compatible, use all Python libraries in Jac</h3>
+                </div>
+                <div className="w-full overflow-x-auto rounded-lg border border-gray-700/50">
+                  <div className="min-w-max p-5 sm:p-4">
+                    <CodeBlock 
+                      code={PythonInJacCode} 
+                      language="jac"
+                      className="text-xs sm:text-sm"
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
+        
+          
+          {/* Mobile Bottom Text Block - Stagger 0.6s */}
           <div
             className="lg:hidden"
-            style={{ animation: 'fadeInUp 0.6s ease-out 0.7s both' }}
+            style={getChildAnimationStyle(0.6)}
           >
             <div className="bg-gradient-to-r from-primary-orange/10 to-primary-yellow/10 backdrop-blur-sm rounded-xl border border-primary-orange/20 p-3 sm:p-4 shadow-xl mx-2 sm:mx-0">
               <div className="text-center">
@@ -197,7 +254,7 @@ with entry{
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(${TRANSLATION_Y});
           }
           to {
             opacity: 1;

@@ -94,7 +94,7 @@ const Header = () => {
     <>
       {/* Top Bar */}
       <div className="top-bar w-full bg-dark-bg text-white text-xs sm:text-sm py-2 px-4 flex justify-center items-center fixed top-0 left-0 z-[101]">
-        <div className="top-bar-content flex flex-col sm:flex-row w-full max-w-6xl items-center justify-between gap-2 sm:gap-4">
+        <div className="top-bar-content flex flex-col sm:flex-row w-full max-w-7xl items-center justify-between gap-2 sm:gap-4">
           <div className="flex items-center gap-2 text-center sm:text-left">
             <span className="font-medium leading-tight">The Jac Programming Language and Jaseci Stack</span>
           </div>
@@ -119,7 +119,7 @@ const Header = () => {
         className="w-full z-50 fixed transition-all duration-300"
         style={{ top: `${topBarHeight}px` }}
       >
-        <nav className="container max-w-6xl mx-auto px-4 py-3 rounded-2xl transition-all duration-300 bg-medium-bg/90 backdrop-blur-lg shadow-xl border border-light-bg/30">
+        <nav className="container max-w-7xl mx-auto px-3 py-3 rounded-2xl transition-all duration-300 bg-medium-bg/45 backdrop-blur-md shadow-xl border border-light-bg/30">
           <div className="flex items-center justify-between">
             {/* Left section - Logo and Brand */}
             <div className="flex items-center gap-3">

@@ -3,13 +3,58 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import PropTypes from "prop-types";
 
-// Carousel: expects a flat array of card objects; shows 3 at a time on desktop (chunked)
+// --- Custom Hook for Intersection Observer ---
+const useIntersectionObserver = (ref, options) => {
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      // Once it's in view, we stop observing.
+      if (entry.isIntersecting) {
+        setInView(true);
+        observer.unobserve(entry.target);
+      }
+    }, options);
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [ref, options]);
+
+  return inView;
+};
+
+
+
+// The system displays the flat array of card objects in chunks of three for desktop users.
 const Carousel = ({ slides, title, sectionId }) => {
+  // safeguard check for the slides prop
+  if (!slides || !Array.isArray(slides) || slides.length === 0) {
+    return null; 
+  }
+ 
   const GROUP_SIZE = 3; // cards per view on desktop
+
+  // Refs for scroll animation
+  const titleRef = useRef(null);
+  const carouselRef = useRef(null);
+  const navRef = useRef(null);
+
+  const titleInView = useIntersectionObserver(titleRef, { threshold: 0.1 });
+  const carouselInView = useIntersectionObserver(carouselRef, { threshold: 0.2 });
+  const navInView = useIntersectionObserver(navRef, { threshold: 0.1 });
+
 
   // Group cards into pages of 3
   const grouped = useMemo(() => {
     const chunks = [];
+    // slides is guaranteed to be a non-empty array here due to the check above
     for (let i = 0; i < slides.length; i += GROUP_SIZE) {
       chunks.push(slides.slice(i, i + GROUP_SIZE));
     }
@@ -60,8 +105,11 @@ const Carousel = ({ slides, title, sectionId }) => {
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
         {title && (
           <div
-            className="text-center mb-8 sm:mb-10"
-            style={{ animation: 'fadeInUp 0.6s ease-out both' }}
+            ref={titleRef} // Attach ref for title observation
+            className={`
+              text-center mb-8 sm:mb-10 transition-all duration-700 ease-out
+              ${titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
+            `}
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 bg-gradient-to-r from-white via-primary-orange to-primary-yellow bg-clip-text text-transparent">
               {title}
@@ -74,8 +122,11 @@ const Carousel = ({ slides, title, sectionId }) => {
         )}
         
         <div
-          className="relative overflow-hidden"
-          style={{ animation: 'fadeInUp 0.6s ease-out 0.3s both' }}
+          ref={carouselRef} // Attach ref for carousel observation
+          className={`
+            relative **overflow-visible** transition-all duration-700 ease-out delay-200 // CHANGED: overflow-hidden to overflow-visible to prevent card popup clipping
+            ${carouselInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
+          `}
           onMouseEnter={stopAutoPlay}
           onMouseLeave={startAutoPlay}
         >
@@ -91,8 +142,9 @@ const Carousel = ({ slides, title, sectionId }) => {
                 {group.map((card, cardIndex) => (
                   <div
                     key={cardIndex}
-                    className="flex-1 bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl border border-light-bg/20 p-6 sm:p-8 shadow-2xl hover:border-primary-orange/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary-orange/10 group mx-2 sm:mx-0"
-                    style={{ animation: `fadeInUp 0.6s ease-out ${0.5 + cardIndex * 0.1}s both` }}
+                    // --- Added Popup Effect ---
+                    className="flex-1 bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl border border-light-bg/20 p-6 sm:p-8 shadow-2xl transition-all duration-300 hover:border-primary-orange/50 hover:shadow-3xl hover:shadow-primary-orange/20 hover:scale-[1.02] hover:-translate-y-2 group mx-2 sm:mx-0"
+                    // --- Increased shadow, added scale and translateY on hover ---
                   >
                     {/* Card Header */}
                     <div className="flex items-center gap-4 mb-4">
@@ -135,8 +187,11 @@ const Carousel = ({ slides, title, sectionId }) => {
 
           {showNav && (
             <div 
-              className="flex justify-center items-center gap-4 mt-8"
-              style={{ animation: 'fadeInUp 0.6s ease-out 0.8s both' }}
+              ref={navRef} // Attach ref for navigation observation
+              className={`
+                flex justify-center items-center gap-4 mt-8 transition-all duration-700 ease-out delay-300 // Added delay to follow carousel
+                ${navInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
+              `}
             >
               <button
                 onClick={prevSlide}
@@ -171,19 +226,7 @@ const Carousel = ({ slides, title, sectionId }) => {
         </div>
       </div>
 
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+      {/* Removed unused @keyframes fadeInUp CSS */}
     </section>
   );
 };

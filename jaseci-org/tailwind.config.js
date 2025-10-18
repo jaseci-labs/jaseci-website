@@ -99,7 +99,7 @@ module.exports = {
       },
       fontFamily: {
         primary: [fontPrimary, fontPrimaryType],
-        secondary: [fontSecondary, fontSecondaryType],
+        secondary: [fontSecondary, fontSecondaryType]
       },
       // Added animations for the new design
       animation: {
