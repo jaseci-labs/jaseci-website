@@ -50,13 +50,17 @@ const VerticalTabs = () => {
     setActiveVerticalTab(index);
     setActiveLanguage("jac"); 
   };
-
+  
   const currentJacCode = jacTabsData[activeVerticalTab].code;
   const currentPythonCode = pythonTabsData[activeVerticalTab].code;
 
   const ANIMATION_DURATION = '0.8s'; 
   const BASE_DELAY = 0.80; 
   const STAGGER_DELAY = 0.6; // Additional delay between staggered elements
+
+  // Calculate line counts for both code snippets
+  const lineCountJac = currentJacCode.trim().split('\n').length;
+  const lineCountPython = currentPythonCode.trim().split('\n').length;
 
   // Helper function to get the appropriate animation class
   const getTabAnimationName = (index) => {
@@ -83,7 +87,7 @@ const VerticalTabs = () => {
           animationName === 'slideInRight' ? 'translateX(30px)' :
           'translateY(30px)'; // Default for fadeInUp
 
-      return {
+      return { 
           opacity: isVisible ? 1 : 0,
           // Apply specific animation based on index when visible
           animation: isVisible 
@@ -188,13 +192,13 @@ const VerticalTabs = () => {
               <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
                 <div 
                   style={getChildAnimationStyle(1)} 
-                  className="h-[420px] overflow-auto custom-scrollbar-orange"
+                  className={`h-[420px] ${lineCountJac > 21 ? 'overflow-auto custom-scrollbar-orange' : ''}`}
                 >
                   <div className="flex min-w-full">
                     {/* Line Numbers - Fixed positioning */}
                     <div className="bg-[#161b22]/80 border-r border-gray-700/50 flex-shrink-0 select-none sticky left-0 z-10">
                       <div className="px-3 py-4 font-mono leading-[1.4] text-gray-500" style={{ fontSize: '0.8rem' }}>
-                        {Array.from({ length: Math.max(25, currentJacCode.trim().split('\n').length) }, (_, index) => (
+                        {Array.from({ length: Math.max(21, currentJacCode.trim().split('\n').length) }, (_, index) => (
                           <div key={index} className="text-right min-h-[1.4em] flex items-center justify-end">
                             {index + 1}
                           </div>
@@ -226,7 +230,7 @@ const VerticalTabs = () => {
               <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
                 <div 
                   style={getChildAnimationStyle(1)} 
-                  className="h-[420px] overflow-auto custom-scrollbar-blue"
+                  className={`h-[420px] ${lineCountPython > 21 ? 'overflow-auto custom-scrollbar-blue' : ''}`}
                 >
                   <div className="flex min-w-full">
                     {/* Line Numbers - Fixed positioning */}
