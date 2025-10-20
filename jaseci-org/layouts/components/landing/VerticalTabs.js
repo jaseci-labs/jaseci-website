@@ -87,7 +87,7 @@ const VerticalTabs = () => {
           animationName === 'slideInRight' ? 'translateX(30px)' :
           'translateY(30px)'; // Default for fadeInUp
 
-      return { 
+      return {
           opacity: isVisible ? 1 : 0,
           // Apply specific animation based on index when visible
           animation: isVisible 
@@ -192,7 +192,7 @@ const VerticalTabs = () => {
               <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
                 <div 
                   style={getChildAnimationStyle(1)} 
-                  className={`h-[420px] ${lineCountJac > 21 ? 'overflow-auto custom-scrollbar-orange' : ''}`}
+                  className="h-[420px] overflow-auto custom-scrollbar-orange"
                 >
                   <div className="flex min-w-full">
                     {/* Line Numbers - Fixed positioning */}

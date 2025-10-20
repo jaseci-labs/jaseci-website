@@ -43,7 +43,7 @@ const WhyWeBuilt = () => {
       iconBg: "bg-gradient-to-r from-orange-500 to-orange-400",
       icon: (
         <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
         </svg>
       )
     },
@@ -57,7 +57,7 @@ const WhyWeBuilt = () => {
       iconBg: "bg-gradient-to-r from-orange-600 to-orange-500",
       icon: (
         <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
         </svg>
       )
     },
@@ -71,7 +71,7 @@ const WhyWeBuilt = () => {
       iconBg: "bg-gradient-to-r from-orange-700 to-orange-600",
       icon: (
         <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
         </svg>
       )
     },
@@ -85,7 +85,7 @@ const WhyWeBuilt = () => {
       iconBg: "bg-gradient-to-r from-orange-800 to-orange-700",
       icon: (
         <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 6c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 6c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
         </svg>
       )
     }
@@ -127,7 +127,7 @@ const WhyWeBuilt = () => {
             // Use a separate ref for each card
             const cardRef = useRef(null);
             const cardInView = useIntersectionObserver(cardRef, { threshold: 0.1 });
-            
+
             return (
               <div
                 key={index}
@@ -139,7 +139,7 @@ const WhyWeBuilt = () => {
                   // Hover effects
                   hover:transform hover:scale-[1.02] hover:shadow-2xl
                 `}
-                style={{ 
+                style={{
                   transitionDelay: cardInView ? `${index * 0.15}s` : '0s' // Staggered delay only on reveal
                 }}
               >
@@ -167,7 +167,6 @@ const WhyWeBuilt = () => {
         </div>
       </div>
 
- 
     </section>
   );
 };
