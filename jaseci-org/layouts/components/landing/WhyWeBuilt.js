@@ -106,10 +106,11 @@ const WhyWeBuilt = () => {
 
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
         {/* Header */}
-        <div
+    <div
           ref={headerRef} // Attach ref for observation
-          className={`text-center mb-8 sm:mb-12 transition-all duration-700 ease-out ${headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+          className={`text-center mb-8 sm:mb-12 transition-all duration-700 ease-out ${
+            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 bg-gradient-to-r from-white via-blue-400 to-primary-orange bg-clip-text text-transparent">
             Why We Built Jaseci
@@ -165,7 +166,6 @@ const WhyWeBuilt = () => {
           })}
         </div>
       </div>
-
 
     </section>
   );
