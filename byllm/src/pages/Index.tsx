@@ -191,7 +191,7 @@ const Index = () => {
                   View on GitHub
                 </Button>
                 <Button className="btn-hero group"
-                  onClick={() => window.open('https://docs.jaseci.org/learn/jac-byllm/with_llm/', '_blank')}
+                  onClick={() => (window.location.href = 'https://docs.jaseci.org/learn/jac-byllm/with_llm/')}
                 >
                   <BookOpen className="mr-2 h-4 w-4" />
                   View Docs
@@ -631,8 +631,6 @@ const Index = () => {
             <h2 className="text-section mb-4">Ready to dive deeper?</h2>
             <a
               href="https://docs.jaseci.org/learn/jac-byllm/with_llm/"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               <Button className="btn-hero text-lg px-8 py-4">
                 <BookOpen className="mr-2 h-5 w-5" />
@@ -752,7 +750,7 @@ const Index = () => {
                         </CardHeader>
                         <CardContent className="p-4">
                           <div className="flex justify-end">
-                            <Button variant="outline" onClick={() => window.open(t.repoLink, '_blank')}>
+                            <Button variant="outline" onClick={() => (window.location.href = t.repoLink)}>
                               View Docs
                             </Button>
                           </div>
@@ -783,7 +781,7 @@ const Index = () => {
                 <Card
                   key={index}
                   className="card-interactive group cursor-pointer overflow-hidden"
-                    onClick={() => window.open(example.link, '_blank')}
+                    onClick={() => (window.location.href = example.link)}
                 >
                   <div className="aspect-video overflow-hidden">
                     <img
@@ -882,7 +880,7 @@ const Index = () => {
                 <h4 className="font-semibold mb-4">Resources</h4>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <a href="https://docs.jaseci.org/learn/jac-byllm/with_llm/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                    <a href="https://docs.jaseci.org/learn/jac-byllm/with_llm/" className="text-muted-foreground hover:text-primary transition-colors">
                       Documentation
                     </a>
                   </li>
@@ -918,7 +916,7 @@ const Index = () => {
                     </a>
                   </li> */}
                   <li>
-                    <a href="https://docs.jaseci.org/internals/contrib/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                    <a href="https://docs.jaseci.org/internals/contrib/" className="text-muted-foreground hover:text-primary transition-colors">
                       Contributing
                     </a>
                   </li>
