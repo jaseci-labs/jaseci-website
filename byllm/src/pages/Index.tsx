@@ -54,13 +54,13 @@ const Index = () => {
       title: 'RPG Game level generation',
       description: 'An LLM powered game world generation into a simple RPG.',
       image: example1,
-      link: 'https://www.jac-lang.org/learn/examples/mtp_examples/rpg_game/'
+      link: 'https://docs.jaseci.org/learn/examples/mtp_examples/rpg_game/'
     },
     {
       title: 'Agentic AI Chatbot',
       description: 'An agentic chatbot built using byLLM and MCP',
       image: example2,
-      link: 'https://www.jac-lang.org/learn/examples/rag_chatbot/Overview/'
+      link: 'https://docs.jaseci.org/learn/examples/rag_chatbot/Overview/'
     },
     {
       title: 'Agentic Coding Agent (Jac-Aider)',
@@ -131,7 +131,7 @@ const Index = () => {
       description: 'Code-along: build an AI-integrated RPG using byLLM to generate dynamic level maps. Follow the video and docs to reproduce the project.',
       youtubeId: 'FSIZmwfQD1s',
       // Link to the documentation example page as requested by the user
-      repoLink: 'https://www.jac-lang.org/learn/examples/mtp_examples/rpg_game/',
+      repoLink: 'https://docs.jaseci.org/learn/examples/mtp_examples/rpg_game/',
     },
   ];
 
@@ -191,7 +191,7 @@ const Index = () => {
                   View on GitHub
                 </Button>
                 <Button className="btn-hero group"
-                  onClick={() => window.open('https://www.jac-lang.org/learn/jac-byllm/with_llm/', '_blank')}
+                  onClick={() => (window.location.href = 'https://docs.jaseci.org/learn/jac-byllm/with_llm/')}
                 >
                   <BookOpen className="mr-2 h-4 w-4" />
                   View Docs
@@ -630,9 +630,7 @@ const Index = () => {
           <div className="container text-center">
             <h2 className="text-section mb-4">Ready to dive deeper?</h2>
             <a
-              href="https://www.jac-lang.org/learn/jac-byllm/with_llm/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://docs.jaseci.org/learn/jac-byllm/with_llm/"
             >
               <Button className="btn-hero text-lg px-8 py-4">
                 <BookOpen className="mr-2 h-5 w-5" />
@@ -752,7 +750,7 @@ const Index = () => {
                         </CardHeader>
                         <CardContent className="p-4">
                           <div className="flex justify-end">
-                            <Button variant="outline" onClick={() => window.open(t.repoLink, '_blank')}>
+                            <Button variant="outline" onClick={() => (window.location.href = t.repoLink)}>
                               View Docs
                             </Button>
                           </div>
@@ -779,11 +777,11 @@ const Index = () => {
             </div>
 
             <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2 max-w-3xl mx-auto">
-              {examples.map((example, index) => (
+                {examples.map((example, index) => (
                 <Card
                   key={index}
                   className="card-interactive group cursor-pointer overflow-hidden"
-                  onClick={() => window.open(example.link, '_blank')}
+                    onClick={() => (window.location.href = example.link)}
                 >
                   <div className="aspect-video overflow-hidden">
                     <img
