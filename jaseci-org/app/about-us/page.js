@@ -82,17 +82,17 @@ const teamMembers = [
     },
     website: "https://linkedin.com/in/logeeshan-velmanickam-ph-d-b6727113b",
   },
-  {
-    name: "Brian Yang",
-    title: "Senior Director of Product Management at Verint",
-    image: "/images/assets/leadership_team/Brian.png",
-    description:
-      "Brian Yang leads the Product Management Group for Intelligent Self-Service solutions at Verint. He is a seasoned expert in conversational AI, focusing on leveraging this technology to enhance digital customer experiences. Previously, Yang served as the Head of Products at Clinc, Inc., and was the Vice President and NLP AI Lead at Wells Fargo.",
-    social: {
-      linkedin: "https://linkedin.com/in/byang4611",
-    },
-    website: "https://linkedin.com/in/byang4611",
-  },
+  // {
+  //   name: "Brian Yang",
+  //   title: "Senior Director of Product Management at Verint",
+  //   image: "/images/assets/leadership_team/Brian.png",
+  //   description:
+  //     "Brian Yang leads the Product Management Group for Intelligent Self-Service solutions at Verint. He is a seasoned expert in conversational AI, focusing on leveraging this technology to enhance digital customer experiences. Previously, Yang served as the Head of Products at Clinc, Inc., and was the Vice President and NLP AI Lead at Wells Fargo.",
+  //   social: {
+  //     linkedin: "https://linkedin.com/in/byang4611",
+  //   },
+  //   website: "https://linkedin.com/in/byang4611",
+  // },
   {
     name: "Eldon Marks",
     title: "Founding Director of V75 Inc. and Co-Founder of TrueSelph Inc",
