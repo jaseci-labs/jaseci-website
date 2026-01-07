@@ -1,0 +1,10 @@
+{
+  "title": "Lists and Loops",
+  "pages": [
+    "for-loops",
+    "for-in-loops",
+    "while-loops",
+    "array-methods",
+    "rendering-lists"
+  ]
+}

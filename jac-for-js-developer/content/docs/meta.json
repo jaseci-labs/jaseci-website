@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "introduction",
+    "core-syntax",
+    "components",
+    "state-and-hooks",
+    "event-handling",
+    "conditional-rendering",
+    "lists-and-loops",
+    "exception-handling",
+    "imports-and-exports",
+    "appendix"
+  ]
+}
