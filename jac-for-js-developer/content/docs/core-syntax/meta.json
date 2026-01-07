@@ -1,0 +1,10 @@
+{
+  "title": "Core Syntax",
+  "pages": [
+    "variables-and-types",
+    "functions",
+    "lambda-functions",
+    "operators",
+    "control-flow"
+  ]
+}
