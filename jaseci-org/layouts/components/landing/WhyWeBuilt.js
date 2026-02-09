@@ -33,11 +33,43 @@ const useIntersectionObserver = (ref, options) => {
 
 const WhyWeBuilt = () => {
   const hl = "text-white font-medium";
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  
+  // Smooth scroll handler
+  const handleCardClick = (e, link) => {
+    e.preventDefault();
+    const targetId = link.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Scroll to top handler
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Show/hide scroll to top button
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
   const cards = [
     {
       title: "Full Stack in One File",
-      subtitle: (<>A <span className={hl}>superset of Python</span> with full access to both <span className={hl}>PyPI and npm</span> — backend, frontend, and AI in one language.</>),
-      subtext: (<>Jac supersets Python the way <span className={hl}>TypeScript supersets JavaScript</span>. All your existing Python code and libraries just work. But now you can also write <span className={hl}>React components</span>, call <span className={hl}>npm packages</span>, and integrate AI: all in the same file. No more juggling three languages across three codebases.</>),
+      link: "#jac-client",
+      subtitle: (<>A superset of Python with full access to both PyPI and npm — backend, frontend, and AI in one language.</>),
+      subtext: (<>Jac supersets Python the way TypeScript supersets JavaScript. All your existing Python code and libraries just work. But now you can also write React components, call npm packages, and integrate AI: all in the same file. No more juggling three languages across three codebases.</>),
       gradient: "from-orange-400 to-orange-500",
       borderColor: "border-orange-400/30",
       hoverBorder: "hover:border-orange-400/50",
@@ -52,8 +84,9 @@ const WhyWeBuilt = () => {
     },
     {
       title: "Kill the Glue Code",
-      subtitle: (<>No REST endpoints. No HTTP clients. No CORS. <span className={hl}>Frontend calls backend directly</span>.</>),
-      subtext: (<>In traditional stacks, half your code is just connecting things: writing API routes, serializing data, configuring fetch calls. In Jac, your frontend invokes backend walkers directly with <span className={hl}>spawn</span>. Authentication, type safety, and serialization are handled for you.</>),
+      link: "#jac-client",
+      subtitle: (<>No REST endpoints. No HTTP clients. No CORS. Frontend calls backend directly.</>),
+      subtext: (<>In traditional stacks, half your code is just connecting things: writing API routes, serializing data, configuring fetch calls. In Jac, your frontend invokes backend walkers directly with spawn. Authentication, type safety, and serialization are handled for you.</>),
       gradient: "from-orange-500 to-orange-600",
       borderColor: "border-orange-500/30",
       hoverBorder: "hover:border-orange-500/50",
@@ -68,8 +101,9 @@ const WhyWeBuilt = () => {
     },
     {
       title: "AI with No Manual Prompts",
-      subtitle: (<><span className={hl}>by llm()</span> turns your function signature into the prompt. <span className={hl}>No prompt engineering required</span>.</>),
-      subtext: (<>Declare what you want, not how to ask for it. Jac{"'"}s <span className={hl}>Meaning Typed Programming</span> extracts the semantics from your code: function names, types, docstrings, and generates the right prompt automatically. Research shows developers complete tasks <span className={hl}>3.2x faster</span> with <span className={hl}>45% fewer lines of code</span>.</>),
+      link: "#what-is-jac",
+      subtitle: (<>by llm() turns your function signature into the prompt. No prompt engineering required.</>),
+      subtext: (<>Declare what you want, not how to ask for it. Jac{"'"}s Meaning Typed Programming extracts the semantics from your code: function names, types, docstrings, and generates the right prompt automatically. Research shows developers complete tasks 3.2x faster with 45% fewer lines of code.</>),
       gradient: "from-orange-600 to-orange-700",
       borderColor: "border-orange-600/30",
       hoverBorder: "hover:border-orange-600/50",
@@ -83,8 +117,9 @@ const WhyWeBuilt = () => {
     },
     {
       title: "Deploy Without DevOps",
-      subtitle: (<>Same code, <span className={hl}>laptop to Kubernetes</span>. Databases, auth, and API docs <span className={hl}>auto-provisioned</span>.</>),
-      subtext: (<><span className={hl}>jac start app.jac</span> runs locally. Add <span className={hl}>--scale</span> and you get Kubernetes deployments with MongoDB, Redis, JWT auth, and Swagger docs: all auto-configured. <span className={hl}>No Dockerfile</span>, no manifests, no infrastructure setup.</>),
+      link: "#jac-scale",
+      subtitle: (<>Same code, laptop to Kubernetes. Databases, auth, and API docs auto-provisioned.</>),
+      subtext: (<>jac start app.jac runs locally. Add --scale and you get Kubernetes deployments with MongoDB, Redis, JWT auth, and Swagger docs: all auto-configured. No Dockerfile, no manifests, no infrastructure setup.</>),
       gradient: "from-orange-700 to-orange-800",
       borderColor: "border-orange-700/30",
       hoverBorder: "hover:border-orange-700/50",
@@ -103,6 +138,7 @@ const WhyWeBuilt = () => {
   const headerInView = useIntersectionObserver(headerRef, { threshold: 0.1 });
 
   return (
+    <>
     <section id="why-jaseci" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-medium-bg via-dark-bg to-dark-bg relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-[0.06] overflow-hidden">
@@ -136,11 +172,13 @@ const WhyWeBuilt = () => {
             const cardInView = useIntersectionObserver(cardRef, { threshold: 0.1 });
 
             return (
-              <div
+              <a
+                href={card.link}
+                onClick={(e) => handleCardClick(e, card.link)}
                 key={index}
                 ref={cardRef} // Attach ref for observation
                 className={`
-                  bg-gradient-to-br from-dark-bg/90 via-medium-bg/80 to-dark-bg/90 backdrop-blur-md rounded-2xl border ${card.borderColor} ${card.hoverBorder} p-7 sm:p-8 shadow-card hover:shadow-card-hover transition-all duration-700 ease-out group mx-2 sm:mx-0
+                  block bg-gradient-to-br from-dark-bg/90 via-medium-bg/80 to-dark-bg/90 backdrop-blur-md rounded-2xl border ${card.borderColor} ${card.hoverBorder} p-7 sm:p-8 shadow-card hover:shadow-card-hover transition-all duration-700 ease-out group mx-2 sm:mx-0 cursor-pointer
                   // Scroll animation classes
                   ${cardInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
                   // Hover effects
@@ -171,13 +209,32 @@ const WhyWeBuilt = () => {
                     {card.subtext}
                   </p>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>
       </div>
 
     </section>
+
+      {/* Scroll to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-8 right-8 z-50 w-12 h-12 bg-gradient-to-r from-primary-orange to-amber-500 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group hover:scale-110 ${
+          showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16 pointer-events-none'
+        }`}
+        aria-label="Scroll to top"
+      >
+        <svg 
+          className="w-6 h-6 text-white group-hover:translate-y-[-2px] transition-transform duration-300" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </button>
+    </>
   );
 };
 
