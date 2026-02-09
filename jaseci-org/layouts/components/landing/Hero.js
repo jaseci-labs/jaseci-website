@@ -125,7 +125,7 @@ const Hero = () => {
                 style={{ animation: 'fadeInUp 0.6s ease-out 1s both' }}
               >
                 <a
-                  href="https://docs.jaseci.org/learn/installation/"
+                  href="https://docs.jaseci.org/quick-guide/"
                   onClick={() =>
                     import("@lib/gtag").then(({ event }) =>
                       event({
@@ -146,7 +146,7 @@ const Hero = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://docs.jaseci.org/learn/tour/"
+                  href="#why-jaseci"
                   className="group inline-flex items-center justify-center rounded-xl px-8 py-4 text-base font-semibold border-2 border-light-bg/60 text-light-text bg-light-bg/20 backdrop-blur-md transition-all duration-300 hover:bg-light-bg/40 hover:border-primary-orange/50 hover:text-white hover:shadow-lg hover:shadow-primary-orange/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-bg"
                 >
                   <span>Learn More</span>
@@ -530,18 +530,12 @@ const Hero = () => {
         `}</style>
       </section>
 
-      <section className="pt-0 pb-12 bg-gradient-to-b from-medium-bg/50 to-dark-bg relative">
+      <section className="pt-0 pb-6 bg-gradient-to-b from-medium-bg/50 to-dark-bg relative">
         <div className="container mx-auto max-w-6xl px-4">
           <div
-            className="text-center py-8 sm:py-10 px-6 sm:px-8 transition-all duration-500"
+            className="text-center py-4 sm:py-6 px-6 sm:px-8 transition-all duration-500"
             style={{ animation: 'fadeInUp 0.6s ease-out 1.8s both' }}
           >
-            <div className="mb-8">
-              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-light-text/90 mb-3 tracking-wide uppercase">
-                Backed by Industry Leaders
-              </h3>
-              <div className="h-px bg-gradient-to-r from-transparent via-primary-orange/60 to-transparent mx-auto w-32"></div>
-            </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center max-w-5xl mx-auto">
               {[
@@ -569,7 +563,7 @@ const Hero = () => {
                         alt={`Affiliation ${index + 1}`}
                         width={200}
                         height={100}
-                        className="h-20 w-auto opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:drop-shadow-lg"
+                        className="h-12 w-auto opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:drop-shadow-lg"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary-orange/5 to-transparent rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>

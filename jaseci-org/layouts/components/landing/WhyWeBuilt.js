@@ -32,60 +32,67 @@ const useIntersectionObserver = (ref, options) => {
 // ------------------------------------------
 
 const WhyWeBuilt = () => {
+  const hl = "text-white font-medium";
   const cards = [
     {
-      title: "One Language, Full Stack",
-      subtext: "Write backend APIs, React frontends, and AI integrations in a single language. No more context switching between Python, JavaScript, and prompt engineering.",
+      title: "Full Stack in One File",
+      subtitle: (<>A <span className={hl}>superset of Python</span> with full access to both <span className={hl}>PyPI and npm</span> — backend, frontend, and AI in one language.</>),
+      subtext: (<>Jac supersets Python the way <span className={hl}>TypeScript supersets JavaScript</span>. All your existing Python code and libraries just work. But now you can also write <span className={hl}>React components</span>, call <span className={hl}>npm packages</span>, and integrate AI: all in the same file. No more juggling three languages across three codebases.</>),
       gradient: "from-orange-400 to-orange-500",
       borderColor: "border-orange-400/30",
       hoverBorder: "hover:border-orange-400/50",
       titleColor: "text-orange-400",
       iconBg: "bg-gradient-to-r from-orange-500 to-orange-400",
       icon: (
-        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 15l2 2 4-4" />
         </svg>
       )
     },
     {
-      title: "PyPI + npm in One Language",
-      subtext: "Access the entire Python ecosystem for backend logic and the full npm ecosystem for UI components. Use numpy, pandas, React, MUI - all in Jac.",
+      title: "Kill the Glue Code",
+      subtitle: (<>No REST endpoints. No HTTP clients. No CORS. <span className={hl}>Frontend calls backend directly</span>.</>),
+      subtext: (<>In traditional stacks, half your code is just connecting things: writing API routes, serializing data, configuring fetch calls. In Jac, your frontend invokes backend walkers directly with <span className={hl}>spawn</span>. Authentication, type safety, and serialization are handled for you.</>),
       gradient: "from-orange-500 to-orange-600",
       borderColor: "border-orange-500/30",
       hoverBorder: "hover:border-orange-500/50",
       titleColor: "text-orange-500",
       iconBg: "bg-gradient-to-r from-orange-600 to-orange-500",
       icon: (
-        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.54a4.5 4.5 0 00-6.364-6.364L4.5 8.25" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 12h12" strokeDasharray="2 2" />
         </svg>
       )
     },
     {
-      title: "AI Without Prompt Engineering",
-      subtext: "Replace function bodies with AI using Meaning Typed Programming. The function signature IS the specification - no complex prompts needed.",
+      title: "AI with No Manual Prompts",
+      subtitle: (<><span className={hl}>by llm()</span> turns your function signature into the prompt. <span className={hl}>No prompt engineering required</span>.</>),
+      subtext: (<>Declare what you want, not how to ask for it. Jac{"'"}s <span className={hl}>Meaning Typed Programming</span> extracts the semantics from your code: function names, types, docstrings, and generates the right prompt automatically. Research shows developers complete tasks <span className={hl}>3.2x faster</span> with <span className={hl}>45% fewer lines of code</span>.</>),
       gradient: "from-orange-600 to-orange-700",
       borderColor: "border-orange-600/30",
       hoverBorder: "hover:border-orange-600/50",
       titleColor: "text-orange-600",
       iconBg: "bg-gradient-to-r from-orange-700 to-orange-600",
       icon: (
-        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
         </svg>
       )
     },
     {
-      title: "Zero to Infinite Scale",
-      subtext: "Deploy locally with one command, scale to Kubernetes production with the same code. Auto-provisioned databases, authentication, and API documentation.",
+      title: "Deploy Without DevOps",
+      subtitle: (<>Same code, <span className={hl}>laptop to Kubernetes</span>. Databases, auth, and API docs <span className={hl}>auto-provisioned</span>.</>),
+      subtext: (<><span className={hl}>jac start app.jac</span> runs locally. Add <span className={hl}>--scale</span> and you get Kubernetes deployments with MongoDB, Redis, JWT auth, and Swagger docs: all auto-configured. <span className={hl}>No Dockerfile</span>, no manifests, no infrastructure setup.</>),
       gradient: "from-orange-700 to-orange-800",
       borderColor: "border-orange-700/30",
       hoverBorder: "hover:border-orange-700/50",
       titleColor: "text-orange-700",
       iconBg: "bg-gradient-to-r from-orange-800 to-orange-700",
       icon: (
-        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 6c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
+        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
         </svg>
       )
     }
@@ -96,7 +103,7 @@ const WhyWeBuilt = () => {
   const headerInView = useIntersectionObserver(headerRef, { threshold: 0.1 });
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-medium-bg via-dark-bg to-dark-bg relative overflow-hidden">
+    <section id="why-jaseci" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-medium-bg via-dark-bg to-dark-bg relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-[0.06] overflow-hidden">
         <div className="absolute top-20 left-32 w-96 h-96 bg-gradient-to-br from-primary-orange via-orange-500 to-amber-600 rounded-full blur-3xl animate-pulse"></div>
@@ -116,7 +123,7 @@ const WhyWeBuilt = () => {
             Why Jaseci
           </h2>
           <div className="h-1 bg-gradient-to-r from-transparent via-primary-orange to-transparent mx-auto w-32 mb-5"></div>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Modern software needs <span className="text-primary-orange font-medium">AI</span>, <span className="text-amber-500 font-medium">full-stack capabilities</span>, and <span className="text-orange-500 font-medium">seamless scaling</span>. Jaseci delivers all three in one unified stack.
           </p>
         </div>
@@ -149,15 +156,18 @@ const WhyWeBuilt = () => {
                     {card.icon}
                   </div>
                   <div className="flex-1">
-                    <h3 className={`${card.titleColor} font-bold text-xl sm:text-2xl group-hover:brightness-110 transition-all duration-300`}>
+                    <h3 className={`${card.titleColor} font-bold text-lg sm:text-xl group-hover:brightness-110 transition-all duration-300`}>
                       {card.title}
                     </h3>
+                    <p className="text-gray-400 text-xs sm:text-sm mt-1 italic leading-relaxed">
+                      {card.subtitle}
+                    </p>
                   </div>
                 </div>
 
                 {/* Card Content */}
                 <div className="pl-0 mt-5">
-                  <p className="text-gray-300 text-base sm:text-lg leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
                     {card.subtext}
                   </p>
                 </div>

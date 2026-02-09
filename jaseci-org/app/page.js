@@ -25,6 +25,7 @@ const LandingPage = () => {
         <main className="max-w-none mx-auto px-5">
           <Hero />
         </main>
+        <WhyWeBuilt />
         <JacSuperset />
         <JacClient />
         <JacScale />
@@ -34,7 +35,6 @@ const LandingPage = () => {
           title="The Jaseci Stack"
           sectionId="learn"
         />
-        <WhyWeBuilt />
       </div>
     </>
   );
