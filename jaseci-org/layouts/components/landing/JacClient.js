@@ -45,7 +45,10 @@ cl {
             <div>
                 <h1>Todo List</h1>
                 <input value={text}
-                    onChange={lambda e: any -> None {text = e.target.value;}} />
+                    onChange={
+                      lambda e: any -> None {text = e.target.value;}
+                    }
+                />
                 <button onClick={addTodo}>Add Todo</button>
                 <ul>
                     {todos.map(lambda todo: any -> any {
@@ -166,7 +169,7 @@ cl {
                   Full-Stack Todo App (One File)
                 </h3>
               </div>
-              <div className="bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-auto max-h-[500px] custom-scrollbar-green">
+              <div className="bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-auto max-h-[595px] custom-scrollbar-green">
                 <div className="p-5 font-mono text-sm">
                   <CodeBlock code={fullStackCode.trim()} language="jac" />
                 </div>

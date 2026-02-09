@@ -184,7 +184,7 @@ cl {
                     <div className="w-3 h-3 bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full mt-2 flex-shrink-0 group-hover:shadow-glow-sm group-hover:shadow-yellow-500/50 transition-all duration-300"></div>
                     <div className="w-full min-w-0">
                       <h3 className="text-yellow-400 font-bold text-xl mb-3 group-hover:text-yellow-300 transition-colors duration-300">Use Any npm Package (React, MUI, etc.)</h3>
-                      <div className="overflow-x-auto overflow-y-auto max-h-64 rounded-xl border border-gray-700/50 bg-black/20">
+                      <div className="overflow-x-auto rounded-xl border border-gray-700/50 bg-black/20">
                         <div className="min-w-max p-4">
                           <CodeBlock
                             code={NpmInJacCode}
@@ -231,7 +231,7 @@ cl {
                   <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full mt-2 flex-shrink-0 group-hover:shadow-glow-sm group-hover:shadow-yellow-500/50 transition-all duration-300"></div>
                   <h3 className="text-yellow-400 font-bold text-base sm:text-xl mb-2 group-hover:text-yellow-300 transition-colors duration-300">Use Any npm Package (React, MUI, etc.)</h3>
                 </div>
-                <div className="w-full overflow-x-auto rounded-xl border border-gray-700/50 bg-black/20">
+                <div className="w-full overflow-x-auto overflow-y-visible rounded-xl border border-gray-700/50 bg-black/20">
                   <div className="min-w-max p-4 sm:p-5">
                     <CodeBlock
                       code={NpmInJacCode}
