@@ -87,13 +87,13 @@ const VerticalTabs = () => {
 
       return {
           opacity: isVisible ? 1 : 0,
-          // Apply specific animation based on index when visible
-          animation: isVisible 
-            ? `${animationName} ${ANIMATION_DURATION} ease-out forwards` 
-            : 'none',
-        
-          transform: isVisible ? 'none' : initialTransform,   
-          animationDelay: `${delay}s`,  
+          // Use separate animation properties to avoid shorthand/longhand conflict
+          animationName: isVisible ? animationName : 'none',
+          animationDuration: ANIMATION_DURATION,
+          animationTimingFunction: 'ease-out',
+          animationFillMode: 'forwards',
+          animationDelay: `${delay}s`,
+          transform: isVisible ? 'none' : initialTransform,
       };
   };
 

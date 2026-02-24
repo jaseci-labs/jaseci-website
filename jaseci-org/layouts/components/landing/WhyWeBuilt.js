@@ -86,7 +86,7 @@ const WhyWeBuilt = () => {
       title: "Kill the Glue Code",
       link: "#jac-client",
       subtitle: (<>No REST endpoints. No HTTP clients. No CORS. Frontend calls backend directly.</>),
-      subtext: (<>In traditional stacks, half your code is just connecting things: writing API routes, serializing data, configuring fetch calls. In Jac, your frontend invokes backend walkers directly with spawn. Authentication, type safety, and serialization are handled for you.</>),
+      subtext: (<>In traditional stacks, half your code is just connecting things: writing API routes, serializing data, configuring fetch calls. In Jac, frontend and backend live in the same file, so calling a backend service is just a function call. Authentication, type safety, and serialization are handled for you.</>),
       gradient: "from-orange-500 to-orange-600",
       borderColor: "border-orange-500/30",
       hoverBorder: "hover:border-orange-500/50",
@@ -103,7 +103,7 @@ const WhyWeBuilt = () => {
       title: "AI with No Manual Prompts",
       link: "#what-is-jac",
       subtitle: (<>by llm() turns your function signature into the prompt. No prompt engineering required.</>),
-      subtext: (<>Declare what you want, not how to ask for it. Jac{"'"}s Meaning Typed Programming extracts the semantics from your code: function names, types, docstrings, and generates the right prompt automatically. Research shows developers complete tasks 3.2x faster with 45% fewer lines of code.</>),
+      subtext: (<>Declare what you want, not how to ask for it. Jac extracts the semantics from your code: function names, types, docstrings, and generates the right prompt automatically. Research shows developers complete tasks 3.2x faster with 45% fewer lines of code.{" "}<span role="button" tabIndex={0} onClick={(e) => { e.stopPropagation(); e.preventDefault(); document.getElementById('ref-1')?.scrollIntoView({ behavior: 'smooth' }); }} className="text-orange-400 hover:text-orange-300 transition-colors cursor-pointer">[1]</span></>),
       gradient: "from-orange-600 to-orange-700",
       borderColor: "border-orange-600/30",
       hoverBorder: "hover:border-orange-600/50",
@@ -119,7 +119,7 @@ const WhyWeBuilt = () => {
       title: "Deploy Without DevOps",
       link: "#jac-scale",
       subtitle: (<>Same code, laptop to Kubernetes. Databases, auth, and API docs auto-provisioned.</>),
-      subtext: (<>jac start app.jac runs locally. Add --scale and you get Kubernetes deployments with MongoDB, Redis, JWT auth, and Swagger docs: all auto-configured. No Dockerfile, no manifests, no infrastructure setup.</>),
+      subtext: (<><code className="bg-white/10 text-orange-300 px-1.5 py-0.5 rounded text-sm font-mono">jac start app.jac</code> runs locally. Add <code className="bg-white/10 text-orange-300 px-1.5 py-0.5 rounded text-sm font-mono">--scale</code> and you get Kubernetes deployments with MongoDB, Redis, JWT auth, and Swagger docs: all auto-configured. No Dockerfile, no manifests, no infrastructure setup.</>),
       gradient: "from-orange-700 to-orange-800",
       borderColor: "border-orange-700/30",
       hoverBorder: "hover:border-orange-700/50",
@@ -160,7 +160,7 @@ const WhyWeBuilt = () => {
           </h2>
           <div className="h-1 bg-gradient-to-r from-transparent via-primary-orange to-transparent mx-auto w-32 mb-5"></div>
           <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Modern software needs <span className="text-primary-orange font-medium">AI</span>, <span className="text-amber-500 font-medium">full-stack capabilities</span>, and <span className="text-orange-500 font-medium">seamless scaling</span>. Jaseci delivers all three in one unified stack.
+            Jaseci provides native <span className="text-primary-orange font-medium">AI integration</span>, <span className="text-primary-orange font-medium">full-stack capabilities</span>, and <span className="text-primary-orange font-medium">seamless deployment and scaling</span> in one unified stack.
           </p>
         </div>
 
