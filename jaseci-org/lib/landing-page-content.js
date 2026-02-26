@@ -1,6 +1,8 @@
+import { HiCodeBracket, HiComputerDesktop, HiRocketLaunch, HiSparkles } from "react-icons/hi2";
+
 export const gettingStartedSlides = [
   {
-    icon: "📘",
+    icon: <HiCodeBracket className="w-8 h-8 text-primary-orange" />,
     title: "Jac Lang",
     description:
       "The core language that supersets Python and JavaScript. Build AI systems with graph-based Object-Spatial Programming.",
@@ -8,7 +10,7 @@ export const gettingStartedSlides = [
     linkText: "Read Handbook",
   },
   {
-    icon: "🖥️",
+    icon: <HiComputerDesktop className="w-8 h-8 text-primary-orange" />,
     title: "jac-client",
     description:
       "Build full-stack web applications entirely in Jac. React components, state management, and backend APIs in one file.",
@@ -16,7 +18,7 @@ export const gettingStartedSlides = [
     linkText: "Explore Client",
   },
   {
-    icon: "🚀",
+    icon: <HiRocketLaunch className="w-8 h-8 text-primary-orange" />,
     title: "jac-scale",
     description:
       "Zero to infinite scale without code changes. Deploy to Kubernetes with auto-provisioned databases and authentication.",
@@ -24,7 +26,7 @@ export const gettingStartedSlides = [
     linkText: "Learn Scale",
   },
   {
-    icon: "🤖",
+    icon: <HiSparkles className="w-8 h-8 text-primary-orange" />,
     title: "byLLM",
     description:
       "AI integration without prompt engineering. Replace function bodies with LLMs.",
