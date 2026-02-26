@@ -458,7 +458,7 @@ export const tabsData = [
         title: "Agentic Object-Spatial Programming",
         summary:
             "Build AI agents that traverse knowledge graphs naturally. Nodes hold data, walkers carry intelligence. Perfect for RAG systems, autonomous agents, and complex AI workflows.",
-        link: "https://docs.jaseci.org/jac_book/chapter_8/",
+        link: "https://docs.jaseci.org/reference/language/osp/",
         diagram: {
             src: "/diagrams/object-spatial-diagram.gif",
             fallback: "/diagrams/object-spatial-static.png",

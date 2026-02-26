@@ -6,7 +6,7 @@ export const gettingStartedSlides = [
     title: "Jac Lang",
     description:
       "The core language that supersets Python and JavaScript. Build AI systems with graph-based Object-Spatial Programming.",
-    link: "https://docs.jaseci.org/jac_book/",
+    link: "https://docs.jaseci.org/reference/language/foundation/",
     linkText: "Read Handbook",
   },
   {
@@ -14,7 +14,7 @@ export const gettingStartedSlides = [
     title: "jac-client",
     description:
       "Build full-stack web applications entirely in Jac. React components, state management, and backend APIs in one file.",
-    link: "https://docs.jaseci.org/learn/jac-client/",
+    link: "https://docs.jaseci.org/reference/plugins/jac-client/",
     linkText: "Explore Client",
   },
   {
@@ -22,7 +22,7 @@ export const gettingStartedSlides = [
     title: "jac-scale",
     description:
       "Zero to infinite scale without code changes. Deploy to Kubernetes with auto-provisioned databases and authentication.",
-    link: "https://docs.jaseci.org/learn/jac-scale/",
+    link: "https://docs.jaseci.org/reference/plugins/jac-scale/",
     linkText: "Learn Scale",
   },
   {
