@@ -5,7 +5,7 @@ export const gettingStartedSlides = [
     icon: <HiCodeBracket className="w-8 h-8 text-primary-orange" />,
     title: "Jac Lang",
     description:
-      "The core language that supersets Python and JavaScript. Build AI systems with graph-based Object-Spatial Programming.",
+      "The core language that replaces Python, JavaScript, and C/Zig/Rust — with full native compatibility for PyPI, npm, and C-ABI. Build AI systems with graph-based Object-Spatial Programming.",
     link: "https://docs.jaseci.org/reference/language/foundation/",
     linkText: "Read Handbook",
   },
@@ -38,9 +38,9 @@ export const gettingStartedSlides = [
 export const featuresSlides = [
   {
     icon: "🐍",
-    title: "Supersets Python & JavaScript",
+    title: "Replaces Python, JavaScript & C/Zig/Rust",
     description:
-      "Jac is a true superset of both Python and JavaScript. Use any PyPI package for backend logic and any npm package for frontend components.",
+      "Jac replaces Python, JavaScript, and C/Zig/Rust with full native compatibility. Import any PyPI package, use any npm package, and link with any C-ABI library.",
   },
   {
     icon: "🧠",

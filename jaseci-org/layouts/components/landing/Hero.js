@@ -150,44 +150,106 @@ const Hero = () => {
                 deploy from laptop to cloud with <span className="text-primary-orange font-medium hover:text-primary-yellow transition-colors duration-300">zero code changes</span>.
               </p>
 
-              <div 
-                className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start"
+              <div
+                className="mt-8 sm:mt-10 max-w-xl mx-auto lg:mx-0"
                 style={{ animation: 'fadeInUp 0.6s ease-out 1s both' }}
+              >
+                <p className="text-xs sm:text-sm text-dark-text/60 mb-2 font-medium tracking-wide uppercase">Install with one command</p>
+                <div className="group relative rounded-xl border border-light-bg/40 bg-dark-bg/80 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:border-primary-orange/50 hover:shadow-lg hover:shadow-primary-orange/10">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-orange/5 to-primary-yellow/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative flex items-center px-4 sm:px-5 py-3 sm:py-4">
+                    <span className="text-primary-orange font-mono text-sm mr-3 select-none">$</span>
+                    <code className="flex-1 text-sm sm:text-base font-mono text-light-text/90 select-all">curl -fsSL https://raw.githubusercontent.com/jaseci-labs/jaseci/main/scripts/install.sh | bash</code>
+                    <button
+                      onClick={(e) => {
+                        navigator.clipboard.writeText('curl -fsSL https://raw.githubusercontent.com/jaseci-labs/jaseci/main/scripts/install.sh | bash');
+                        const btn = e.currentTarget;
+                        btn.querySelector('.copy-icon').classList.add('hidden');
+                        btn.querySelector('.check-icon').classList.remove('hidden');
+                        setTimeout(() => {
+                          btn.querySelector('.copy-icon').classList.remove('hidden');
+                          btn.querySelector('.check-icon').classList.add('hidden');
+                        }, 2000);
+                      }}
+                      className="ml-3 p-2 rounded-lg text-dark-text/50 hover:text-primary-orange hover:bg-light-bg/30 transition-all duration-200"
+                      title="Copy to clipboard"
+                    >
+                      <svg className="copy-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                      <svg className="check-icon w-4 h-4 hidden text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <p className="text-xs sm:text-sm text-dark-text/60 mb-2 mt-4 font-medium tracking-wide uppercase">Then launch a full-stack app</p>
+                <div className="group relative rounded-xl border border-light-bg/40 bg-dark-bg/80 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:border-primary-orange/50 hover:shadow-lg hover:shadow-primary-orange/10">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-orange/5 to-primary-yellow/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative px-4 sm:px-5 py-3 sm:py-4 space-y-1">
+                    <div className="flex items-center">
+                      <span className="text-primary-orange font-mono text-sm mr-3 select-none">$</span>
+                      <code className="flex-1 text-sm sm:text-base font-mono text-light-text/90">jac create myapp --use fullstack</code>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-primary-orange font-mono text-sm mr-3 select-none">$</span>
+                      <code className="flex-1 text-sm sm:text-base font-mono text-light-text/90">cd myapp && jac start main.jac</code>
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        navigator.clipboard.writeText('jac create myapp --use fullstack && cd myapp && jac start main.jac');
+                        const btn = e.currentTarget;
+                        btn.querySelector('.copy-icon-2').classList.add('hidden');
+                        btn.querySelector('.check-icon-2').classList.remove('hidden');
+                        setTimeout(() => {
+                          btn.querySelector('.copy-icon-2').classList.remove('hidden');
+                          btn.querySelector('.check-icon-2').classList.add('hidden');
+                        }, 2000);
+                      }}
+                      className="absolute top-3 right-3 p-2 rounded-lg text-dark-text/50 hover:text-primary-orange hover:bg-light-bg/30 transition-all duration-200"
+                      title="Copy to clipboard"
+                    >
+                      <svg className="copy-icon-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                      <svg className="check-icon-2 w-4 h-4 hidden text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className="mt-6 flex justify-center lg:justify-start"
+                style={{ animation: 'fadeInUp 0.6s ease-out 1.4s both' }}
               >
                 <a
                   href="https://docs.jaseci.org/quick-guide/"
                   onClick={() =>
                     import("@lib/gtag").then(({ event }) =>
                       event({
-                        action: "click_get_started",
+                        action: "click_docs",
                         category: "engagement",
-                        label: "home_hero_get_started",
+                        label: "home_hero_docs",
                         value: 1,
                         transport_type: "beacon",
                       })
                     )
                   }
-                  className="group relative inline-flex items-center justify-center rounded-xl px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-primary-orange to-primary-yellow shadow-lg shadow-primary-orange/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary-orange/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-yellow/70 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-bg overflow-hidden"
+                  className="group relative inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-primary-orange to-primary-yellow shadow-md shadow-primary-orange/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary-orange/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-yellow/70 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-bg overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-yellow to-primary-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <span className="relative">Get Started</span>
+                  <span className="relative">See Docs to Learn More</span>
                   <svg className="relative w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </a>
-                <a
-                  href="#why-jaseci"
-                  className="group inline-flex items-center justify-center rounded-xl px-8 py-4 text-base font-semibold border-2 border-light-bg/60 text-light-text bg-light-bg/20 backdrop-blur-md transition-all duration-300 hover:bg-light-bg/40 hover:border-primary-orange/50 hover:text-white hover:shadow-lg hover:shadow-primary-orange/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-bg"
-                >
-                  <span>Learn More</span>
-                  <svg className="w-5 h-5 ml-2 opacity-70 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </a>
               </div>
             </div>
 
-            <div 
+            <div
               className="hidden lg:block lg:col-span-3 order-first  lg:order-last transform translate-x-[-12px]"
               style={{ animation: 'fadeInUp 0.6s ease-out 0.4s both' }}
             >
@@ -593,7 +655,7 @@ const Hero = () => {
                         alt={`Affiliation ${index + 1}`}
                         width={200}
                         height={100}
-                        className="h-12 w-auto opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:drop-shadow-lg"
+                        className="h-16 sm:h-20 w-auto opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:drop-shadow-lg"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary-orange/5 to-transparent rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>

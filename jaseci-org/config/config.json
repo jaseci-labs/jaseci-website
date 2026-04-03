@@ -22,6 +22,6 @@
   "metadata": {
     "meta_author": "Jaseci Labs",
     "meta_image": "/images/og-image.png",
-    "meta_description": "The Jac programming language and Jaseci runtime stack supersets Python with AI-first constructs, object spatial programming, and scale-native constructs."
+    "meta_description": "The Jac programming language and Jaseci runtime stack replaces Python, JavaScript, and C/Zig/Rust with AI-first constructs, object spatial programming, and scale-native constructs — with full native compatibility for PyPI, npm, and C-ABI."
   }
 }
