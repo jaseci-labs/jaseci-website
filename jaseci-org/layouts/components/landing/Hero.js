@@ -86,6 +86,36 @@ const Hero = () => {
         <div className="container mx-auto max-w-7xl px-4 relative z-10">
           <div className="grid lg:grid-cols-8 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-5 text-center lg:text-left">
+              {/* Announcement pill */}
+              <div
+                className="inline-flex items-center gap-2 mb-7 px-1 pr-4 py-1.5 rounded-full border border-primary-orange/40 bg-gradient-to-r from-primary-orange/15 to-primary-yellow/10 backdrop-blur-sm shadow-[0_0_20px_-4px_rgba(249,115,22,0.3)] text-sm font-medium text-white transition-all duration-300 hover:border-primary-orange/70 hover:shadow-[0_0_28px_-4px_rgba(249,115,22,0.5)] hover:scale-[1.02] cursor-default"
+                style={{ animation: 'fadeInUp 0.6s ease-out 0s both' }}
+              >
+                <span className="flex items-center gap-1 bg-gradient-to-r from-primary-orange to-primary-yellow text-white px-2.5 py-0.5 rounded-full text-[0.6875rem] font-bold tracking-wider uppercase">
+                  ✦ New
+                </span>
+                <a
+                  href="https://jac-coder.jaseci.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-primary-yellow transition-colors duration-200"
+                >
+                  JacCoder
+                </a>
+                <span className="text-white/30">·</span>
+                <a
+                  href="https://jac-builder.jaseci.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-primary-yellow transition-colors duration-200"
+                >
+                  JacBuilder
+                </a>
+                <svg className="w-3.5 h-3.5 text-primary-orange" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+
               <div className="mb-6">
                 <h1 className="font-display font-medium tracking-tight text-balance leading-tight text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
                   <span
