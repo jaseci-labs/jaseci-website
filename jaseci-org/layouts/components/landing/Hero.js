@@ -104,7 +104,7 @@ const Hero = () => {
                 </a>
                 <span className="text-white/30">·</span>
                 <a
-                  href="https://jac-builder.jaseci.org/"
+                  href="https://jac-builder-studio.jaseci.org/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-primary-yellow transition-colors duration-200"
