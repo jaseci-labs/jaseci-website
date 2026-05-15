@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import SeoMeta from "@layouts/partials/SeoMeta";
 import { FaDiscord, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import NewsletterForm from "@layouts/components/NewsLetterForm";
 
 // --- Data for Cards ---
 const channels = [
@@ -42,7 +43,9 @@ const CommunityPage = () => {
       <main className="pt-16 md:pt-20">
         <HeroSection />
         <ChannelsSection />
-        <NewsletterSection />
+
+        {/* <NewsletterForm /> */}
+        <NewsletterSection/>
         <ContactSection />
       </main>
     </div>
