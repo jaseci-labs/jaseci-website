@@ -66,7 +66,7 @@ const projects = [
       { initials: "AM" },
     ],
     thumbnail: "",
-    videoUrl: "https://www.youtube.com/embed/rAgFg8S8IJo?start=4",
+    videoUrl: "https://www.youtube.com/embed/6xdpZwHekME",
     liveUrl: "https://graphclaw.vercel.app",
     githubUrl: "https://github.com/zero-abd/graphclaw",
     accent: "from-primary-orange via-rose-400 to-primary-yellow",
