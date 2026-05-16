@@ -161,16 +161,16 @@ cl {
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-10 items-start">
           {/* Code Example */}
-          <div style={getChildAnimationStyle(0.2)}>
-            <div className="group bg-gradient-to-br from-dark-bg/90 via-medium-bg/80 to-dark-bg/90 backdrop-blur-md rounded-2xl border border-green-500/20 overflow-hidden shadow-card hover:shadow-card-hover hover:border-green-500/40 transition-all duration-300 hover:scale-[1.01]">
+          <div style={getChildAnimationStyle(0.2)} className="overflow-x-auto">
+            <div className="group inline-block bg-gradient-to-br from-dark-bg/90 via-medium-bg/80 to-dark-bg/90 backdrop-blur-md rounded-2xl border border-green-500/20 shadow-card hover:shadow-card-hover hover:border-green-500/40 transition-all duration-300 hover:scale-[1.01]">
               <div className="bg-gradient-to-r from-green-500/25 to-emerald-500/25 backdrop-blur-md p-4 border-b border-green-500/20">
                 <h3 className="text-green-400 font-bold text-lg flex items-center gap-3 group-hover:text-green-300 transition-colors duration-300">
                   <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full shadow-glow-sm shadow-green-500/50 group-hover:shadow-glow-md transition-all duration-300"></div>
                   Full-Stack Todo App (One File)
                 </h3>
               </div>
-              <div className="bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-auto max-h-[595px] custom-scrollbar-green">
-                <div className="p-5 font-mono text-sm">
+              <div className="bg-gradient-to-br from-[#0d1117] to-[#161b22] max-h-[595px] custom-scrollbar-green">
+                <div className="p-5 font-mono text-sm whitespace-nowrap">
                   <CodeBlock code={fullStackCode.trim()} language="jac" />
                 </div>
               </div>

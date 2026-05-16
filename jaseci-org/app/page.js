@@ -37,7 +37,7 @@ const LandingPage = () => {
         />
 
         {/* References */}
-        <section id="ref-1" className="py-8 bg-dark-bg pb-16">
+        <section id="ref-1" className="py-8 bg-dark-bg pb-16 overflow-x-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
               <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 bg-gradient-to-r from-white via-gray-300 to-gray-400 bg-clip-text text-transparent">
@@ -46,7 +46,7 @@ const LandingPage = () => {
               <div className="h-0.5 bg-gradient-to-r from-transparent via-gray-600 to-transparent mx-auto w-20"></div>
             </div>
             <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-br from-dark-bg/90 via-medium-bg/80 to-dark-bg/90 backdrop-blur-md rounded-xl border border-white/10 p-6 sm:p-8">
+              <div className="bg-gradient-to-br from-dark-bg/90 via-medium-bg/80 to-dark-bg/90 backdrop-blur-md rounded-xl border border-white/10 p-6 sm:p-8 overflow-x-auto">
                 <div className="border-l-4 border-primary-orange pl-5">
                   <p className="text-sm text-gray-400 leading-relaxed">
                     <span className="text-gray-300 font-medium">[1]</span>{" "}
@@ -55,7 +55,7 @@ const LandingPage = () => {
                   <p className="text-sm text-gray-400 italic mt-1 leading-relaxed">
                     &quot;MTP: A Meaning-Typed Language Abstraction for AI-Integrated Programming.&quot;
                   </p>
-                  <p className="text-sm text-gray-500 mt-1 leading-relaxed">
+                  <p className="text-sm text-gray-500 mt-1 leading-relaxed break-all">
                     Proc. ACM Program. Lang. 9, OOPSLA2, Article 314 (October 2025), 29 pages.{" "}
                     <a href="https://dl.acm.org/doi/10.1145/3763092" target="_blank" rel="noopener noreferrer" className="text-primary-orange underline hover:text-orange-300 transition-colors">
                       https://doi.org/10.1145/3763092
