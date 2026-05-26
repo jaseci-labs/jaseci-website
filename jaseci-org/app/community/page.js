@@ -1,9 +1,12 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import SeoMeta from "@layouts/partials/SeoMeta";
-import { FaDiscord, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import {
+  FaDiscord,
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaNewspaper,
+} from "react-icons/fa";
 
 // --- Data for Cards ---
 const channels = [
@@ -28,6 +31,14 @@ const channels = [
     href: "https://www.linkedin.com/company/jaseci-labs/",
     cta: "Visit LinkedIn",
   },
+  {
+    icon: <FaNewspaper size={24} />,
+    title: "Newsletter",
+    description:
+      "Read our biweekly newsletter for the latest updates and insights.",
+    href: "https://newsletter.jaseci.org/",
+    cta: "Visit Newsletter",
+  },
 ];
 
 // --- Main Page Component ---
@@ -42,7 +53,6 @@ const CommunityPage = () => {
       <main className="pt-16 md:pt-20">
         <HeroSection />
         <ChannelsSection />
-        <NewsletterSection />
         <ContactSection />
       </main>
     </div>
@@ -86,7 +96,7 @@ const ChannelsSection = () => (
       <h2 className="text-center font-extrabold text-3xl mb-8">
         Connect & Discuss
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {channels.map((card) => (
           <article
             key={card.title}
@@ -113,151 +123,6 @@ const ChannelsSection = () => (
     </div>
   </section>
 );
-
-const NewsletterSection = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    firstName: "",
-    lastName: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
-
-  const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
-
-  useEffect(() => {
-    setIsSubmitDisabled(!isValidEmail(formData.email));
-  }, [formData.email]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (isSubmitDisabled || isSubmitting) return;
-
-    setIsSubmitting(true);
-    const payload = new FormData();
-    payload.append("email", formData.email);
-    payload.append("firstName", formData.firstName);
-    payload.append("lastName", formData.lastName);
-    payload.append("timestamp", new Date().toISOString());
-    payload.append("userAgent", navigator.userAgent);
-
-    try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbymWiprdqUnicdK3Eq4XYT8RFk9Fz84NnRFBs0VieMlMSzTEBBElWhXMINK1LuYIcQH/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          body: payload,
-        },
-      );
-      setIsSuccess(true);
-      setTimeout(() => {
-        setIsSuccess(false);
-        setFormData({ email: "", firstName: "", lastName: "" });
-      }, 3000);
-    } catch (error) {
-      console.error("Subscription failed:", error);
-      setIsSuccess(true); // Still show success due to no-cors
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  return (
-    <section className="py-20">
-      <div className="container max-w-3xl mx-auto px-5">
-        <div className="border-2 border-primary-orange/20 rounded-2xl shadow-2xl shadow-primary-orange/10 p-6 md:p-8">
-          <h2 className="text-center text-3xl font-extrabold mb-4">
-            Subscribe to Our Newsletter
-          </h2>
-          <p className="text-center text-community-text bg-primary-orange/10 border border-primary-orange/30 rounded-lg p-4 mb-6">
-            Get the latest project updates, deep dives into new features, and
-            community highlights delivered directly to your inbox.
-          </p>
-
-          {isSuccess ? (
-            <div
-              className="text-center text-green-400 font-semibold p-4 bg-green-500/10 rounded-lg"
-              role="status"
-            >
-              You&apos;re subscribed! 🎉
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="grid gap-4" noValidate>
-              <div className="grid gap-2">
-                <label className="font-semibold" htmlFor="subscribe-email">
-                  Email *
-                </label>
-                <input
-                  className="w-full rounded-md border-community-border bg-[#0f0f11] text-white p-3 focus:border-community-primary focus:ring-2 focus:ring-community-primary/50"
-                  id="subscribe-email"
-                  name="email"
-                  type="email"
-                  placeholder="Enter your email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="grid gap-2">
-                  <label
-                    className="font-semibold"
-                    htmlFor="subscribe-first-name"
-                  >
-                    First name
-                  </label>
-                  <input
-                    className="w-full rounded-md border-community-border bg-[#0f0f11] text-white p-3 focus:border-community-primary focus:ring-2 focus:ring-community-primary/50"
-                    id="subscribe-first-name"
-                    name="firstName"
-                    type="text"
-                    placeholder="Enter first name"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <label
-                    className="font-semibold"
-                    htmlFor="subscribe-last-name"
-                  >
-                    Last name
-                  </label>
-                  <input
-                    className="w-full rounded-md border-community-border bg-[#0f0f11] text-white p-3 focus:border-community-primary focus:ring-2 focus:ring-community-primary/50"
-                    id="subscribe-last-name"
-                    name="lastName"
-                    type="text"
-                    placeholder="Enter last name"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <button
-                className="w-full inline-flex items-center justify-center gap-2 font-semibold text-lg px-5 py-3 rounded-lg border-2 border-community-primary bg-community-primary text-black transition-all duration-300 hover:bg-primary-orange/80 hover:border-primary-orange/80 disabled:opacity-50 disabled:cursor-not-allowed"
-                type="submit"
-                disabled={isSubmitDisabled || isSubmitting}
-              >
-                {isSubmitting ? "Submitting..." : "Subscribe"}
-              </button>
-              <p className="text-center text-sm text-community-muted">
-                We respect your privacy. Unsubscribe anytime.
-              </p>
-            </form>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-};
 
 const ContactSection = () => (
   <section className="py-20 text-center">
