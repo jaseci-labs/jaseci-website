@@ -154,6 +154,77 @@ const projects = [
     accent: "from-primary-orange via-rose-400 to-primary-yellow",
   },
   {
+    name: "CivicMesh",
+    description:
+      "A multi-agent AI navigator that helps people in crisis access social services. Users describe their situation in any language, and the system evaluates eligibility across 40+ federal and state programs, then returns a ranked action plan with required documents and transparent reasoning.",
+    thumbnail: "",
+    videoUrl: "https://www.youtube.com/embed/lvuGwVVP2ic",
+    liveUrl: "https://huggingface.co/spaces/Anbu-00001/CivicMesh",
+    githubUrl: "https://github.com/Anbu-00001/CivicMesh",
+    accent: "from-primary-orange via-rose-400 to-primary-yellow",
+  },
+  {
+    name: "Nourish",
+    description:
+      "A real-time platform that connects surplus food with shelters and volunteer drivers. Autonomous Jac agents coordinate donations, match them to shelters based on capacity, and dispatch drivers for last-mile delivery.",
+    thumbnail: "",
+    videoUrl: "https://www.youtube.com/embed/vnfOB2DHppQ",
+    liveUrl:
+      "https://jac-sbx-27e89a9a-2e87-44a7-b-prj-177892-b9ebc024.jaseci.org",
+    githubUrl: "https://github.com/Viktor-Nedev/Nourish",
+    accent: "from-primary-orange via-rose-400 to-primary-yellow",
+  },
+  {
+    name: "MediGraph",
+    description:
+      "A medication safety checker that models the body as a graph of drugs, enzymes, and organs. AI agents reason through your body's own chemistry to surface dangerous interactions structurally, then propose safer alternatives.",
+    thumbnail: "",
+    videoUrl: "https://www.youtube.com/embed/8B1SQwvSf9w",
+    liveUrl: "https://medigraph.onrender.com",
+    githubUrl: "https://github.com/SoujanyaChatti/MediGraph",
+    accent: "from-primary-orange via-rose-400 to-primary-yellow",
+  },
+  {
+    name: "Orion & Diana",
+    description:
+      "An autonomous OSINT platform that detects marine oil spills by continuously scraping maritime news, extracting coordinates, and analyzing Sentinel-1 SAR and Sentinel-2 optical imagery. Dual-sensor ML consensus classifies slicks and surfaces them on a real-time dashboard.",
+    thumbnail: "",
+    videoUrl: "https://www.youtube.com/embed/nFKW_On0u9A",
+    liveUrl: "",
+    githubUrl: "https://github.com/Luxaris/Orion-and-Diana-JacHacks",
+    accent: "from-primary-orange via-rose-400 to-primary-yellow",
+  },
+  {
+    name: "Ori",
+    description:
+      "A full-stack Jac starter template for building agentic applications, demonstrated with a vehicle-to-vehicle communication system aimed at reducing fuel consumption and improving safety. Ships with auth, protected routes, backend function demos, and a clean dark-themed UI.",
+    thumbnail: "",
+    videoUrl: "https://www.youtube.com/embed/wUXlJ0tSvNA",
+    liveUrl: "",
+    githubUrl: "https://github.com/orbitronsystems/ori-Jac-Demo",
+    accent: "from-primary-orange via-rose-400 to-primary-yellow",
+  },
+  {
+    name: "FutureOS",
+    description:
+      "A multi-agent AI life OS that turns long-term goals into actionable plans through six autonomous agents handling planning, execution, memory, analytics, coaching, and research. Built on a graph-based runtime in Jac with per-user isolation and a web-crawling research agent.",
+    thumbnail: "",
+    videoUrl: "https://www.youtube.com/embed/v_5TzI9crGo",
+    liveUrl: "",
+    githubUrl: "https://github.com/kshitijkumrawat20/JacHacks2026",
+    accent: "from-primary-orange via-rose-400 to-primary-yellow",
+  },
+  {
+    name: "Killbill",
+    description:
+      "An AI agent that analyzes bank statements to surface forgotten recurring subscriptions and automatically drafts cancellation emails. Clusters recurring charges, evaluates which subscriptions you actually need, and generates ready-to-send correspondence with merchant contact details.",
+    thumbnail: "",
+    videoUrl: "https://www.youtube.com/embed/Q5hGeKgeuJk",
+    liveUrl: "",
+    githubUrl: "https://github.com/fozagtx/killBill",
+    accent: "from-primary-orange via-rose-400 to-primary-yellow",
+  },
+  {
     name: "PolyWatch",
     description:
       "An autonomous AI investigator for Polymarket that detects informed trading using a Tree-of-Thought reasoning engine across 26 specialized tools: market data, statistical analysis, news correlation, wallet profiling, and network analysis.",
