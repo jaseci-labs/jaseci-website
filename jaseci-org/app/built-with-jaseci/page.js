@@ -28,6 +28,8 @@ const companies = [
     logo: "/images/assets/partners/tobu.png",
     href: "https://tobu.life/",
     blurb: "AI-powered creative tools",
+    caseStudyUrl:
+      "https://blogs.jaseci.org/blog/posts/tobu-memory-graph-case-study",
   },
   {
     name: "Pocketnest",
@@ -406,40 +408,64 @@ const CompaniesSection = () => (
 );
 
 const CompanyTile = ({ company, index }) => (
-  <Link
-    href={company.href}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label={company.name}
-    className="group relative block"
+  <div
+    className="group relative"
     style={{ animation: `fadeInUp 0.5s ease-out ${index * 0.05}s both` }}
   >
     {/* Animated gradient border */}
-    <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary-orange/0 via-primary-yellow/0 to-primary-orange/0 group-hover:from-primary-orange/60 group-hover:via-primary-yellow/40 group-hover:to-primary-orange/60 transition-all duration-500 opacity-70 blur-sm"></div>
+    <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary-orange/0 via-primary-yellow/0 to-primary-orange/0 group-hover:from-primary-orange/60 group-hover:via-primary-yellow/40 group-hover:to-primary-orange/60 transition-all duration-500 opacity-70 blur-sm pointer-events-none"></div>
 
-    <div className="relative h-full bg-gradient-to-br from-[#4a3622]/95 via-[#352618]/95 to-[#3d2c1c]/95 backdrop-blur-xl rounded-2xl border border-primary-yellow/45 p-6 transition-all duration-300 group-hover:border-primary-yellow/75 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-primary-yellow/40 shadow-[inset_0_1px_0_0_rgba(247,147,30,0.5),0_0_0_1px_rgba(247,147,30,0.08),0_10px_36px_-8px_rgba(0,0,0,0.6),0_0_24px_-8px_rgba(247,147,30,0.25)]">
-      <div className="relative flex items-center justify-center h-20 mb-4">
-        {/* Soft light pillow behind the logo to lift dark-mode-unfriendly marks */}
-        <div className="absolute inset-x-6 inset-y-1 rounded-2xl bg-white/[0.92] shadow-[0_8px_30px_-6px_rgba(255,255,255,0.15)] transition-all duration-300 group-hover:bg-white group-hover:shadow-[0_10px_40px_-6px_rgba(249,115,22,0.35)]"></div>
-        <Image
-          src={company.logo}
-          alt={`${company.name} logo`}
-          width={160}
-          height={64}
-          className="relative max-h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-        />
-      </div>
-      <div className="text-center">
-        <h3 className="text-sm font-bold text-orange-50 tracking-wide">
-          {company.name}
-        </h3>
-        <p className="text-xs text-amber-200/55 mt-1">{company.blurb}</p>
-      </div>
+    <div className="relative h-full flex flex-col bg-gradient-to-br from-[#4a3622]/95 via-[#352618]/95 to-[#3d2c1c]/95 backdrop-blur-xl rounded-2xl border border-primary-yellow/45 transition-all duration-300 group-hover:border-primary-yellow/75 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-primary-yellow/40 shadow-[inset_0_1px_0_0_rgba(247,147,30,0.5),0_0_0_1px_rgba(247,147,30,0.08),0_10px_36px_-8px_rgba(0,0,0,0.6),0_0_24px_-8px_rgba(247,147,30,0.25)]">
+      <Link
+        href={company.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={company.name}
+        className="flex-1 flex flex-col p-6"
+      >
+        <div className="relative flex items-center justify-center h-20 mb-4">
+          {/* Soft light pillow behind the logo to lift dark-mode-unfriendly marks */}
+          <div className="absolute inset-x-6 inset-y-1 rounded-2xl bg-white/[0.92] shadow-[0_8px_30px_-6px_rgba(255,255,255,0.15)] transition-all duration-300 group-hover:bg-white group-hover:shadow-[0_10px_40px_-6px_rgba(249,115,22,0.35)]"></div>
+          <Image
+            src={company.logo}
+            alt={`${company.name} logo`}
+            width={160}
+            height={64}
+            className="relative max-h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+        <div className="text-center">
+          <h3 className="text-sm font-bold text-orange-50 tracking-wide">
+            {company.name}
+          </h3>
+          <p className="text-xs text-amber-200/55 mt-1">{company.blurb}</p>
+        </div>
+      </Link>
+
+      {company.caseStudyUrl && (
+        <div className="px-5 pb-5 -mt-1">
+          <Link
+            href={company.caseStudyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Read the ${company.name} case study`}
+            className="relative inline-flex items-center justify-center gap-1.5 w-full px-3 py-2 rounded-lg text-[10.5px] font-bold tracking-[0.18em] uppercase text-primary-yellow border border-primary-yellow/45 bg-gradient-to-r from-primary-orange/20 via-primary-yellow/15 to-primary-orange/20 hover:from-primary-orange/35 hover:via-primary-yellow/25 hover:to-primary-orange/35 hover:border-primary-yellow/85 hover:text-orange-50 transition-all duration-300 shadow-[0_0_22px_-6px_rgba(247,147,30,0.55)] hover:shadow-[0_0_30px_-4px_rgba(247,147,30,0.75)] overflow-hidden"
+          >
+            {/* Animated shimmer sweep */}
+            <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/15 to-transparent skew-x-12 translate-x-0 group-hover:translate-x-[450%] transition-transform duration-700 ease-out"></span>
+            <span className="relative">Read the case study</span>
+            <FaArrowRight
+              size={9}
+              className="relative transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </Link>
+        </div>
+      )}
 
       {/* Corner shine */}
-      <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary-orange/20 to-transparent rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary-orange/20 to-transparent rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
     </div>
-  </Link>
+  </div>
 );
 
 // =====================================================================
