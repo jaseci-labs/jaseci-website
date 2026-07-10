@@ -1,0 +1,164 @@
+[     500ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[     539ms] [LOG] [Fast Refresh] done in 141ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[     949ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[    1034ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/fonts/circular-bold.woff2:0
+[    1038ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/fonts/circular-book.woff2:0
+[    1038ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/fonts/circular-medium.woff2:0
+[    1058ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[    1384ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="page.tsx">
+            <SegmentTrieNode>
+            <Home>
+              <div className="page-modul...">
+                <nav>
+                <section>
+                <section>
+                <section>
+                <section>
+                <section className="page-modul...">
+                  <div className="page-modul...">
+                    <div>
+                    <div className="page-modul...">
+                      <LineageBloom>
+                        <div ref={{current:null}} className={"LineageB..."} role="img" aria-label="A line slo...">
+                          <svg className="LineageBlo..." viewBox="0 0 1600 440" fill="none" ...>
+                            <g className="LineageBlo...">
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path
+                                className="LineageBloom-module__rbpKZG__line LineageBloom-module__rbpKZG__e3"
++                               d="M1031.8929078398899 347.3485351905577 L1177.562265342051 349.70638474679413"
+-                               d="M1031.8929078398899 347.3485351905577 L1177.5622653420508 349.70638474679413"
+                                pathLength={1}
+                                style={{--d:"1.622s"}}
+                              >
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path
+                                className="LineageBloom-module__rbpKZG__line LineageBloom-module__rbpKZG__e2"
++                               d="M459.80068629888376 211.08908510541943 L352.13430014650805 155.07691214515876"
+-                               d="M459.80068629888376 211.08908510541943 L352.134300146508 155.07691214515876"
+                                pathLength={1}
+                                style={{--d:"1.61s"}}
+                              >
+                              <path
+                                className="LineageBloom-module__rbpKZG__line LineageBloom-module__rbpKZG__e3"
++                               d="M352.13430014650805 155.07691214515876 L273.0458883063303 112.47845273092761"
+-                               d="M352.134300146508 155.07691214515876 L273.0458883063303 112.47845273092761"
+                                pathLength={1}
+                                style={{--d:"1.67000000..."}}
+                              >
+                              ...
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle
+                                className="LineageBloom-module__rbpKZG__node"
++                               cx={1177.562265342051}
+-                               cx="1177.5622653420508"
+                                cy={349.70638474679413}
+                                r={1.7}
+                                style={{--d:"1.66200000..."}}
+                              >
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle
+                                className="LineageBloom-module__rbpKZG__node"
++                               cx={352.13430014650805}
+-                               cx="352.134300146508"
+                                cy={155.07691214515876}
+                                r={2.2}
+                                style={{--d:"1.66000000..."}}
+                              >
+                              ...
+                              ...
+                ...
+          ...
+        ...
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3318
+[   68312ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[   69172ms] [LOG] [Fast Refresh] done in 904ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[   92170ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[   92299ms] [LOG] [Fast Refresh] done in 190ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477

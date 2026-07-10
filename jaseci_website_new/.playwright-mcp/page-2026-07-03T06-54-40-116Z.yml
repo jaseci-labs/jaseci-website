@@ -1,0 +1,371 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - navigation [ref=f3e4]:
+      - generic [ref=f3e5]:
+        - img "Jaseci" [ref=f3e6]
+        - text: JAC
+      - generic [ref=f3e7]:
+        - link "Ecosystem" [ref=f3e8] [cursor=pointer]:
+          - /url: "#ecosystem"
+        - link "Projects" [ref=f3e9] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Community" [ref=f3e10] [cursor=pointer]:
+          - /url: "#community"
+    - generic [ref=f3e12]:
+      - generic [ref=f3e13]:
+        - heading "Jac, the language built for AI Applications. AI Agents. AI Workflows. everything." [level=1] [ref=f3e14]:
+          - text: Jac, the language
+          - text: built for
+          - generic [ref=f3e15]:
+            - generic [ref=f3e16]: AI Applications.
+            - generic [ref=f3e17]: AI Applications. AI Agents. AI Workflows. everything.
+        - paragraph [ref=f3e18]: Instead of building your AI applications with python, langchain and abstraction slop, use a language that is built exactly for AI development. Forget boilerplate traditions like overcomplicated prompts, unnecessary middleware, and lengthy deployments. Let’s bring back the coding joy by making Jac aware of the complexity, and remove it.
+        - generic [ref=f3e19]:
+          - tablist "Install command by platform" [ref=f3e21]:
+            - tab "Linux & macOS" [selected] [ref=f3e22] [cursor=pointer]
+            - tab "Windows" [ref=f3e23] [cursor=pointer]
+          - generic [ref=f3e24]:
+            - code [ref=f3e26]: pip install jaclang
+            - button "Copy install command" [ref=f3e27] [cursor=pointer]:
+              - img [ref=f3e28]
+          - link "View install docs" [ref=f3e30] [cursor=pointer]:
+            - /url: /docs
+      - 'img "Chart: programming-language abstraction rising over fifty years — Assembly, Fortran, C, C++, Java, Python and JS/TS climb from machine level to dynamic — then the leap to Jac, AI-native." [ref=f3e32]':
+        - generic [ref=f3e33]:
+          - generic [ref=f3e34]: ABSTRACTION PER LANGUAGE GENERATION
+          - generic [ref=f3e35]: 1940s → NOW
+        - img [ref=f3e36]:
+          - generic [ref=f3e39]: MACHINE
+          - generic [ref=f3e40]: SYSTEMS
+          - generic [ref=f3e41]: MANAGED
+          - generic [ref=f3e42]: DYNAMIC
+          - generic [ref=f3e43]: AI-NATIVE
+          - generic [ref=f3e45]:
+            - generic [ref=f3e47]: RAISED ABSTRACTION
+            - generic [ref=f3e49]: NO REAL GAIN
+          - generic [ref=f3e52]: THELEAP
+          - generic [ref=f3e61]: Assembly
+          - generic [ref=f3e62]: Fortran
+          - generic [ref=f3e63]: C
+          - generic [ref=f3e64]: C++
+          - generic [ref=f3e65]: Java
+          - generic [ref=f3e66]: Python
+          - generic [ref=f3e67]: JS/TS
+          - generic [ref=f3e68]: Jac
+          - generic [ref=f3e69]: 1940s
+          - generic [ref=f3e70]: 1950s
+          - generic [ref=f3e71]: 1970s
+          - generic [ref=f3e72]: 1980s
+          - generic [ref=f3e73]: 1990s
+          - generic [ref=f3e74]: 1990s
+          - generic [ref=f3e75]: 1990s
+          - generic [ref=f3e76]: NOW
+          - generic [ref=f3e78]: ≈ 50 YEARS OF INCREMENTAL STEPS
+    - generic [ref=f3e79]:
+      - generic [ref=f3e81]:
+        - generic [ref=f3e82]: F*CK
+        - generic [ref=f3e85]:
+          - generic [ref=f3e86]:
+            - img "LangChain"
+          - generic [ref=f3e87]:
+            - img "LangGraph"
+          - generic [ref=f3e88]:
+            - img "LlamaIndex"
+          - generic [ref=f3e89]:
+            - img "Pydantic AI"
+          - generic [ref=f3e90]:
+            - img "CrewAI"
+          - generic [ref=f3e91]:
+            - img "AutoGen"
+          - generic [ref=f3e92]:
+            - img "DSPy"
+          - generic [ref=f3e93]:
+            - img "Haystack"
+      - generic [ref=f3e94]:
+        - heading "Jac is more efficient than Python and its abstractions." [level=2] [ref=f3e95]
+        - generic [ref=f3e96]:
+          - generic [ref=f3e97]:
+            - button "Your application is unstable, relying on so much abstractions" [ref=f3e98] [cursor=pointer]:
+              - generic [ref=f3e99]: Your application is unstable, relying on so much abstractions
+            - paragraph [ref=f3e101]: When you need to change something on the frontend, you need to change something on the backend (and the middleware). Long term maintenance is easy because everything is done with 11x less files.
+          - generic [ref=f3e102]:
+            - button "Prompts can be simplified. It should be simplified. Jac makes it simplified." [ref=f3e103] [cursor=pointer]:
+              - generic [ref=f3e104]: Prompts can be simplified. It should be simplified. Jac makes it simplified.
+            - paragraph [ref=f3e106]: "We know the obvious: coders are the ones coding. So we made an algebraic syntax method that allows you to compress your 500 word prompt into a single line that only coders understand."
+          - generic [ref=f3e107]:
+            - button "Python was primarily built for machine learning, Jac was primarily built for artificial intelligence" [ref=f3e108] [cursor=pointer]:
+              - generic [ref=f3e109]: Python was primarily built for machine learning, Jac was primarily built for artificial intelligence
+            - paragraph [ref=f3e111]: Jac is built today, so that it can acknowledge Artificial Intelligence, Deployments, Cloud Infrastructure, Middleware, everything that dates before Machine Learning. When it comes to AI, Jac beats Python because the time for Jac was right.
+          - generic [ref=f3e112]:
+            - button "Jac’s Object Spatial Programming is optimized for AI" [ref=f3e113] [cursor=pointer]:
+              - generic [ref=f3e114]: Jac’s Object Spatial Programming is optimized for AI
+            - paragraph [ref=f3e116]: "AI agents face three problems OOP is bad at: memory (scattered across databases, arrays, and caches you manually merge), decision flow (state machines and callback chains you maintain separately from the data), and context filtering (hand-picking what’s relevant for the LLM’s token limit). OSP solves all three structurally: the agent’s memory is just nodes in the graph, the decision flow is the graph topology itself (walk an edge instead of writing an if/else), and context is naturally scoped by where the walker currently sits. Traditional apps have fixed logic you know at compile time, but AI agents make runtime decisions about what to do next; OOP forces you to pre-define every path in code, while OSP lets the agent discover paths by traversing a graph that grows and changes as it reasons."
+          - generic [ref=f3e117]:
+            - button "Jac is multiparadigmatic, so it never has to rely on other dependencies" [ref=f3e118] [cursor=pointer]:
+              - generic [ref=f3e119]: Jac is multiparadigmatic, so it never has to rely on other dependencies
+            - paragraph [ref=f3e121]: "AI apps aren’t one problem. They’re several at once, each fitting a different programming style: OOP to model your domain (users, sessions, documents), functional programming for clean data transforms (chaining LLM outputs, filtering lists without side effects), declarative components for UI (what React uses, describing what the interface looks like, not how to update it), and graph-based traversal for agent reasoning (navigating knowledge, making decisions step by step). In a traditional stack, each paradigm means a separate dependency: Python for OOP, LangChain for agent flows, NetworkX for graphs, React for UI, each with its own install, API, version conflicts, and CVEs. Jac gives you all four natively: obj for domain models, pure functions and comprehensions for data pipelines, cl blocks for React-style declarative components, and walkers on graphs for agent logic, all in the same file, same language, zero external dependencies. Fewer dependencies means less to install, less that breaks, fewer CVEs to patch, and fewer abstractions fighting each other."
+          - generic [ref=f3e122]:
+            - button "Though devs used Jac, their application was still too slow because they depended on a third-party stack." [ref=f3e123] [cursor=pointer]:
+              - generic [ref=f3e124]: Though devs used Jac, their application was still too slow because they depended on a third-party stack.
+            - paragraph [ref=f3e126]: So, Jac became npm, pypi and CiBA interoperable.
+    - generic [ref=f3e127]:
+      - 'img "A leaning tower of blocks: Python at the base with LangChain, LangGraph, LlamaIndex, Pydantic AI, CrewAI, AutoGen, DSPy, Haystack piled on top — and \"Your Application\" teetering right at the edge, about to fall." [ref=f3e129]':
+        - generic:
+          - generic [ref=f3e136]: Python
+          - generic [ref=f3e143]: LangChain
+          - generic [ref=f3e150]: LangGraph
+          - generic [ref=f3e157]: LlamaIndex
+          - generic [ref=f3e164]: Pydantic AI
+          - generic [ref=f3e171]: CrewAI
+          - generic [ref=f3e178]: AutoGen
+          - generic [ref=f3e185]: DSPy
+          - generic [ref=f3e192]: Haystack
+          - generic [ref=f3e199]: Your Application
+      - generic [ref=f3e200]:
+        - heading "Jac is more efficient than Python and its abstractions." [level=2] [ref=f3e201]
+        - generic [ref=f3e202]:
+          - generic [ref=f3e203]:
+            - button "Your application is unstable, relying on so much abstractions" [ref=f3e204] [cursor=pointer]:
+              - generic [ref=f3e205]: Your application is unstable, relying on so much abstractions
+            - paragraph [ref=f3e207]: When you need to change something on the frontend, you need to change something on the backend (and the middleware). Long term maintenance is easy because everything is done with 11x less files.
+          - generic [ref=f3e208]:
+            - button "Prompts can be simplified. It should be simplified. Jac makes it simplified." [ref=f3e209] [cursor=pointer]:
+              - generic [ref=f3e210]: Prompts can be simplified. It should be simplified. Jac makes it simplified.
+            - paragraph [ref=f3e212]: "We know the obvious: coders are the ones coding. So we made an algebraic syntax method that allows you to compress your 500 word prompt into a single line that only coders understand."
+          - generic [ref=f3e213]:
+            - button "Python was primarily built for machine learning, Jac was primarily built for artificial intelligence" [ref=f3e214] [cursor=pointer]:
+              - generic [ref=f3e215]: Python was primarily built for machine learning, Jac was primarily built for artificial intelligence
+            - paragraph [ref=f3e217]: Jac is built today, so that it can acknowledge Artificial Intelligence, Deployments, Cloud Infrastructure, Middleware, everything that dates before Machine Learning. When it comes to AI, Jac beats Python because the time for Jac was right.
+          - generic [ref=f3e218]:
+            - button "Jac’s Object Spatial Programming is optimized for AI" [ref=f3e219] [cursor=pointer]:
+              - generic [ref=f3e220]: Jac’s Object Spatial Programming is optimized for AI
+            - paragraph [ref=f3e222]: "AI agents face three problems OOP is bad at: memory (scattered across databases, arrays, and caches you manually merge), decision flow (state machines and callback chains you maintain separately from the data), and context filtering (hand-picking what’s relevant for the LLM’s token limit). OSP solves all three structurally: the agent’s memory is just nodes in the graph, the decision flow is the graph topology itself (walk an edge instead of writing an if/else), and context is naturally scoped by where the walker currently sits. Traditional apps have fixed logic you know at compile time, but AI agents make runtime decisions about what to do next; OOP forces you to pre-define every path in code, while OSP lets the agent discover paths by traversing a graph that grows and changes as it reasons."
+          - generic [ref=f3e223]:
+            - button "Jac is multiparadigmatic, so it never has to rely on other dependencies" [ref=f3e224] [cursor=pointer]:
+              - generic [ref=f3e225]: Jac is multiparadigmatic, so it never has to rely on other dependencies
+            - paragraph [ref=f3e227]: "AI apps aren’t one problem. They’re several at once, each fitting a different programming style: OOP to model your domain (users, sessions, documents), functional programming for clean data transforms (chaining LLM outputs, filtering lists without side effects), declarative components for UI (what React uses, describing what the interface looks like, not how to update it), and graph-based traversal for agent reasoning (navigating knowledge, making decisions step by step). In a traditional stack, each paradigm means a separate dependency: Python for OOP, LangChain for agent flows, NetworkX for graphs, React for UI, each with its own install, API, version conflicts, and CVEs. Jac gives you all four natively: obj for domain models, pure functions and comprehensions for data pipelines, cl blocks for React-style declarative components, and walkers on graphs for agent logic, all in the same file, same language, zero external dependencies. Fewer dependencies means less to install, less that breaks, fewer CVEs to patch, and fewer abstractions fighting each other."
+          - generic [ref=f3e228]:
+            - button "Though devs used Jac, their application was still too slow because they depended on a third-party stack." [ref=f3e229] [cursor=pointer]:
+              - generic [ref=f3e230]: Though devs used Jac, their application was still too slow because they depended on a third-party stack.
+            - paragraph [ref=f3e232]: So, Jac became npm, pypi and CiBA interoperable.
+    - region "Proof" [ref=f3e233]:
+      - generic [ref=f3e234]:
+        - heading "Backed by the names you already trust." [level=2] [ref=f3e236]
+        - generic [ref=f3e237]:
+          - generic [ref=f3e238]:
+            - generic "Company-backed" [ref=f3e239]:
+              - generic [ref=f3e240]:
+                - img "NVIDIA" [ref=f3e242]
+                - img "University of Michigan" [ref=f3e244]
+                - img "U.S. National Science Foundation" [ref=f3e246]
+            - article [ref=f3e247]:
+              - link "Read the case study →" [ref=f3e249] [cursor=pointer]:
+                - /url: https://blogs.jaseci.org/blog/posts/tobu-memory-graph-case-study
+              - tablist "Case studies" [ref=f3e250]:
+                - tab "Tobu" [selected] [ref=f3e251] [cursor=pointer]
+                - tab "Pocketnest" [ref=f3e252] [cursor=pointer]
+                - tab "Ally" [ref=f3e253] [cursor=pointer]
+                - tab "TruSelph" [ref=f3e254] [cursor=pointer]
+              - generic [ref=f3e255]:
+                - generic [ref=f3e256]: Tobu
+                - paragraph [ref=f3e257]: From concept to production in 6 weeks.
+                - generic [ref=f3e258]:
+                  - generic [ref=f3e259]:
+                    - generic [ref=f3e260]: $1.5M
+                    - generic [ref=f3e261]: Raised so far on the Jaseci-built platform
+                  - generic [ref=f3e262]:
+                    - generic [ref=f3e263]: 92.84%
+                    - generic [ref=f3e264]: Retrieval accuracy on real Tobu user data
+                  - generic [ref=f3e265]:
+                    - generic [ref=f3e266]: 2.2×
+                    - generic [ref=f3e267]: Fewer missed memories than traditional RAG
+                - blockquote [ref=f3e268]:
+                  - text: “With Jac, the structure of the product stayed close to the structure of the code. A memory was treated not as an isolated record, but as part of a larger network of people, places, stories, and relationships.”
+                  - generic [ref=f3e269]: From the Tobu case study
+              - generic [ref=f3e270]:
+                - button "Previous case study" [ref=f3e271] [cursor=pointer]: ‹
+                - button "Next case study" [ref=f3e272] [cursor=pointer]: ›
+          - generic [ref=f3e273]:
+            - link "Backed by research →" [ref=f3e274] [cursor=pointer]:
+              - /url: https://jaseci.engin.umich.edu/
+            - link "OSP Object-Spatial Programming arXiv:2503.15812 · cs.PL" [ref=f3e275] [cursor=pointer]:
+              - /url: https://arxiv.org/abs/2503.15812
+              - generic [ref=f3e276]: OSP
+              - generic [ref=f3e277]:
+                - generic [ref=f3e278]: Object-Spatial Programming
+                - generic [ref=f3e279]: arXiv:2503.15812 · cs.PL
+              - generic [ref=f3e280]: ↗
+            - 'link "byLLM MTP: A Meaning-Typed Language Abstraction OOPSLA 2025 · arXiv:2405.08965" [ref=f3e281] [cursor=pointer]':
+              - /url: https://arxiv.org/abs/2405.08965
+              - generic [ref=f3e282]: byLLM
+              - generic [ref=f3e283]:
+                - generic [ref=f3e284]: "MTP: A Meaning-Typed Language Abstraction"
+                - generic [ref=f3e285]: OOPSLA 2025 · arXiv:2405.08965
+              - generic [ref=f3e286]: ↗
+    - generic [ref=f3e288]:
+      - generic [ref=f3e289]:
+        - heading "Developers needed more interoperts." [level=2] [ref=f3e290]
+        - generic [ref=f3e291]:
+          - heading "Though devs used Jac, their application was still too slow because they depended on a third-party stack." [level=3] [ref=f3e293]
+          - paragraph [ref=f3e295]: Jac was just as fast as C by itself, but when teamed up with React for the frontend, and then CORS for the middleware, and then Vercel for deployment, things slowed down. So, in Jac v2, we decided to have those dependencies built into Jac. Now, when building your AI application, all you need is Jac. But what should we call this individual stack in layman’s terms? What should the solution to multiple problems be dubbed as?
+          - generic [ref=f3e296]: Jac was just as fast as C by itself, but when teamed up with React for the frontend, and then CORS for the middleware, and then Vercel for deployment, things slowed down. So, in Jac v2, we decided to have those dependencies built into Jac. Now, when building your AI application, all you need is Jac. But what should we call this individual stack in layman’s terms? What should the solution to multiple problems be dubbed as?
+          - button "Expand the story" [ref=f3e297] [cursor=pointer]
+      - img "A line slowly descending from Jac at the top down to Jaseci, which then explodes into a wide, interconnected black web of short lines — every point laced into the net — that spills past the edges of the screen, the whole web then drifting and breathing like a living constellation." [ref=f3e299]:
+        - img [ref=f3e300]:
+          - generic: Jac
+          - generic: Jaseci
+    - generic [ref=f3e302]:
+      - heading "We built Jaseci. An Ecosystem." [level=2] [ref=f3e303]:
+        - text: We built Jaseci.
+        - text: An Ecosystem.
+      - generic [ref=f3e304]:
+        - generic [ref=f3e306]:
+          - generic [ref=f3e307]: 0Prompts
+          - generic [ref=f3e308]:
+            - generic [ref=f3e309]: byLLM
+            - paragraph [ref=f3e310]: No prompt engineering. Python could not — byLLM did. Write a function signature and the compiler writes the prompt for you.
+            - generic [ref=f3e311]: pip install byllm
+        - generic [ref=f3e312]:
+          - generic [ref=f3e313]:
+            - generic [ref=f3e314]: 1Command
+            - generic [ref=f3e315]:
+              - generic [ref=f3e316]: jac-super
+              - paragraph [ref=f3e317]: Better developer experience. Python could not — jac-super did. Rich-formatted CLI output with themes, panels, and spinners.
+              - generic [ref=f3e318]: pip install jac-super
+          - generic [ref=f3e319]:
+            - generic [ref=f3e320]: 0Middleware
+            - generic [ref=f3e321]:
+              - generic [ref=f3e322]: jac-client
+              - paragraph [ref=f3e323]: No middleware. Python could not — jac-client did. Call your backend from React-style components with zero glue code.
+              - generic [ref=f3e324]: pip install jac-client
+        - generic [ref=f3e326]:
+          - generic [ref=f3e327]: 0CSS
+          - generic [ref=f3e328]:
+            - generic [ref=f3e329]: jac-shadcn
+            - paragraph [ref=f3e330]: Pre-built UI. Python could not — jac-shadcn did. Drop in beautiful, customizable components without leaving Jac.
+            - generic [ref=f3e331]: pip install jac-shadcn
+        - generic [ref=f3e332]:
+          - generic [ref=f3e333]:
+            - generic [ref=f3e334]: 0Docs
+            - generic [ref=f3e335]:
+              - generic [ref=f3e336]: jac-mcp
+              - paragraph [ref=f3e337]: AI-assisted coding. Python could not — jac-mcp did. Give any AI coding assistant deep knowledge of Jac through the Model Context Protocol.
+              - generic [ref=f3e338]: pip install jac-mcp
+          - generic [ref=f3e339]:
+            - generic [ref=f3e340]: 0Config
+            - generic [ref=f3e341]:
+              - generic [ref=f3e342]: jac-scale
+              - paragraph [ref=f3e343]: Faster deployment. Python could not — jac-scale did. Scale to Kubernetes without writing a single YAML file.
+              - generic [ref=f3e344]: pip install jac-scale
+          - generic [ref=f3e345]:
+            - generic [ref=f3e346]: 0SQL
+            - generic [ref=f3e347]:
+              - generic [ref=f3e348]: OSP
+              - paragraph [ref=f3e349]: Built into jaclang. No graph library. Python could not — OSP did. Model your entire domain as nodes, edges, and walkers that traverse them — no Neo4j, no NetworkX.
+          - generic [ref=f3e350]:
+            - generic [ref=f3e351]: 3Targets
+            - generic [ref=f3e352]:
+              - generic [ref=f3e353]: Codespaces
+              - paragraph [ref=f3e354]: Built into jaclang. One language, three targets. Python could not — Codespaces did. Compile to Python bytecode, JavaScript, and native machine code from the same file.
+              - generic [ref=f3e355]: "to sv: / to cl: / to na:"
+        - generic [ref=f3e356]:
+          - generic [ref=f3e357]:
+            - generic [ref=f3e359]:
+              - generic [ref=f3e360]: C-levelFast
+              - generic [ref=f3e361]:
+                - generic [ref=f3e362]: Native Compilation
+                - paragraph [ref=f3e363]: Built into jaclang. Bare-metal speed. Python could not — native compilation did. Compile Jac to LLVM machine code — no Python runtime, no external compiler, no external linker.
+                - generic [ref=f3e364]: jac nacompile
+            - generic [ref=f3e365]:
+              - generic [ref=f3e366]:
+                - generic [ref=f3e367]: 0Auth Code
+                - generic [ref=f3e368]:
+                  - generic [ref=f3e369]: Built-in Auth
+                  - paragraph [ref=f3e370]: Built into jac-scale. Per-user isolation. Python could not — Jac's auth runtime did. Each user gets their own root graph with zero auth middleware code.
+                  - generic [ref=f3e371]: jacLogin / jacSignup / :priv
+              - generic [ref=f3e372]:
+                - generic [ref=f3e373]: 1Decorator
+                - generic [ref=f3e374]:
+                  - generic [ref=f3e375]: WebSockets & Webhooks
+                  - paragraph [ref=f3e376]: Built into jac-scale. Real-time communication. Python could not — jac-scale did. Turn any walker into a WebSocket or webhook endpoint with a single decorator — HMAC verification, API keys, and connection management included.
+              - generic [ref=f3e377]:
+                - generic [ref=f3e378]: 1Line
+                - generic [ref=f3e379]:
+                  - generic [ref=f3e380]: Scheduled Tasks
+                  - paragraph [ref=f3e381]: Built into jac-scale[scheduler]. Background jobs. Python could not — @schedule did. Cron jobs and interval tasks as a decorator on any walker or function — no Celery, no task queue, no separate worker process.
+                  - generic [ref=f3e382]: "@schedule"
+          - link "See the full ecosystem →" [ref=f3e383] [cursor=pointer]:
+            - /url: "#ecosystem-grid"
+    - generic [ref=f3e385]:
+      - generic [ref=f3e386]:
+        - heading "Why did you start coding?" [level=2] [ref=f3e387]:
+          - text: Why did you
+          - text: start coding?
+        - paragraph [ref=f3e388]: Dennis Ritchie’s philosophy of why he built the C was the idea that people should spend their time coding something innovative, nothing else. His instinct was to take away the boilerplate, like registers, that stood between us and human ideation. We want to replicate that same philosophy over 50 years ago, and take away that boilerplate and give devs more time.
+      - generic [ref=f3e389]:
+        - generic [ref=f3e390]:
+          - link "Built in Jac Todo App A full-stack to-do app — auth, database, and live sync, the whole thing in a single Jac file." [ref=f3e391] [cursor=pointer]:
+            - /url: https://github.com/jaseci-labs/jac-todo
+            - img
+            - generic [ref=f3e392]:
+              - generic [ref=f3e393]: Built in Jac
+              - generic [ref=f3e394]: ↗
+            - generic [ref=f3e395]:
+              - generic [ref=f3e396]: Todo App
+              - paragraph [ref=f3e397]: A full-stack to-do app — auth, database, and live sync, the whole thing in a single Jac file.
+          - link "Built in a weekend FPS Game A browser first-person shooter with enemy agents that adapt to the way you play." [ref=f3e398] [cursor=pointer]:
+            - /url: https://github.com/jaseci-labs/jac-fps
+            - img
+            - generic [ref=f3e399]:
+              - generic [ref=f3e400]: Built in a weekend
+              - generic [ref=f3e401]: ↗
+            - generic [ref=f3e402]:
+              - generic [ref=f3e403]: FPS Game
+              - paragraph [ref=f3e404]: A browser first-person shooter with enemy agents that adapt to the way you play.
+          - link "Built in 4 Days Black Hole Simulation A real-time gravitational-lensing black hole, ray-marched live in the browser." [ref=f3e405] [cursor=pointer]:
+            - /url: https://github.com/jaseci-labs/jac-blackhole
+            - generic [ref=f3e406]:
+              - generic [ref=f3e407]: Built in 4 Days
+              - generic [ref=f3e408]: ↗
+            - generic [ref=f3e409]:
+              - generic [ref=f3e410]: Black Hole Simulation
+              - paragraph [ref=f3e411]: A real-time gravitational-lensing black hole, ray-marched live in the browser.
+          - link "Built solo Autonomous Research Agent A multi-agent researcher that reads the web, fact-checks itself, and writes the report." [ref=f3e412] [cursor=pointer]:
+            - /url: https://github.com/jaseci-labs/jac-research-agent
+            - generic [ref=f3e413]:
+              - generic [ref=f3e414]: Built solo
+              - generic [ref=f3e415]: ↗
+            - generic [ref=f3e416]:
+              - generic [ref=f3e417]: Autonomous Research Agent
+              - paragraph [ref=f3e418]: A multi-agent researcher that reads the web, fact-checks itself, and writes the report.
+        - link "See more JacPacks" [ref=f3e419] [cursor=pointer]:
+          - /url: https://github.com/jaseci-labs
+          - generic [ref=f3e420]:
+            - generic [ref=f3e421]: See more JacPacks →
+            - generic [ref=f3e422]: See more JacPacks →
+            - generic [ref=f3e423]: See more JacPacks →
+            - generic [ref=f3e424]: See more JacPacks →
+            - generic [ref=f3e425]: See more JacPacks →
+            - generic [ref=f3e426]: See more JacPacks →
+            - generic [ref=f3e427]: See more JacPacks →
+            - generic [ref=f3e428]: See more JacPacks →
+    - generic [ref=f3e429]:
+      - heading "Stay with the old. Get left behind." [level=2] [ref=f3e430]:
+        - text: Stay with the old.
+        - text: Get left behind.
+      - generic [ref=f3e431]:
+        - link "Join the Community" [ref=f3e432] [cursor=pointer]:
+          - /url: /community
+          - generic [ref=f3e433]: Join the Community
+        - link "Contribute to OSS" [ref=f3e435] [cursor=pointer]:
+          - /url: https://github.com/jaseci-labs
+          - generic [ref=f3e436]: Contribute to OSS
+    - contentinfo [ref=f3e438]:
+      - generic [ref=f3e439]: © Jaseci
+      - generic [ref=f3e440]:
+        - link "Docs" [ref=f3e441] [cursor=pointer]:
+          - /url: /docs
+        - link "GitHub" [ref=f3e442] [cursor=pointer]:
+          - /url: https://github.com/jaseci-labs
+  - button "Open Next.js Dev Tools" [ref=f3e448] [cursor=pointer]:
+    - img [ref=f3e449]

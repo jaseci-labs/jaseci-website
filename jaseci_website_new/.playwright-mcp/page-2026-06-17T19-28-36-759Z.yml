@@ -1,0 +1,103 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]: JAC
+    - generic [ref=e5]:
+      - link "Ecosystem" [ref=e6] [cursor=pointer]:
+        - /url: "#ecosystem"
+      - link "Projects" [ref=e7] [cursor=pointer]:
+        - /url: "#projects"
+      - link "Case Studies" [ref=e8] [cursor=pointer]:
+        - /url: "#cases"
+      - link "Community" [ref=e9] [cursor=pointer]:
+        - /url: "#community"
+  - generic [ref=e10]:
+    - generic [ref=e11]: Act I — Who is Jac
+    - heading "The next evolutionary step." [level=1] [ref=e12]
+    - paragraph [ref=e13]: Jac is the modern hero of programming — the language built for the era of AI agents, not retrofitted to it.
+  - generic [ref=e14]:
+    - generic [ref=e15]: Why I am who I am
+    - heading "Python, Langchain, they're all broken." [level=2] [ref=e16]
+    - paragraph [ref=e17]: LangChain. Wrappers. Layers of abstraction stacked on top of Python until they collapse under the weight of debugging, maintenance, and brittle glue code.
+    - paragraph [ref=e18]:
+      - text: I was designed differently. From the ground up. Built on
+      - strong [ref=e19]: byLLM
+      - text: and
+      - strong [ref=e20]: OSP
+      - text: — a foundation, not a patch.
+  - generic [ref=e21]:
+    - generic [ref=e22]: Proof
+    - heading "Backed by the names you already trust." [level=2] [ref=e23]
+    - paragraph [ref=e24]: And already running inside enterprises shipping production workloads.
+    - generic [ref=e25]:
+      - generic [ref=e26]: NSF
+      - generic [ref=e27]: University of Michigan
+      - generic [ref=e28]: NVIDIA
+  - generic [ref=e29]:
+    - generic [ref=e30]: The Traditionalist
+    - heading "Then I met someone who would not move." [level=2] [ref=e31]
+    - paragraph [ref=e32]: A traditionalist. They knew Python. They had built a career on it, and they were not going to throw that knowledge away for a new language — no matter how good it was.
+    - paragraph [ref=e33]: "I respected that. So I made a decision: become more than a language. Become the same leap that C was from Assembly."
+  - generic [ref=e34]:
+    - generic [ref=e35]: Act II — Becoming an Ecosystem
+    - heading "So I became Jaseci." [level=2] [ref=e36]
+    - paragraph [ref=e37]: An ecosystem that fixes the problems developers have been shouting about for years — without asking them to give up what they already know.
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - generic [ref=e40]: 10×
+        - generic [ref=e41]: Faster Deployment
+        - paragraph [ref=e42]:
+          - text: Python could not.
+          - strong [ref=e43]: Jac-Scale
+          - text: did.
+      - generic [ref=e44]:
+        - generic [ref=e45]: "0"
+        - generic [ref=e46]: Middleware
+        - paragraph [ref=e47]:
+          - text: Python could not.
+          - strong [ref=e48]: Jac-Client
+          - text: did.
+    - link "See the full ecosystem →" [ref=e49] [cursor=pointer]:
+      - /url: /ecosystem
+  - generic [ref=e50]:
+    - generic [ref=e51]: Act III — Why You Started
+    - heading "Why did you start writing code in the first place?" [level=2] [ref=e52]
+    - paragraph [ref=e53]: To build the things only you could see. We just make the distance between idea and shipped shorter.
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e56]: Project X
+        - generic [ref=e57]: Built in 4 days
+      - generic [ref=e58]:
+        - generic [ref=e59]: Project Y
+        - generic [ref=e60]: Built in 2 weeks
+      - generic [ref=e61]:
+        - generic [ref=e62]: Project Z
+        - generic [ref=e63]: Built solo
+  - generic [ref=e64]:
+    - generic [ref=e65]: Case Studies
+    - heading "Teams already shipping with Jac." [level=2] [ref=e66]
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - generic [ref=e69]: Case Study 01
+        - generic [ref=e70]: Coming soon
+      - generic [ref=e71]:
+        - generic [ref=e72]: Case Study 02
+        - generic [ref=e73]: Coming soon
+      - generic [ref=e74]:
+        - generic [ref=e75]: Case Study 03
+        - generic [ref=e76]: Coming soon
+  - generic [ref=e77]:
+    - generic [ref=e78]: The Final Hook
+    - heading "Stay with the old. Get left behind." [level=2] [ref=e79]
+    - paragraph [ref=e80]: Join the community. Contribute to the OSS. Build the future before it gets built around you.
+    - generic [ref=e81]:
+      - link "Join the Community" [ref=e82] [cursor=pointer]:
+        - /url: /community
+      - link "Contribute to OSS" [ref=e83] [cursor=pointer]:
+        - /url: https://github.com/jaseci-labs
+  - contentinfo [ref=e84]:
+    - generic [ref=e85]: © Jaseci
+    - generic [ref=e86]:
+      - link "Docs" [ref=e87] [cursor=pointer]:
+        - /url: /docs
+      - link "GitHub" [ref=e88] [cursor=pointer]:
+        - /url: https://github.com/jaseci-labs

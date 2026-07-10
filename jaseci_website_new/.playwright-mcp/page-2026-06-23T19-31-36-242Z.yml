@@ -1,0 +1,306 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]: JAC
+      - generic [ref=e5]:
+        - link "Ecosystem" [ref=e6] [cursor=pointer]:
+          - /url: "#ecosystem"
+        - link "Projects" [ref=e7] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Community" [ref=e8] [cursor=pointer]:
+          - /url: "#community"
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - heading "Jac, the language built to program AI Applications. AI Agents. AI Workflows. everything." [level=1] [ref=e12]:
+          - text: Jac, the language built to program
+          - generic [ref=e13]:
+            - generic [ref=e14]: AI Agents.
+            - generic [ref=e15]: AI Applications. AI Agents. AI Workflows. everything.
+        - paragraph [ref=e16]: Jac is the solution to the last 50 years of developer’s hell.
+        - generic [ref=e17]:
+          - paragraph [ref=e18]: Install Jac
+          - generic [ref=e19]:
+            - tablist "Install command by platform" [ref=e20]:
+              - tab "Linux & macOS" [ref=e21] [cursor=pointer]
+              - tab "Windows" [active] [selected] [ref=e22] [cursor=pointer]
+            - link "View install docs" [ref=e23] [cursor=pointer]:
+              - /url: /docs
+          - generic [ref=e24]:
+            - code [ref=e26]: pip install jaclang
+            - button "Copy install command" [ref=e27] [cursor=pointer]:
+              - img [ref=e28]
+      - img "Abstraction over time, rising through Assembly, C, Java and Python — then leaping to Jac." [ref=e31]:
+        - img [ref=e32]:
+          - generic [ref=e33]: ABSTRACTION ↑
+          - generic [ref=e36]: THE LEAP
+          - generic [ref=e42]: Assembly
+          - generic [ref=e43]: C
+          - generic [ref=e44]: Java
+          - generic [ref=e45]: Python
+          - generic [ref=e46]: Jac
+    - generic [ref=e47]:
+      - generic [ref=e49]:
+        - generic [ref=e50]: F*CK
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - img "LangChain"
+          - generic [ref=e55]:
+            - img "LangGraph"
+          - generic [ref=e56]:
+            - img "LlamaIndex"
+          - generic [ref=e57]:
+            - img "Pydantic AI"
+          - generic [ref=e58]:
+            - img "CrewAI"
+          - generic [ref=e59]:
+            - img "AutoGen"
+          - generic [ref=e60]:
+            - img "DSPy"
+          - generic [ref=e61]:
+            - img "Haystack"
+      - generic [ref=e62]:
+        - heading "Python, LangChain, they’re all broken." [level=2] [ref=e63]
+        - generic [ref=e64]:
+          - generic [ref=e65]:
+            - button "Python became the home of Machine Learning, not AI." [ref=e66] [cursor=pointer]:
+              - generic [ref=e67]: Python became the home of Machine Learning, not AI.
+            - paragraph [ref=e69]: Python became the home of Machine Learning, not Artificial Intelligence — but companies pretend like it was born for it.
+          - generic [ref=e70]:
+            - button "Stacking libraries on Python only makes the tools worse." [ref=e71] [cursor=pointer]:
+              - generic [ref=e72]: Stacking libraries on Python only makes the tools worse.
+            - paragraph [ref=e74]: Companies pancake libraries and frameworks on top, constantly abstracting over a language never designed to build agents. That’s why, no matter how hard they try, these tools are always sh*tty.
+          - generic [ref=e75]:
+            - button "The fix isn’t more abstraction — it’s a new language." [ref=e76] [cursor=pointer]:
+              - generic [ref=e77]: The fix isn’t more abstraction — it’s a new language.
+            - paragraph [ref=e79]: Instead of abstraction, let’s build a language that’s aware of the advancements of the past year.
+          - generic [ref=e80]:
+            - button "An OSP walker collapses agent state into one graph traversal." [ref=e81] [cursor=pointer]:
+              - generic [ref=e82]: An OSP walker collapses agent state into one graph traversal.
+            - paragraph [ref=e84]: Instead of an OOP agent wrangling its own state, an OSP walker collapses everything into a single graph traversal — running 4.75× faster at runtime and built 3.2× faster by developers.
+          - generic [ref=e85]:
+            - button "byLLM replaces a 500-word prompt with a single line." [ref=e86] [cursor=pointer]:
+              - generic [ref=e87]: byLLM replaces a 500-word prompt with a single line.
+            - paragraph [ref=e89]: Instead of a 500-word prompt, use byLLM in a single line (that’s developer-friendly :D). Jac is the language built for pro-AI communities today.
+    - region "Proof" [ref=e90]:
+      - generic [ref=e91]:
+        - heading "Backed by the names you already trust." [level=2] [ref=e93]
+        - generic [ref=e94]:
+          - generic [ref=e95]:
+            - generic "Company-backed" [ref=e96]:
+              - generic [ref=e97]:
+                - img "NVIDIA" [ref=e99]
+                - img "University of Michigan" [ref=e101]
+                - img "U.S. National Science Foundation" [ref=e103]
+            - article [ref=e104]:
+              - link "Read the case study →" [ref=e106] [cursor=pointer]:
+                - /url: "#cases"
+              - tablist "Case studies" [ref=e107]:
+                - tab "Pocketnest" [selected] [ref=e108] [cursor=pointer]
+                - tab "Ally" [ref=e109] [cursor=pointer]
+                - tab "TruSelph" [ref=e110] [cursor=pointer]
+              - generic [ref=e111]:
+                - generic [ref=e112]: Pocketnest
+                - paragraph [ref=e113]: Already shipping in production.
+                - generic [ref=e114]:
+                  - generic [ref=e115]:
+                    - generic [ref=e116]: 73%
+                    - generic [ref=e117]: More members completing a financial plan
+                  - generic [ref=e118]:
+                    - generic [ref=e119]: 3×
+                    - generic [ref=e120]: Higher cross-sell conversion for partners
+                  - generic [ref=e121]:
+                    - generic [ref=e122]: <3 min
+                    - generic [ref=e123]: To move a member’s money forward
+                - blockquote [ref=e124]:
+                  - text: “Pocketnest turned passive account-holders into engaged members chasing real financial goals.”
+                  - generic [ref=e125]: Jordan Avery — Pocketnest
+              - generic [ref=e126]:
+                - button "Previous case study" [ref=e127] [cursor=pointer]: ‹
+                - button "Next case study" [ref=e128] [cursor=pointer]: ›
+          - generic [ref=e129]:
+            - link "All the research →" [ref=e130] [cursor=pointer]:
+              - /url: https://jaseci.engin.umich.edu/
+            - link "OSP Object-Spatial Programming arXiv:2503.15812 · cs.PL" [ref=e131] [cursor=pointer]:
+              - /url: https://arxiv.org/abs/2503.15812
+              - generic [ref=e132]: OSP
+              - generic [ref=e133]:
+                - generic [ref=e134]: Object-Spatial Programming
+                - generic [ref=e135]: arXiv:2503.15812 · cs.PL
+              - generic [ref=e136]: ↗
+            - 'link "byLLM MTP: A Meaning-Typed Language Abstraction OOPSLA 2025 · arXiv:2405.08965" [ref=e137] [cursor=pointer]':
+              - /url: https://arxiv.org/abs/2405.08965
+              - generic [ref=e138]: byLLM
+              - generic [ref=e139]:
+                - generic [ref=e140]: "MTP: A Meaning-Typed Language Abstraction"
+                - generic [ref=e141]: OOPSLA 2025 · arXiv:2405.08965
+              - generic [ref=e142]: ↗
+    - generic [ref=e144]:
+      - generic [ref=e145]:
+        - heading "Developers needed more Jaseci." [level=2] [ref=e146]
+        - list [ref=e147]:
+          - listitem [ref=e148]:
+            - generic [ref=e149]:
+              - generic [ref=e151]: "01"
+              - generic [ref=e152]:
+                - heading "Developers weren’t building AI alone — they were building whole applications." [level=3] [ref=e153]
+                - paragraph [ref=e154]: Jac was good at building an agentic AI, but developers weren’t just building AI alone. They were building applications — the data, the scale, and the deployment.
+          - listitem [ref=e155]:
+            - generic [ref=e156]:
+              - generic [ref=e158]: "02"
+              - generic [ref=e159]:
+                - 'heading "That exposed a bigger problem: Jac was too slow in production." [level=3] [ref=e160]'
+                - paragraph [ref=e161]: Building real applications highlighted a large problem — Jac was too slow in production.
+          - listitem [ref=e162]:
+            - generic [ref=e163]:
+              - generic [ref=e165]: "03"
+              - generic [ref=e166]:
+                - heading "The root cause was a dependency on third-party tools." [level=3] [ref=e167]
+                - paragraph [ref=e168]: After a lengthy analysis, the problem came down to a dependency on third-party tools to fill those potholes.
+          - listitem [ref=e169]:
+            - generic [ref=e170]:
+              - generic [ref=e172]: "04"
+              - generic [ref=e173]:
+                - heading "So we designed Jac to be the evolutionary leap." [level=3] [ref=e174]
+                - paragraph [ref=e175]: We designed Jac to be that evolutionary leap. How do you turn a language into the next evolutionary step?
+      - img "A line drawing from Jac to Jaseci, which then blooms into a branching tree — the ecosystem." [ref=e177]:
+        - img [ref=e178]:
+          - generic [ref=e209]: Jac
+          - generic [ref=e213]: Jaseci
+    - generic [ref=e215]:
+      - heading "We built the Jaseci Ecosystem." [level=2] [ref=e216]
+      - generic [ref=e217]:
+        - generic [ref=e219]:
+          - generic [ref=e220]: 1LLanguage
+          - generic [ref=e221]:
+            - generic [ref=e222]: Jac
+            - paragraph [ref=e223]: The language. A superset of Python built from the ground up for agents, apps, and AI.
+        - generic [ref=e224]:
+          - generic [ref=e225]:
+            - generic [ref=e226]: ∞Reasoning
+            - generic [ref=e227]:
+              - generic [ref=e228]: byLLM
+              - paragraph [ref=e229]: Makes the model a native type — reasoning becomes a function body the language fills in.
+          - generic [ref=e230]:
+            - generic [ref=e231]: 10×Faster
+            - generic [ref=e232]:
+              - generic [ref=e233]: Jac-Scale
+              - paragraph [ref=e234]: Faster deployment. Python could not — Jac-Scale did. Scale-out without rewriting a line.
+        - generic [ref=e236]:
+          - generic [ref=e237]: 0Config
+          - generic [ref=e238]:
+            - generic [ref=e239]: Jac-Cloud
+            - paragraph [ref=e240]: Zero-config cloud runtime. Ship your graph straight to production as a live service.
+        - generic [ref=e241]:
+          - generic [ref=e242]:
+            - generic [ref=e243]: 1GGraph
+            - generic [ref=e244]:
+              - generic [ref=e245]: OSP
+              - paragraph [ref=e246]: Object-Spatial Programming. Memory and relationships are a first-class graph, not bolt-ons.
+          - generic [ref=e247]:
+            - generic [ref=e248]: 360°Visibility
+            - generic [ref=e249]:
+              - generic [ref=e250]: Jac-Studio
+              - paragraph [ref=e251]: Visual observability. Watch agents walk the graph and inspect every node in real time.
+          - generic [ref=e252]:
+            - generic [ref=e253]: 0Middleware
+            - generic [ref=e254]:
+              - generic [ref=e255]: Jac-Client
+              - paragraph [ref=e256]: No middleware. Python could not — Jac-Client did. Call your backend with zero glue code.
+          - generic [ref=e257]:
+            - generic [ref=e258]: 1msLatency
+            - generic [ref=e259]:
+              - generic [ref=e260]: Jac-Serve
+              - paragraph [ref=e261]: Turns any walker into an endpoint instantly. APIs without the boilerplate or the framework.
+        - generic [ref=e262]:
+          - generic [ref=e263]:
+            - generic [ref=e265]:
+              - generic [ref=e266]: 100%Coverage
+              - generic [ref=e267]:
+                - generic [ref=e268]: Jac-Test
+                - paragraph [ref=e269]: Native testing for graphs and agents. Assert over walks, not mocks.
+            - generic [ref=e270]:
+              - generic [ref=e271]:
+                - generic [ref=e272]: <>Tooling
+                - generic [ref=e273]:
+                  - generic [ref=e274]: Jac-LSP
+                  - paragraph [ref=e275]: First-class editor tooling — autocomplete, types, and jump-to-def for Jac everywhere.
+              - generic [ref=e276]:
+                - generic [ref=e277]: N+Machines
+                - generic [ref=e278]:
+                  - generic [ref=e279]: Jac-Splice
+                  - paragraph [ref=e280]: Distributes a single program across machines. One graph, many nodes, no orchestration tax.
+              - generic [ref=e281]:
+                - generic [ref=e282]: 1k+Packages
+                - generic [ref=e283]:
+                  - generic [ref=e284]: Jaseci-Hub
+                  - paragraph [ref=e285]: The package registry. Share and install JacPacks — reusable agents, walkers, and tools.
+          - link "See the full ecosystem →" [ref=e286] [cursor=pointer]:
+            - /url: "#ecosystem-grid"
+    - generic [ref=e288]:
+      - generic [ref=e289]:
+        - heading "Why did you start coding anyway?" [level=2] [ref=e290]
+        - paragraph [ref=e291]: "Let me give you a small history lesson: Dennis Ritchie, the creator of C, and this is his philosophy: people should code what’s important, that’s it. In 1989, he took away the boilerplate that stood between us and the human purpose to ideate and create. Let Jaseci remove the tooling bottleneck in 2026."
+      - generic [ref=e292]:
+        - generic [ref=e293]:
+          - link "Built in Jac Todo App A full-stack to-do app — auth, database, and live sync, the whole thing in a single Jac file." [ref=e294] [cursor=pointer]:
+            - /url: https://github.com/jaseci-labs/jac-todo
+            - img
+            - generic [ref=e295]:
+              - generic [ref=e296]: Built in Jac
+              - generic [ref=e297]: ↗
+            - generic [ref=e298]:
+              - generic [ref=e299]: Todo App
+              - paragraph [ref=e300]: A full-stack to-do app — auth, database, and live sync, the whole thing in a single Jac file.
+          - link "Built in a weekend FPS Game A browser first-person shooter with enemy agents that adapt to the way you play." [ref=e301] [cursor=pointer]:
+            - /url: https://github.com/jaseci-labs/jac-fps
+            - img
+            - generic [ref=e302]:
+              - generic [ref=e303]: Built in a weekend
+              - generic [ref=e304]: ↗
+            - generic [ref=e305]:
+              - generic [ref=e306]: FPS Game
+              - paragraph [ref=e307]: A browser first-person shooter with enemy agents that adapt to the way you play.
+          - link "Built in 4 Days Black Hole Simulation A real-time gravitational-lensing black hole, ray-marched live in the browser." [ref=e308] [cursor=pointer]:
+            - /url: https://github.com/jaseci-labs/jac-blackhole
+            - generic [ref=e309]:
+              - generic [ref=e310]: Built in 4 Days
+              - generic [ref=e311]: ↗
+            - generic [ref=e312]:
+              - generic [ref=e313]: Black Hole Simulation
+              - paragraph [ref=e314]: A real-time gravitational-lensing black hole, ray-marched live in the browser.
+          - link "Built solo Autonomous Research Agent A multi-agent researcher that reads the web, fact-checks itself, and writes the report." [ref=e315] [cursor=pointer]:
+            - /url: https://github.com/jaseci-labs/jac-research-agent
+            - generic [ref=e316]:
+              - generic [ref=e317]: Built solo
+              - generic [ref=e318]: ↗
+            - generic [ref=e319]:
+              - generic [ref=e320]: Autonomous Research Agent
+              - paragraph [ref=e321]: A multi-agent researcher that reads the web, fact-checks itself, and writes the report.
+        - link "See more JacPacks" [ref=e322] [cursor=pointer]:
+          - /url: https://github.com/jaseci-labs
+          - generic [ref=e323]:
+            - generic [ref=e324]: See more JacPacks →
+            - generic [ref=e325]: See more JacPacks →
+            - generic [ref=e326]: See more JacPacks →
+            - generic [ref=e327]: See more JacPacks →
+            - generic [ref=e328]: See more JacPacks →
+            - generic [ref=e329]: See more JacPacks →
+            - generic [ref=e330]: See more JacPacks →
+            - generic [ref=e331]: See more JacPacks →
+    - generic [ref=e332]:
+      - heading "Stay with the old. Get left behind." [level=2] [ref=e333]
+      - generic [ref=e334]:
+        - link "Join the Community" [ref=e335] [cursor=pointer]:
+          - /url: /community
+        - link "Contribute to OSS" [ref=e336] [cursor=pointer]:
+          - /url: https://github.com/jaseci-labs
+    - contentinfo [ref=e337]:
+      - generic [ref=e338]: © Jaseci
+      - generic [ref=e339]:
+        - link "Docs" [ref=e340] [cursor=pointer]:
+          - /url: /docs
+        - link "GitHub" [ref=e341] [cursor=pointer]:
+          - /url: https://github.com/jaseci-labs
+  - button "Open Next.js Dev Tools" [ref=e347] [cursor=pointer]:
+    - img [ref=e348]
+  - alert [ref=e351]

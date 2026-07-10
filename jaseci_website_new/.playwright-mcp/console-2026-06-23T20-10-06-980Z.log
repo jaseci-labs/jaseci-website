@@ -1,0 +1,208 @@
+[    5240ms] [LOG] [Fast Refresh] done in 3972ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[   10778ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[   11146ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[   15064ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/fonts/circular-book.woff2:0
+[   15730ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/fonts/circular-medium.woff2:0
+[   17755ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/fonts/circular-bold.woff2:0
+[   21287ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[   22388ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="page.tsx">
+            <SegmentTrieNode>
+            <Home>
+              <div className="page-modul...">
+                <nav>
+                <section>
+                <section>
+                <section>
+                <section>
+                <section className="page-modul...">
+                  <div className="page-modul...">
+                    <div>
+                    <div className="page-modul...">
+                      <LineageBloom>
+                        <div ref={{current:null}} className={"LineageB..."} role="img" aria-label="A line con...">
+                          <svg className="LineageBlo..." viewBox="0 0 760 500" fill="none" xmlns="http://www...">
+                            <defs>
+                            <g className={undefined}>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path>
+                              <path
+                                className="LineageBloom-module__rbpKZG__line undefined"
++                               d="M388.13312041809337 212.61264882983016 L339.2835240886227 150.95857974912565"
+-                               d="M388.13312041809337 212.61264882983016 L339.2835240886227 150.9585797491256"
+                                pathLength={1}
+                                style={{--d:"2.52s"}}
+                              >
+                              <path
+                                className="LineageBloom-module__rbpKZG__line undefined"
++                               d="M421.34232642899616 174.28718204519373 L353.3637844723627 134.70909304116594"
+-                               d="M421.34232642899616 174.28718204519373 L353.3637844723627 134.70909304116597"
+                                pathLength={1}
+                                style={{--d:"2.55s"}}
+                              >
+                              <path
+                                className="LineageBloom-module__rbpKZG__line undefined"
++                               d="M353.3637844723627 134.70909304116594 L328.20108182010335 71.45850117406604"
+-                               d="M353.3637844723627 134.70909304116597 L328.20108182010335 71.45850117406604"
+                                pathLength={1}
+                                style={{--d:"3s"}}
+                              >
+                              ...
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle>
+                              <circle
+                                className="LineageBloom-module__rbpKZG__node"
+                                cx={339.2835240886227}
++                               cy={150.95857974912565}
+-                               cy="150.9585797491256"
+                                r={2.6}
+                                style={{--d:"2.88s"}}
+                              >
+                              <circle
+                                className="LineageBloom-module__rbpKZG__node"
+                                cx={353.3637844723627}
++                               cy={134.70909304116594}
+-                               cy="134.70909304116597"
+                                r={2.6}
+                                style={{--d:"2.90999999..."}}
+                              >
+                              ...
+                              ...
+                ...
+          ...
+        ...
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3318
+[   23384ms] [LOG] [Fast Refresh] done in 2198ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[   23931ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[   32581ms] [LOG] [Fast Refresh] done in 8751ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[   34391ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[   35571ms] [LOG] [Fast Refresh] done in 1236ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  170071ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  170143ms] [LOG] [Fast Refresh] done in 170ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  172877ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  173630ms] [LOG] [Fast Refresh] done in 855ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  175127ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  175960ms] [LOG] [Fast Refresh] done in 934ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  360891ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  373716ms] [LOG] [Fast Refresh] done in 12925ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  376515ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  377238ms] [LOG] [Fast Refresh] done in 824ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  387770ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  388251ms] [LOG] [Fast Refresh] done in 583ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  388400ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  388488ms] [LOG] [Fast Refresh] done in 190ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  531274ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  531554ms] [LOG] [Fast Refresh] done in 382ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  554674ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  555030ms] [LOG] [Fast Refresh] done in 456ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  559130ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  560079ms] [LOG] [Fast Refresh] done in 1050ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  720066ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  721447ms] [LOG] [Fast Refresh] done in 1483ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  723359ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  724407ms] [LOG] [Fast Refresh] done in 1150ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  724542ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  725550ms] [LOG] [Fast Refresh] done in 1133ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  734435ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  734647ms] [LOG] [Fast Refresh] done in 314ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  735676ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  735844ms] [LOG] [Fast Refresh] done in 269ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  739185ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  739591ms] [LOG] [Fast Refresh] done in 508ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  745873ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  747139ms] [LOG] [Fast Refresh] done in 1199ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  747319ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  747984ms] [LOG] [Fast Refresh] done in 767ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  772332ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477
+[  772444ms] [LOG] [Fast Refresh] done in 213ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477

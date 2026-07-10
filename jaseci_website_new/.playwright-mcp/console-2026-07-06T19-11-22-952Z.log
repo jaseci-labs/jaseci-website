@@ -1,0 +1,15 @@
+[     655ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-medium.woff2:0
+[     658ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-book.woff2:0
+[     658ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-bold.woff2:0
+[  376405ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-book.woff2:0
+[  376412ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-bold.woff2:0
+[  376481ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-medium.woff2:0
+[ 1100157ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-medium.woff2:0
+[ 1100159ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-bold.woff2:0
+[ 1100159ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-book.woff2:0
+[ 1145031ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-book.woff2:0
+[ 1145031ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-bold.woff2:0
+[ 1145031ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-medium.woff2:0
+[ 1210091ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-medium.woff2:0
+[ 1210094ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-bold.woff2:0
+[ 1210094ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3111/fonts/circular-book.woff2:0
