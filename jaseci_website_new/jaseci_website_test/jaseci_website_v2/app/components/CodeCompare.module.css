@@ -1,0 +1,343 @@
+/* CodeCompare — two editor windows, same DNA as InteropTerminal: white
+   surfaces, hairline black chrome, the nav's diagonal hatch on the
+   titlebars, JetBrains mono, orange accent. Sharp corners, no shadows.
+   Left window is the one-file Jac app (orange tab); right is the
+   React + Flask + CORS pile with a tab per file — more tabs than fit,
+   so the row scrolls sideways on purpose. A square "VS" stamp rides
+   the seam. */
+
+.duel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* ── window shell ──────────────────────────────────────────────────────── */
+
+.win {
+  display: flex;
+  flex-direction: column;
+  height: 640px;
+  min-width: 0;
+  border: 1px solid var(--border);
+  background: var(--background);
+}
+
+.chrome {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 38px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--border);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--hatch) 0,
+    var(--hatch) 1px,
+    transparent 1px,
+    transparent 9px
+  );
+}
+
+.lights {
+  display: flex;
+  gap: 6px;
+}
+
+.light {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--border);
+  background: transparent;
+}
+.light:first-child {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* file-count chip, top right of the chrome */
+.count {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+}
+.countAccent {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ── file tabs — InstallBox tab DNA ────────────────────────────────────── */
+
+/* the left editor's strip — one tab, nothing to scroll */
+.tabRow {
+  flex: none;
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+
+/* the stack's strip: more files than fit, so it scrolls sideways. The
+   native scrollbar is hidden — it takes layout space and leaves a white
+   gap between the tabs and the border — and .tabThumb overlays the scroll
+   position on the tabs' bottom edge instead. */
+.tabWrap {
+  position: relative;
+  flex: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.tabScroll {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+.tabScroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* the overlay thumb — rides in front of the tabs, never takes space.
+   Transparent at rest; fades in while the strip is hovered or scrolled
+   (.tabThumbLit is held by JS during scrolling, dropped ~0.7s after) */
+.tabThumb {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background: var(--muted);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.tabWrap:hover .tabThumb,
+.tabThumbLit {
+  opacity: 1;
+}
+
+.tab {
+  flex: none;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+  padding: 8px 13px;
+  background: var(--background);
+  border: none;
+  border-right: 1px solid var(--border);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+button.tab:hover:not(.tabOn) {
+  color: var(--foreground);
+  background: var(--tint);
+}
+
+/* active file — black slab, like the frozen manifesto boxes */
+.tabOn {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+/* the single Jac tab — the accent, no pointer games */
+.tabJac {
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: default;
+}
+
+/* ── code pane ─────────────────────────────────────────────────────────── */
+
+/* the pane is a wrapper (positions the overlay thumb) around the actual
+   scroller, whose native scrollbar is fully hidden */
+.codeWrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.code {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  padding: 12px 0 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--foreground);
+  counter-reset: line;
+}
+.code::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── the pane's overlay scroll thumb ───────────────────────────────────── */
+
+/* same DNA as .tabThumb, vertical: square, site-grey, transparent at
+   rest, fades in on hover or while scrolling (.codeThumbLit is held by
+   JS during scrolling, dropped ~0.7s after) and fades back out */
+.codeThumb {
+  position: absolute;
+  right: 3px;
+  width: 4px;
+  background: var(--muted);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.codeWrap:hover .codeThumb,
+.codeThumbLit {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabThumb,
+  .codeThumb {
+    transition: none;
+  }
+}
+
+/* lines soft-wrap (hanging, past the gutter) so the pane never needs a
+   horizontal scrollbar at any width */
+.ln {
+  position: relative;
+  white-space: pre-wrap;
+  padding-left: 48px;
+  padding-right: 18px;
+}
+
+/* gutter line numbers — pinned to the row and spanning its full height,
+   so the gutter rule stays continuous even when a line wraps */
+.ln::before {
+  counter-increment: line;
+  content: counter(line);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 34px;
+  padding-right: 8px;
+  text-align: right;
+  border-right: 1px solid var(--hairline-faint);
+  color: var(--grey-3);
+  font-size: 10.5px;
+  line-height: 1.83; /* matches the 12px × 1.6 row line box */
+}
+
+/* token palette — the site's inks only */
+.kw {
+  color: var(--accent);
+  font-weight: 500;
+}
+.str {
+  color: var(--muted);
+}
+.com {
+  color: var(--grey-2);
+}
+.tag {
+  font-weight: 700;
+}
+
+/* ── status bar ────────────────────────────────────────────────────────── */
+
+.status {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 14px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cmd {
+  color: var(--foreground);
+  white-space: nowrap;
+}
+
+.dollar,
+.amp {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.note {
+  color: var(--grey-2);
+  text-align: right;
+}
+
+/* ── the VS stamp on the seam ──────────────────────────────────────────── */
+
+.vs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+/* ── stacked below desktop ─────────────────────────────────────────────── */
+
+@media (max-width: 1020px) {
+  .duel {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .win {
+    height: 540px;
+  }
+  /* the stamp joins the flow between the two windows */
+  .vs {
+    position: static;
+    transform: none;
+    justify-self: center;
+  }
+  .note {
+    display: none; /* keep the status bar to the command on tight widths */
+  }
+}

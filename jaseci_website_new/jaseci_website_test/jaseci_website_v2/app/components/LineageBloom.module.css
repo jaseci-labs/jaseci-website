@@ -1,0 +1,206 @@
+/* Lineage constellation — Jac → Jaseci (slow), then a black radial web that
+   explodes outward almost instantly. After that, JS floats every point on its
+   own path (see LineageBloom.tsx); CSS here only handles the reveal + twinkle,
+   so the two never fight: JS owns position (cx/cy, x1…y2), CSS owns opacity,
+   scale and the line-draw. Everything sits in its hidden initial state until the
+   wrapper gets .play (set by an IntersectionObserver); per-element --d staggers
+   the reveal. */
+
+/* full-bleed: .askVisual centres its child, so a 100vw child spans the screen.
+   overflow: visible on the svg lets the widest points (and their float) spill
+   past the viewBox — i.e. off the screen edges; html/body use overflow-x: clip,
+   so that never makes a horizontal scrollbar. flex-shrink:0 stops the centring
+   flex parent from squeezing it back to the section width. */
+.wrap {
+  width: 100vw;
+  max-width: 100vw;
+  flex-shrink: 0;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  font-family: var(--font-mono);
+}
+
+/* ── lines (initial: undrawn) — all black ─────────────────────────────────────
+   stroke-width + stroke-opacity are set INLINE per edge (depth-driven) so the
+   web mixes thin/faint far lines with bold/solid near lines → a 3D feel. */
+
+.line {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.main {
+  stroke-width: 1.6; /* the slow connection */
+}
+
+/* ── hover-cells: one transparent triangle per 3-clique in the web, sitting
+   BEHIND the lines/nodes. Each tints orange on its OWN :hover only, so a single
+   polygon lights up — never the whole graph. pointer-events: fill lets the empty
+   (transparent) interior catch the hover; the painted web below is set
+   pointer-events: none so the cell under the cursor always wins. Interactive
+   only once the web has bloomed (.play). */
+.cell {
+  fill: var(--accent);
+  fill-opacity: 0;
+  stroke: none;
+  pointer-events: none;
+  transition: fill-opacity 0.12s ease;
+}
+.play .cell {
+  pointer-events: fill;
+}
+/* harsh, high-contrast orange — full-strength accent (the black web lines and
+   dots still paint on top, so the lit shape stays sharp, not flat) */
+.play .cell:hover {
+  fill-opacity: 1;
+}
+
+/* the web itself is decorative — let hovers fall through to the cells above */
+.line,
+.node,
+.rootNode,
+.hubNode,
+.label {
+  pointer-events: none;
+}
+
+/* ── points (initial: hidden) — black ─────────────────────────────────────────
+   depth dimming is an inline fill-opacity; the reveal pop + twinkle animate the
+   element `opacity`, and the two multiply (far points read fainter AND still
+   twinkle). */
+
+.node {
+  fill: var(--foreground);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.rootNode {
+  fill: var(--accent);
+  stroke: var(--accent);
+  stroke-width: 2;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hubNode {
+  fill: var(--foreground);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.label {
+  fill: var(--foreground);
+  /* white halo knocked out around the glyphs so the web's lines don't cut through
+     the word — paint-order draws the stroke first, then the black fill on top, so
+     the letters stay crisp while a clean ring separates them from the mesh. This
+     restyles only the label; the graph's points and lines are untouched. */
+  stroke: var(--background);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0;
+}
+
+/* ── play: the slow connection, then the instant burst ────────────────────── */
+
+.play .main {
+  /* logarithmic descent: the tip shoots fast out of Jac then decelerates onto
+     Jaseci. ease-out-CUBIC (not quint) is used deliberately — quint's tail is so
+     long the line LOOKS landed ~0.3s before it mathematically finishes, leaving a
+     dead pause before the web branches. Cubic still reads logarithmic but arrives
+     crisply at var(--dur), so the branch (fired at that same instant in JS) springs
+     out the moment the line actually touches the hub. */
+  animation: draw var(--dur, 1.5s) cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+/* each line draws OUTWARD from the hub as the horizontal growth-front reaches it
+   (staggered by --d), so the web visibly grows sideways instead of snapping in */
+.play .burst {
+  animation: draw 0.35s ease-out forwards;
+  animation-delay: var(--d, 0s);
+}
+
+/* burst points snap in fast, then twinkle forever (offset so they don't sync) */
+.play .node {
+  animation: pop 0.14s ease-out var(--d) forwards,
+    twinkle 3.6s ease-in-out calc(var(--d) + 0.6s) infinite;
+}
+.play .rootNode {
+  animation: pop 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+.play .hubNode {
+  animation: pop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+.play .label {
+  animation: fade 0.5s ease forwards;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+/* reduced motion — show the finished web, no draw / twinkle / float (the JS
+   float bails out too, so the points just rest at their base positions). */
+@media (prefers-reduced-motion: reduce) {
+  .play .main,
+  .play .burst,
+  .play .node,
+  .play .rootNode,
+  .play .hubNode,
+  .play .label {
+    animation: none;
+  }
+  .line {
+    stroke-dashoffset: 0;
+  }
+  .node,
+  .rootNode,
+  .hubNode,
+  .label {
+    opacity: 1;
+  }
+}

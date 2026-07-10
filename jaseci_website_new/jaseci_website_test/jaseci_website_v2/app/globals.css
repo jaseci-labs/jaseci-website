@@ -1,0 +1,169 @@
+/* Circular — Supabase's brand typeface. It's licensed (not free) and is NOT
+   bundled here. Drop the .woff2 files into /public/fonts with the exact names
+   below and they take over automatically. Until then, text falls back to Geist
+   (next entry in --font-sans), so the site renders unchanged. See
+   /public/fonts/README.md. */
+@font-face {
+  font-family: "Circular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/circular-book.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Circular";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/circular-medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Circular";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/circular-bold.woff2") format("woff2");
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --border: #000000;
+  --muted: #595959;
+  --accent: #ee5a24;
+  --accent-hover: #c8430f;
+
+  /* derived shades — every hardcoded ink in the modules maps onto one of
+     these, so the whole page flips to dark by swapping this block */
+  --on-accent: #ffffff; /* text sitting on an orange fill — both themes */
+  --ink-soft: #1a1a1a; /* strong body copy, one step off full ink */
+  --grey-2: #8f8f8f; /* dim notes / code comments */
+  --grey-3: #b3b3b3; /* faint furniture: line numbers, idle chips */
+  --grey-4: #d4d4d4; /* ghost: progress-bar rest */
+  --hairline-faint: rgba(0, 0, 0, 0.15); /* sub-weight rules (code gutters) */
+  --hatch: rgba(0, 0, 0, 0.06); /* the blueprint diagonal-hatch texture */
+  --tint: rgba(0, 0, 0, 0.05); /* hover wash on flat surfaces */
+
+  --font-sans:
+    "Circular", var(--font-geist), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  /* Paragraph / body face: Mr Eaves XL Sans via Adobe Fonts (Typekit). It loads
+     only through your Adobe web-project kit (wired in app/layout.tsx) — there's
+     no public CDN. Falls back to the same stack as --font-sans, so body copy is
+     unchanged until the kit is live. Confirm the exact family name in your kit
+     matches "mr-eaves-xl-sans". */
+  --font-body:
+    "mr-eaves-xl-sans", "Circular", var(--font-geist), -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:
+    var(--font-jetbrains-mono), "Fira Code", Menlo, Monaco, Consolas, monospace;
+}
+
+/* ── dark theme — the same brutalist system printed in negative ──────────
+   Near-black paper, off-white ink, identical orange. Hairlines, slabs and
+   hatches all ride the tokens, so components invert without their own
+   dark rules; the handful that can't (logo filters, the tower's monolith
+   shading, hex-tile hovers) carry [data-theme="dark"] overrides locally.
+   Set on <html> by the pre-hydration script in layout.tsx and flipped by
+   the nav's ThemeToggle; persisted as localStorage "jac-theme". */
+html[data-theme="dark"] {
+  --background: #0f0f0f;
+  --foreground: #ededed;
+  --border: #ededed;
+  --muted: #a3a3a3;
+  --ink-soft: #d2d2d2;
+  --grey-3: #565656;
+  --grey-4: #333333;
+  --hairline-faint: rgba(255, 255, 255, 0.22);
+  --hatch: rgba(255, 255, 255, 0.08);
+  --tint: rgba(255, 255, 255, 0.08);
+
+  color-scheme: dark;
+}
+
+html {
+  height: 100%;
+  color-scheme: light;
+}
+
+/* smooth in-page anchor jumps (CTA → bento grid, nav links), motion-safe */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  /* `clip` (not `hidden`) prevents horizontal scroll WITHOUT turning html/body
+     into a scroll container — which would break `position: sticky` pinning. */
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100%;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ─────────────────────────────────────────────
+   FallingText — physics-driven jar contents
+   Classes are global so they survive innerHTML.
+   ───────────────────────────────────────────── */
+
+.ft-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+  overflow: hidden;
+}
+
+.ft-target {
+  display: inline-block;
+  padding: 12px;
+  font-family: var(--font-mono);
+}
+
+.ft-word {
+  display: inline-block;
+  margin: 0 4px;
+  user-select: none;
+  color: var(--foreground);
+  white-space: nowrap;
+}
+
+.ft-highlighted {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.ft-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}

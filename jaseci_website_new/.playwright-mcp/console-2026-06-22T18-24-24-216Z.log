@@ -1,2 +1,0 @@
-[     186ms] [LOG] t=0(delay) rocket center x rel svg= 1.0 y= -2.7 @ http://localhost:8911/test.html:351
-[     207ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8911/favicon.ico:0

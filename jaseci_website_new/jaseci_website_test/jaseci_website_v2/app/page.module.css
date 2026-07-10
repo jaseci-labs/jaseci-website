@@ -1,0 +1,1827 @@
+.page {
+  font-family: var(--font-sans);
+}
+
+/* ---------- nav ---------- */
+
+/* The nav rides in a sticky "dock". At the top of the page it's a flush,
+   full-width bar with a hairline underline; once NavDetach adds
+   `nav-detached` to <html> (on first scroll) the dock lifts off the top edge
+   and the inner nav morphs into a centred, fully-bordered floating box. It's
+   all transitions — and the vertical gap comes from the sticky `top` offset
+   (not extra height), so nothing below it shifts. */
+.navDock {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 0;
+  transition:
+    top 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 24px 48px;
+  /* white base with a faint grey diagonal hatch — a technical/blueprint
+     texture behind the nav content. The :hover orange fill uses a `background`
+     shorthand, so it cleanly overrides both the colour and this hatch. */
+  background-color: var(--background);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--hatch) 0,
+    var(--hatch) 1px,
+    transparent 1px,
+    transparent 9px
+  );
+  /* a constant 1px border (sides transparent) so the full outline can fade in
+     with no layout shift; only the bottom hairline shows while flush */
+  border: 1px solid transparent;
+  border-bottom-color: var(--border);
+  transition:
+    max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+/* hover → the whole bar fills orange; text flips to white to stay legible on
+   the fill, and the corner marks fade to transparent so they melt into the
+   orange instead of standing out */
+.nav:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.nav:hover .navLinks a:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+.nav:hover .corner::before,
+.nav:hover .corner::after {
+  background: transparent;
+}
+/* the detached base sets the border black and out-specifies the plain
+   :hover, so scope the orange border to the detached state too — otherwise a
+   black outline lingers around the orange fill */
+:global(html.nav-detached) .nav:hover {
+  border-color: var(--accent);
+}
+
+/* floating state — NavDetach sets html.nav-detached once the page scrolls */
+:global(html.nav-detached) .navDock {
+  top: 12px;
+  padding: 0 16px;
+}
+
+:global(html.nav-detached) .nav {
+  /* wide box — insets from the edges but only shrinks modestly */
+  max-width: 1400px;
+  padding: 14px 28px;
+  border-color: var(--border);
+  /* corners stay sharp (no radius) */
+}
+
+/* orange registration-mark plus signs, one per corner of the box — drawn as
+   two crossed 1px arms, revealed only once the nav detaches */
+.corner {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.corner::before,
+.corner::after {
+  content: "";
+  position: absolute;
+  background: var(--accent);
+}
+.corner::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+.corner::after {
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+/* centre each marker on the corner's border centre-line: -0.5px lands the
+   marker's centre on the middle of the 1px border (not its outer edge), then
+   pull back half its own size. This sits the crosshair arms directly on top of
+   the black border lines instead of running parallel just outside them, and
+   snaps the 1px arms to the pixel grid so they stay crisp. */
+.cornerTL {
+  top: -0.5px;
+  left: -0.5px;
+  transform: translate(-50%, -50%);
+}
+.cornerTR {
+  top: -0.5px;
+  right: -0.5px;
+  transform: translate(50%, -50%);
+}
+.cornerBL {
+  bottom: -0.5px;
+  left: -0.5px;
+  transform: translate(-50%, 50%);
+}
+.cornerBR {
+  bottom: -0.5px;
+  right: -0.5px;
+  transform: translate(50%, 50%);
+}
+:global(html.nav-detached) .corner {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navDock,
+  .nav,
+  .corner {
+    transition: none;
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+/* Jaseci hexagon mark, sitting just left of the JAC wordmark. The PNG is an
+   orange mark on transparency; on the nav's orange :hover fill it would
+   disappear, so flip it to a solid white silhouette to match the wordmark
+   (which also goes white on hover). */
+.brandMark {
+  height: 22px;
+  width: auto;
+  display: block;
+  transition: filter 0.2s ease;
+}
+.nav:hover .brandMark {
+  filter: brightness(0) invert(1);
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 14px;
+}
+
+.navLinks a {
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.navLinks a:hover {
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- section base ---------- */
+
+.section {
+  padding: 120px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.h2 {
+  font-family: var(--font-mono);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+  max-width: 900px;
+}
+
+.body {
+  font-size: 20px;
+  max-width: 720px;
+  line-height: 1.55;
+}
+
+/* Running body copy / paragraphs use the body face (Mr Eaves XL — see
+   --font-body in globals.css). Headings & mono labels are untouched. */
+.body,
+.lead,
+.heroLede,
+.finalSection p,
+.projectCardDesc,
+.bentoDesc {
+  font-family: var(--font-body);
+}
+
+.body + .body {
+  margin-top: 24px;
+}
+
+/* ---------- the receipt — code duel under the stack frame ---------- */
+
+/* the editors prove the frame directly above, so they hug it instead of
+   taking the full 120px section gap */
+.compareSection {
+  padding-top: 0;
+}
+
+/* heading sized to match the stack frame's "Jac is more efficient…" h2
+   (the .jarCopy override), not the full-size base .h2 */
+.compareSection .h2 {
+  font-size: clamp(32px, 3.4vw, 46px);
+}
+
+/* ---------- the ask → so i built jaseci ---------- */
+
+/* stacked top/bottom: the copy + evolution step cards ride on top, the trend
+   graph sits underneath, centered. (Was side-by-side; reformatted into rows so
+   the cards run horizontally above the graph.) */
+.askEcoLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+/* tighten the space below the lineage graph so the ecosystem frame sits closer */
+.section:has(.askEcoLayout) {
+  padding-bottom: 40px;
+}
+
+.askVisual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.askEcoContent {
+  min-width: 0;
+}
+
+/* the two headings that punctuate the scroll get extra breathing room above */
+.askEcoHeading {
+  margin-top: 88px;
+  scroll-margin-top: 96px;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/* struck-through "more": the word stays black, only the strike line is orange */
+.strikeMore {
+  color: var(--foreground);
+  text-decoration-color: var(--accent);
+}
+
+/* ---------- why / conviction ---------- */
+
+.why {
+  overflow: hidden;
+}
+
+.lead {
+  /* matches the ask section's body copy (.body): flat 20px, same line-height */
+  font-size: 20px;
+  max-width: 860px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: #111;
+}
+
+/* a clear empty line of space between the two manifesto paragraphs */
+.lead + .lead {
+  margin-top: 2.4em;
+}
+
+.leadPunch {
+  margin-top: 20px;
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--muted);
+}
+
+.leadPunch span {
+  color: #000;
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 72px;
+  border: 1px solid #000;
+}
+
+.pillar {
+  padding: 40px;
+  border-right: 1px solid #000;
+  position: relative;
+}
+
+.pillar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #ee5a24,
+    #ff4d9d 45%,
+    #a855f7 70%,
+    #22d3ee
+  );
+}
+
+.pillar:last-child {
+  border-right: none;
+}
+
+.pillarTag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid #000;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+
+.pillarTitle {
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin-bottom: 16px;
+}
+
+.pillarBody {
+  font-size: 17px;
+  line-height: 1.55;
+  color: #1a1a1a;
+  max-width: 440px;
+}
+
+.conviction {
+  margin-top: 72px;
+  font-size: clamp(28px, 3.6vw, 46px);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: -0.03em;
+  max-width: 960px;
+  padding-left: 28px;
+  border-left: 4px solid #000;
+}
+
+.carry {
+  margin-top: 40px;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.4;
+  color: var(--muted);
+  max-width: 720px;
+}
+
+.carry strong {
+  color: #000;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  /* wider than the default .section (1200px) so the long headline has room
+     and the abstraction-trend graph renders at a size proportionate to it */
+  max-width: 1600px;
+}
+
+.heroGrid {
+  display: grid;
+  /* near-even split: the graph is the co-star, so it gets almost half the
+     row. The copy column keeps just enough share that the headline lines
+     ("Jac, the language") never wrap at the 84px cap. (The lede + install box
+     carry a 680px cap and simply fill whatever this column yields — on wide
+     windows they read at the full 680 without taking anything from the graph.) */
+  grid-template-columns: 1.15fr minmax(400px, 1fr);
+  gap: 48px;
+  align-items: stretch;
+  min-height: 620px;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heroHeadline {
+  /* capped at 84px (was 88) — the shaved headroom goes to the graph column;
+     at 84px the longest line still clears the narrower copy column */
+  font-size: clamp(40px, 5.5vw, 84px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin-bottom: 32px;
+  /* Always reserve the full 3 lines (line-height 1.02 × 3). The typewriter
+     drops the "AI" line when it types "everything.", which would otherwise
+     collapse a line and shift the whole page down; pinning the height here
+     keeps it rock-steady. */
+  min-height: calc(1.02em * 3);
+}
+
+.heroLede {
+  font-size: 22px;
+  max-width: 680px;
+  line-height: 1.45;
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+
+/* hero visual — the abstraction trendline */
+
+.heroVisual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- the F*CK bin — a thin wire-mesh trash can ---------- */
+
+.jarSection {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* the block-tower "stack" section: center the tower + copy as a balanced pair
+   (instead of the copy spreading to the right edge via 1fr) with a bit more
+   room between them. Desktop only — ≤900px the shared rule still stacks. */
+@media (min-width: 901px) {
+  .jarSection.stackSection {
+    grid-template-columns: minmax(280px, 360px) minmax(0, 620px);
+    justify-content: center;
+    gap: clamp(64px, 6vw, 100px);
+    /* nudge the whole tower + copy pair 60px right (this section only;
+       transform = no reflow, so nothing else on the page moves) */
+    transform: translateX(60px);
+  }
+}
+
+.jarCopy {
+  max-width: 620px;
+}
+
+/* the jar/tower section headings sit in a ~620px column beside the graphic; at
+   the base .h2 size the long "…Python and its abstractions." line wraps to four
+   lines. Scale the heading down with the column (vw-tracked, capped at 46px) so
+   it settles into three lines on desktop. */
+.jarCopy .h2 {
+  font-size: clamp(32px, 3.4vw, 46px);
+}
+
+.jarColumn {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.jar {
+  /* the can silhouette — hairline (1px) to match the Pocketnest card border */
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  border: 1px solid var(--border);
+  border-top: none; /* the ink label band is the top of the can */
+  border-radius: 0 0 10px 10px;
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+}
+
+.jarLabel {
+  /* the can's top band / label */
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(48px, 5vw, 72px);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-align: center;
+  padding: 24px 0;
+  background: var(--foreground);
+  color: var(--background);
+  border-radius: 0;
+  position: relative;
+  margin: 0 -1px; /* cover the 1px side hairlines */
+}
+
+/* the metal hoop above the label */
+.jar::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: -7px;
+  right: -7px;
+  height: 9px;
+  background: var(--foreground);
+  border-radius: 4px 4px 0 0;
+}
+
+.jarBody {
+  /* the wire-mesh body the hex tiles drop into */
+  position: relative;
+  flex: 1;
+  min-height: 520px;
+  overflow: hidden;
+  border-radius: 0 0 10px 10px;
+  background-color: var(--background);
+  /* 1px diamond wire mesh — the same hairline weight as the borders */
+  background-image:
+    repeating-linear-gradient(60deg, transparent 0 13px, var(--border) 13px 14px),
+    repeating-linear-gradient(-60deg, transparent 0 13px, var(--border) 13px 14px);
+}
+
+/* ---------- proof ---------- */
+
+.proofTriad {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.proofTriad span {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 8px 14px;
+  border: 1px solid #000;
+}
+
+.proofTriad span:nth-child(2) {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.proofBlocks {
+  margin-top: 8px;
+}
+
+.proofBlock {
+  margin-top: 72px;
+  padding-top: 72px;
+  border-top: 1px solid #000;
+}
+
+.proofTag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.proofTagNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  font-size: 11px;
+}
+
+.proofBlockTitle {
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  margin-bottom: 18px;
+  max-width: 760px;
+}
+
+.proofBlockLede {
+  font-size: 19px;
+  line-height: 1.55;
+  max-width: 660px;
+}
+
+/* proof › case studies — stat grid */
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #000;
+  margin-top: 40px;
+}
+
+.statCell {
+  padding: 36px 28px;
+  border-right: 1px solid #000;
+}
+
+.statCell:first-child {
+  padding-left: 0;
+}
+
+.statCell:last-child {
+  padding-right: 0;
+  border-right: none;
+}
+
+.statNum {
+  font-size: clamp(40px, 4.6vw, 60px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.proofQuote {
+  margin-top: 40px;
+  max-width: 680px;
+  font-size: 20px;
+  line-height: 1.5;
+  border-left: 2px solid var(--accent);
+  padding-left: 24px;
+}
+
+.proofQuote cite {
+  display: block;
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-style: normal;
+  color: var(--muted);
+}
+
+.proofLink {
+  display: inline-block;
+  margin-top: 32px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-bottom: 1px solid #000;
+  padding-bottom: 4px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.proofLink:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* proof › institutions — logo wall (inverted) */
+
+.logoWall {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 40px;
+  background: #000;
+  border: 1px solid #000;
+}
+
+.logoCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 52px 32px;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.logoCell:last-child {
+  border-right: none;
+}
+
+.logoImgWrap {
+  position: relative;
+  width: 100%;
+  height: 54px;
+}
+
+.logoCaption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* proof › research — paper list */
+
+.paperList {
+  margin-top: 40px;
+  border-top: 1px solid #000;
+}
+
+.paperRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 8px 26px 0;
+  border-bottom: 1px solid #000;
+  transition: padding-left 0.15s ease;
+}
+
+.paperRow:hover {
+  padding-left: 16px;
+}
+
+.paperKey {
+  flex-shrink: 0;
+  min-width: 92px;
+  padding: 9px 14px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #000;
+  transition: background 0.15s ease;
+}
+
+.paperRow:hover .paperKey {
+  background: var(--accent);
+}
+
+.paperMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.paperTitle {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  transition: color 0.15s ease;
+}
+
+.paperRow:hover .paperTitle {
+  color: var(--accent);
+}
+
+.paperVenue {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.paperArrow {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  line-height: 1;
+  color: #000;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.paperRow:hover .paperArrow {
+  color: var(--accent);
+  transform: translate(3px, -3px);
+}
+
+/* ---------- ecosystem ---------- */
+
+/* ECOSYSTEM — a full-width STAIRCASE. The 12 boxes sit in one horizontal row,
+   bottoms on a shared baseline, each taller than the box to its left, so the top
+   edge climbs to the right. They're connected: margin-left:-1px overlaps the
+   shared vertical borders into a single hairline; each box keeps its rectangular
+   form. The header is the bottom-left landing, parked in the open space above the
+   short left boxes. The accordion is kept (horizontal now): hover a box and it
+   widens and goes black while its neighbours shrink; its description fades in. */
+.ecoSection {
+  max-width: 1640px;
+  padding-left: clamp(24px, 4vw, 64px);
+  padding-right: clamp(24px, 4vw, 64px);
+  /* pulled in to close the gap up to the lineage graph above */
+  padding-top: 40px;
+}
+
+.ecoStage {
+  position: relative;
+  /* the CTA's resting height; the two rightmost columns leave this much room */
+  --cta-h: 110px;
+}
+
+/* the bottom-left landing, sitting in the open space above the short left steps */
+.stairHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  margin: 0;
+  width: clamp(240px, 28%, 420px);
+  font-size: clamp(30px, 3.4vw, 50px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  scroll-margin-top: 96px;
+  /* keep each explicit line (via <br />) unbroken so "We built Jaseci." stays
+     on one line instead of wrapping in the narrow column */
+  white-space: nowrap;
+}
+
+.bento {
+  margin-top: 40px;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 460px;
+  /* when the CTA jumps here, clear the sticky nav */
+  scroll-margin-top: 96px;
+}
+
+/* a column in the skyline — its height comes straight from the layout config
+   (--h, a %), so the row rises and dips irregularly. Holds 1–4 stacked boxes. */
+.stairCol {
+  flex: 1 1 0;
+  min-width: 0;
+  height: calc(var(--h) * 1%);
+  /* connect columns — overlap the shared vertical hairline */
+  margin-left: -1px;
+  display: flex;
+  flex-direction: column;
+  transition: flex-grow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stairCol:first-child {
+  margin-left: 0;
+}
+
+/* the two rightmost columns + the CTA, grouped into one flex item (≈2 columns
+   wide) so the CTA joins the accordion: hovering it grows it (the towers above
+   shrink) and widens the group (the left columns shrink). */
+.ctaGroup {
+  flex: 2 1 0;
+  min-width: 0;
+  height: 100%;
+  margin-left: -1px;
+  display: flex;
+  flex-direction: column;
+  transition: flex-grow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* the two towers stand above the CTA, sharing the height left over above it */
+.ctaGroupTop {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* the CTA — a real box in the bottom-right that expands and shrinks with the
+   accordion (rests at --cta-h, grows tall on hover; sits on the baseline beside
+   the short 1ms column) */
+.ecoCta {
+  flex: 0 1 var(--cta-h);
+  min-height: 0;
+  margin-top: -1px;
+  box-sizing: border-box;
+  padding: 0 24px;
+  border: 1px solid var(--foreground);
+  background: var(--foreground);
+  color: var(--background);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  transition: flex-grow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    flex-basis 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease,
+    color 0.3s ease;
+}
+/* hovering the CTA keeps its shape — only the colour changes, black → orange */
+.ecoCta:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.bentoBox {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+  /* connect stacked boxes — overlap the shared horizontal hairline */
+  margin-top: -1px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6px;
+  overflow: hidden;
+  transition: flex-grow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.3s ease, color 0.3s ease;
+}
+.stairCol > .bentoBox:first-child {
+  margin-top: 0;
+}
+
+/* jac-client and jac-super ship expanded — the bigger share of their column,
+   description already showing. 2.6 (was 1.8) so the longer module copy fits
+   without clipping in the resting state. */
+.bentoBox.bentoBoxActive {
+  flex-grow: 2.6;
+}
+.bentoBoxActive .bentoDesc {
+  opacity: 1;
+}
+
+/* the accordion — pointer only, above the stacked breakpoint. Hovering a box
+   widens its whole column AND grows the box within it (its stackmate shrinks). */
+@media (hover: hover) and (min-width: 901px) {
+  .stairCol:has(.bentoBox:hover) {
+    flex-grow: 2.6;
+  }
+  .bentoBox:hover {
+    flex-grow: 4;
+    background: var(--foreground);
+    color: var(--background);
+    z-index: 2;
+  }
+  /* the CTA group widens when one of its tower boxes is hovered (like any other
+     column). Hovering the CTA itself does NOT resize it — shape stays put, only
+     the colour changes (see .ecoCta:hover above). */
+  .ctaGroup:has(.bentoBox:hover) {
+    flex-grow: 4;
+  }
+}
+
+.bentoStat {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+
+.bentoContent {
+  min-width: 0;
+}
+
+.bentoName {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* hidden until the box expands (hover or active) */
+.bentoDesc {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: 0;
+  transition: opacity 0.35s ease 0.12s;
+}
+.bentoBox:hover .bentoDesc {
+  opacity: 1;
+}
+
+/* the install command / syntax token under the description ("pip install
+   byllm", "@schedule", …) — mono + accent so it reads as code; fades in with
+   the description */
+.bentoPip {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.35s ease 0.12s;
+}
+.bentoBox:hover .bentoPip,
+.bentoBoxActive .bentoPip {
+  opacity: 1;
+}
+
+/* the word that completes the stat (e.g. "10×" → "10× Faster"). Hidden until
+   the box expands, then it fades in after the number — mirrors .bentoDesc. */
+.bentoStatWord {
+  margin-left: 0.3em;
+  opacity: 0;
+  transition: opacity 0.35s ease 0.12s;
+}
+.bentoBox:hover .bentoStatWord,
+.bentoBoxActive .bentoStatWord {
+  opacity: 1;
+}
+
+/* stats whose bare accent (1L, N+) reads as cryptic alone show their word in
+   the resting state, not just on expand */
+.bentoStatWordStatic {
+  opacity: 1;
+}
+
+/* stats whose accent is an abbreviation (1L, 1G): the letter gives way to the
+   full word on expand, so it reads "1 Language" rather than "1L Language". */
+.bentoBox:hover .bentoAccentSwap,
+.bentoBoxActive .bentoAccentSwap {
+  display: none;
+}
+
+/* stacked: a plain vertical list, no staircase, no accordion */
+@media (max-width: 900px) {
+  .stairHeader {
+    position: static;
+    width: auto;
+    margin-bottom: 24px;
+  }
+  .bento {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    margin-top: 24px;
+  }
+  .stairCol {
+    height: auto;
+    margin-left: 0;
+    margin-top: -1px;
+  }
+  .stairCol:first-child {
+    margin-top: 0;
+  }
+  .bentoBox {
+    min-height: 110px;
+  }
+  .bentoDesc,
+  .bentoStatWord,
+  .bentoPip {
+    opacity: 1;
+  }
+  .bentoAccentSwap {
+    display: none;
+  }
+  .ctaGroup {
+    height: auto;
+    margin-left: 0;
+    margin-top: -1px;
+  }
+  .ctaGroupTop {
+    flex-direction: column;
+  }
+  .ecoCta {
+    flex: none;
+    padding: 20px 24px;
+  }
+}
+
+/* ---------- projects + case studies ---------- */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 64px;
+  border-top: 1px solid #000;
+}
+
+.card {
+  padding: 48px 32px;
+  border-right: 1px solid #000;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:last-child {
+  border-right: none;
+}
+
+.cardTitle {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.cardMeta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---------- projects (JacPacks showcase) ---------- */
+
+/* widen the projects block beyond the standard 1200 section cap */
+.projectsSection {
+  max-width: 1440px;
+}
+
+.projectsLayout {
+  display: flex;
+  gap: 48px;
+  /* stretch so the right column (cards + banner) matches the height of the
+     left intro column — cards run from the top of the heading to the bottom
+     of the body paragraph */
+  align-items: stretch;
+}
+
+.projectsIntro {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.projectsIntro .h2 {
+  margin-bottom: 24px;
+}
+
+/* "Why did you / start coding?" sits in the narrow intro column, so trim the
+   size and keep each line unbroken — "start coding?" would otherwise wrap into
+   "start" / "coding?" at the base .h2 scale */
+.whyHeading {
+  font-size: clamp(28px, 3.2vw, 46px);
+  white-space: nowrap;
+}
+
+.projectsShowcase {
+  flex: 2.2 1 560px;
+  min-width: 0;
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.projectsCards {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* two equal rows that fill the stretched height so cards reach top-to-bottom */
+  grid-auto-rows: 1fr;
+  gap: 16px;
+}
+
+.projectCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 26px 20px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.projectCard:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.projectCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.projectCardMeta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.projectCardArrow {
+  font-size: 18px;
+  line-height: 1;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.projectCard:hover .projectCardArrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+.projectCardTitle {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.projectCardDesc {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+
+.projectCard:hover .projectCardDesc {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* Media cards (FPS, Todo, Black Hole, Research Agent) — preview gif plays on hover */
+.projectCardFps,
+.projectCardTodo,
+.projectCardBlackhole,
+.projectCardNetwork {
+  position: relative;
+  overflow: hidden;
+}
+
+/* keep meta + title above the media and scrim */
+.projectCardFps > div,
+.projectCardTodo > div,
+.projectCardBlackhole > div,
+.projectCardNetwork > div {
+  position: relative;
+  z-index: 2;
+}
+
+.fpsMedia,
+.todoMedia {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* dark scrim under the text so the title stays legible over the gif */
+.projectCardFps::after,
+.projectCardTodo::after,
+.projectCardBlackhole::after,
+.projectCardNetwork::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.25) 55%,
+    rgba(0, 0, 0, 0.45)
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.projectCardFps:hover .fpsMedia,
+.projectCardFps:hover::after,
+.projectCardTodo:hover .todoMedia,
+.projectCardTodo:hover::after {
+  opacity: 1;
+}
+
+/* let the preview take over: hide the long description on hover */
+.projectCardFps:hover .projectCardDesc,
+.projectCardTodo:hover .projectCardDesc,
+.projectCardBlackhole:hover .projectCardDesc,
+.projectCardNetwork:hover .projectCardDesc {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* the black hole preview: reveals on hover and fades back out when the pointer
+   leaves (same behaviour as the other media cards), but the visual is a live
+   three.js canvas filling the whole card rather than a gif. The generic
+   `.projectCardBlackhole > div` rule above would pull a plain div into the
+   card's flow (relative, z-index 2) — the child selector below out-specifies
+   it back to an absolute, full-bleed layer behind the text. */
+.projectCardBlackhole > .blackholeCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.projectCardBlackhole:hover > .blackholeCanvas,
+.projectCardBlackhole:hover::after {
+  opacity: 1;
+}
+
+/* the research-agent card gets the same treatment: a live three.js neural
+   network fills the card on hover instead of the gif */
+.projectCardNetwork > .networkCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.projectCardNetwork:hover > .networkCanvas,
+.projectCardNetwork:hover::after {
+  opacity: 1;
+}
+
+/* vertical scrolling "See more JacPacks" banner */
+.jacpacksBanner {
+  flex: 0 0 56px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--foreground);
+  background: var(--foreground);
+  color: var(--background);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.jacpacksBanner:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.jacpacksTrack {
+  /* absolute so the (very tall) vertical text doesn't dictate the banner's
+     height — the banner instead stretches to match the cards beside it */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: jacpacksScroll 22s linear infinite;
+}
+
+.jacpacksPhrase {
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  padding-inline: 1.6em;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* 8 identical phrases, gap 0 → -12.5% advances exactly one phrase: seamless loop.
+   8 copies keep the strip filled even when it spans the full column height. */
+@keyframes jacpacksScroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-12.5%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jacpacksTrack {
+    animation: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .projectsLayout {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .projectsShowcase {
+    flex-direction: column;
+  }
+
+  .jacpacksBanner {
+    flex: 0 0 auto;
+    min-height: 60px;
+  }
+
+  .jacpacksTrack {
+    flex-direction: row;
+    animation: none;
+  }
+
+  .jacpacksPhrase {
+    writing-mode: horizontal-tb;
+  }
+
+  .jacpacksPhrase:not(:first-child) {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .projectsCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- ctas ---------- */
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 48px;
+  padding: 20px 40px;
+  border: 2px solid var(--foreground);
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.cta:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+
+/* all three CTAs (Discord / GitHub / Podcast) sit white at rest — the base
+   .cta owns the fill; these two just space the row out. Hover floods the
+   shared accent via .cta:hover. */
+.ctaSecondary {
+  margin-left: 16px;
+}
+
+.ctaPodcast {
+  margin-left: 16px;
+}
+
+/* brand icon (Discord / GitHub) inside each CTA. Collapsed to zero width and
+   hidden by default, it slides + fades in to the right of the label on hover
+   or keyboard focus. `currentColor` ties it to the label colour, so it reads
+   white on the orange hover fill. */
+.ctaLabel {
+  white-space: nowrap;
+}
+.ctaIcon {
+  flex: 0 0 auto;
+  width: 0;
+  height: 18px;
+  margin-left: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease;
+}
+.cta:hover .ctaIcon,
+.cta:focus-visible .ctaIcon {
+  width: 18px;
+  margin-left: 10px;
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ctaIcon {
+    transition: opacity 0.2s ease;
+  }
+}
+
+/* ---------- final + footer ---------- */
+
+.finalSection {
+  padding: 160px 48px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.finalSection h2 {
+  font-family: var(--font-mono);
+  /* Each phrase stays on ONE line — the <br/> splits "Stay with the old." from
+     "Get left behind."; nowrap stops either from wrapping internally. Font is
+     sized so the longer line fits the 1000px box on desktop and down to small
+     phones (mono ≈ 0.6em/char × ~18 chars). */
+  font-size: clamp(24px, 6.5vw, 92px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  max-width: 1000px;
+  margin: 0 auto 32px;
+  white-space: nowrap;
+}
+
+.finalSection p {
+  font-size: 20px;
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--muted);
+}
+
+/* the closing "info" band: a full-bleed orange section (mirrors the nav:hover
+   fill — white text on --accent) carrying contacts, communities, and the
+   made-with-love line. Content is contained to the 1200px column like the rest
+   of the site; the orange bleeds edge to edge. */
+.siteFooter {
+  background: var(--accent);
+  color: #fff;
+}
+
+.footerInner {
+  display: grid;
+  grid-template-columns: 1.3fr 2fr;
+  gap: 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 96px 48px 64px;
+}
+
+.footerBrand {
+  min-width: 0;
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+/* the logo mark is a dark glyph; flip it to a solid white silhouette so it
+   reads on the orange (brightness(0) invert(1)) */
+.footerMark {
+  width: 26px;
+  height: 26px;
+  filter: brightness(0) invert(1);
+}
+
+.footerTagline {
+  margin-top: 20px;
+  max-width: 320px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.footerSite {
+  display: inline-block;
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding-bottom: 2px;
+  transition: border-color 0.15s ease;
+}
+.footerSite:hover {
+  border-bottom-color: #fff;
+}
+
+.footerCols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.footerColHead {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  margin-bottom: 4px;
+}
+
+.footerCol a {
+  font-size: 15px;
+  color: #fff;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.footerCol a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footerBar {
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.footerLove {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.footerHeart {
+  font-size: 13px;
+  color: #fff;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    min-height: auto;
+  }
+
+  /* tighten the row gap on small screens (already stacked) */
+  .askEcoLayout {
+    gap: 40px;
+  }
+
+  .jarSection {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .jar {
+    max-width: 100%;
+  }
+
+  .jarBody {
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 16px 24px;
+  }
+
+  .navLinks {
+    gap: 16px;
+  }
+
+  .section {
+    padding: 80px 24px;
+  }
+
+  .statGrid,
+  .logoWall,
+  .cardGrid,
+  .pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .statCell,
+  .card,
+  .pillar {
+    border-right: none;
+    border-bottom: 1px solid #000;
+  }
+
+  .statCell:last-child,
+  .card:last-child,
+  .pillar:last-child {
+    border-bottom: none;
+  }
+
+  .conviction {
+    padding-left: 20px;
+  }
+
+  .statCell {
+    padding: 28px 0;
+  }
+
+  .logoCell {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .logoCell:last-child {
+    border-bottom: none;
+  }
+
+  .proofBlock {
+    margin-top: 56px;
+    padding-top: 56px;
+  }
+
+  .paperRow {
+    gap: 16px;
+  }
+
+  .paperKey {
+    min-width: 0;
+  }
+
+  .ctaSecondary {
+    margin-left: 0;
+    margin-top: 16px;
+  }
+
+  .finalSection {
+    padding: 96px 24px;
+  }
+
+  .footerInner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 64px 24px 48px;
+  }
+
+  .footerCols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .footerBar {
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .jarLabel {
+    font-size: clamp(36px, 10vw, 56px);
+  }
+}
