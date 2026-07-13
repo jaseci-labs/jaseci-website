@@ -95,21 +95,12 @@ const Hero = () => {
                   ✦ New
                 </span>
                 <a
-                  href="https://jac-coder.jaseci.org/"
+                  href="https://jachammer.ai/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-primary-yellow transition-colors duration-200"
                 >
-                  JacCoder
-                </a>
-                <span className="text-white/30">·</span>
-                <a
-                  href="https://jac-builder-studio.jaseci.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-primary-yellow transition-colors duration-200"
-                >
-                  JacBuilder
+                  JacHammer
                 </a>
                 <svg className="w-3.5 h-3.5 text-primary-orange" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
