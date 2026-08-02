@@ -2,20 +2,47 @@
 
 const features = [
   {
-    title: "Zero setup",
-    body: "Open a tab and you have a full Jac workspace. Nothing to install, nothing to configure.",
+    title: "Deploy with a click",
+    body: "Go from working code to a live, hosted app in seconds. Every project gets its own shareable URL.",
   },
   {
-    title: "Live preview",
-    body: "Watch your app render as you type. Frontend and backend, running side by side with your code.",
+    title: "Scale built in",
+    body: "Hosted on the Jaseci stack, your app grows from weekend demo to production traffic without a rewrite.",
+  },
+  {
+    title: "Build in your browser",
+    body: "A full web IDE is included. Edit, live-preview, and iterate on your projects without installing a thing.",
   },
   {
     title: "Every version kept",
-    body: "Your project history travels with the workspace. Roll back, branch, and compare without leaving the browser.",
+    body: "Project history lives with the project. Roll back, branch, and compare releases without leaving the page.",
+  },
+];
+
+const projects = [
+  {
+    name: "tweetsphere",
+    status: "LIVE",
+    dot: "bg-emerald-400",
+    url: "tweetsphere.jachammer.app",
+    version: "v23",
+    scale: "3 replicas / auto",
   },
   {
-    title: "From prompt to app",
-    body: "Describe what you want and let the hammer swing. Then refine the generated Jac by hand.",
+    name: "study-buddy",
+    status: "LIVE",
+    dot: "bg-emerald-400",
+    url: "study-buddy.jachammer.app",
+    version: "v8",
+    scale: "1 replica",
+  },
+  {
+    name: "feed-ranker",
+    status: "DEPLOYING",
+    dot: "bg-amber-400 animate-pulse",
+    url: "feed-ranker.jachammer.app",
+    version: "v2",
+    scale: "rolling out",
   },
 ];
 
@@ -39,15 +66,15 @@ const JachammerSection = () => {
               03 / jachammer.ai
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white text-balance leading-tight">
-              Idea in.
+              A home for your
               <span className="block bg-gradient-to-r from-amber-400 to-orange-600 bg-clip-text text-transparent pb-1">
-                Running app out.
+                Jac creations.
               </span>
             </h2>
             <p className="mt-5 text-base sm:text-lg text-dark-text/90 leading-relaxed max-w-xl">
-              JacHammer is the web-based IDE for the Jac language. Build,
-              preview, and version your projects entirely in the browser, then
-              share a running app in minutes.
+              JacHammer is where your Jac projects live. Host and deploy your
+              creations at scale, share them with a link, and take an idea
+              from prototype to production without ever moving it.
             </p>
 
             <div className="mt-8 grid sm:grid-cols-2 gap-5">
@@ -71,7 +98,7 @@ const JachammerSection = () => {
                 href="https://jachammer.ai"
                 className="group inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-amber-500 to-orange-700 shadow-md shadow-amber-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-600/40"
               >
-                Launch jachammer.ai
+                Move in at jachammer.ai
                 <svg
                   className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                   fill="none"
@@ -85,7 +112,7 @@ const JachammerSection = () => {
             </div>
           </div>
 
-          {/* Browser IDE mockup */}
+          {/* Projects dashboard mockup */}
           <div className="relative min-w-0">
             <div className="absolute -inset-4 bg-gradient-to-br from-amber-500/10 to-orange-800/10 rounded-3xl blur-2xl opacity-70"></div>
             <div className="relative rounded-2xl border border-white/10 bg-[#141414] shadow-2xl shadow-black/50 overflow-hidden">
@@ -100,75 +127,68 @@ const JachammerSection = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
                     <span className="font-mono text-[0.65rem] text-gray-400">
-                      jachammer.ai/studio
+                      jachammer.ai/projects
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* IDE body */}
-              <div className="grid grid-cols-12 min-h-[300px] text-[0.7rem] font-mono">
-                {/* File tree */}
-                <div className="col-span-3 border-r border-white/10 p-3 space-y-1.5 bg-black/20">
-                  <p className="text-gray-600 uppercase tracking-widest text-[0.6rem] mb-2">
-                    myapp
+              {/* Dashboard body */}
+              <div className="p-4 sm:p-5 font-mono text-[0.7rem]">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-gray-500 uppercase tracking-[0.25em] text-[0.6rem]">
+                    my projects
                   </p>
-                  <p className="text-amber-400 bg-amber-500/10 rounded px-1.5 py-0.5">
-                    main.jac
-                  </p>
-                  <p className="text-gray-500 px-1.5 py-0.5">ui.jac</p>
-                  <p className="text-gray-500 px-1.5 py-0.5">agents.jac</p>
-                  <p className="text-gray-600 px-1.5 py-0.5">jac.toml</p>
+                  <span className="inline-flex items-center gap-1 rounded border border-amber-500/40 text-amber-400 px-2 py-0.5 text-[0.6rem] tracking-widest uppercase">
+                    + new
+                  </span>
                 </div>
 
-                {/* Editor */}
-                <div className="col-span-5 border-r border-white/10 p-3 leading-relaxed text-gray-300 overflow-hidden">
-                  <p>
-                    <span className="text-amber-400">walker</span>{" "}
-                    <span className="text-sky-300">todo</span> {"{"}
-                  </p>
-                  <p className="pl-3">
-                    <span className="text-amber-400">can</span> add{" "}
-                    <span className="text-amber-400">with</span>{" "}
-                    <span className="text-gray-500">`root</span>{" "}
-                    <span className="text-amber-400">entry</span>;
-                  </p>
-                  <p>{"}"}</p>
-                  <p className="mt-2">
-                    <span className="text-amber-400">def</span>{" "}
-                    <span className="text-yellow-200">app</span>() {"{"}
-                  </p>
-                  <p className="pl-3 text-gray-400">
-                    &lt;<span className="text-sky-300">Board</span>{" "}
-                    items={"{"}...{"}"} /&gt;
-                  </p>
-                  <p>{"}"}</p>
-                  <p className="mt-3 text-gray-600"># saved · v14</p>
+                <div className="space-y-2.5">
+                  {projects.map((p) => (
+                    <div
+                      key={p.name}
+                      className="group rounded-lg border border-white/10 bg-black/25 p-3.5 transition-all duration-300 hover:border-amber-500/40 hover:bg-black/40"
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${p.dot}`}></span>
+                          <span className="text-white truncate">{p.name}</span>
+                          <span className="text-gray-600">{p.version}</span>
+                        </div>
+                        <span className="text-[0.6rem] tracking-[0.2em] text-gray-500 border border-white/15 rounded px-1.5 py-0.5 shrink-0">
+                          {p.status}
+                        </span>
+                      </div>
+                      <div className="mt-2 flex items-center justify-between gap-3 text-[0.65rem]">
+                        <span className="text-amber-400/80 truncate">
+                          {p.url}
+                        </span>
+                        <span className="text-gray-600 shrink-0 hidden sm:inline">
+                          {p.scale}
+                        </span>
+                      </div>
+                      <div className="mt-2.5 flex items-center gap-3 text-[0.6rem] uppercase tracking-widest text-gray-600">
+                        <span className="group-hover:text-gray-400 transition-colors">
+                          open in ide
+                        </span>
+                        <span className="text-gray-700">·</span>
+                        <span className="group-hover:text-gray-400 transition-colors">
+                          versions
+                        </span>
+                        <span className="text-gray-700">·</span>
+                        <span className="group-hover:text-amber-400 transition-colors">
+                          deploy
+                        </span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
-                {/* Live preview */}
-                <div className="col-span-4 p-3 bg-gradient-to-br from-black/30 to-transparent">
-                  <p className="text-gray-600 uppercase tracking-widest text-[0.6rem] mb-2">
-                    live preview
-                  </p>
-                  <div className="rounded-lg border border-white/10 bg-[#0d0d0d] p-2.5 space-y-2">
-                    <div className="h-2 w-2/3 rounded bg-gradient-to-r from-amber-500/70 to-orange-600/70"></div>
-                    <div className="h-1.5 w-full rounded bg-white/10"></div>
-                    <div className="h-1.5 w-5/6 rounded bg-white/10"></div>
-                    <div className="mt-2 flex gap-1.5">
-                      <div className="h-4 w-12 rounded bg-amber-500/80"></div>
-                      <div className="h-4 w-12 rounded border border-white/15"></div>
-                    </div>
-                    <div className="mt-2 grid grid-cols-2 gap-1.5">
-                      <div className="h-8 rounded bg-white/[0.06] border border-white/10"></div>
-                      <div className="h-8 rounded bg-white/[0.06] border border-white/10"></div>
-                    </div>
-                  </div>
-                  <p className="mt-2 flex items-center gap-1.5 text-[0.6rem] text-gray-500">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    running
-                  </p>
-                </div>
+                <p className="mt-4 flex items-center gap-2 text-[0.65rem] text-gray-600">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  all systems live · scaling on demand
+                </p>
               </div>
             </div>
           </div>

@@ -26,8 +26,8 @@ const pillars = [
   {
     number: "03",
     name: "JacHammer",
-    kind: "The Browser IDE",
-    tagline: "Build Jac apps in your browser. No install needed.",
+    kind: "The Project Home",
+    tagline: "Where your Jac creations live: hosted, deployed, and scaled.",
     domain: "jachammer.ai",
     anchor: "#jachammer",
     accent: "text-amber-500",
@@ -83,8 +83,8 @@ const EcosystemHero = () => {
             style={{ animation: "heroFadeUp 0.6s ease-out 0.2s both" }}
           >
             Jaseci is the home of Jac: a full-stack programming language with AI
-            built in, a hackathon series where its community ships, and a
-            browser IDE that turns ideas into running apps.
+            built in, a hackathon series where its community ships, and a home
+            where your creations are hosted and scaled.
           </p>
         </div>
 

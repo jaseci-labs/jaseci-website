@@ -12,7 +12,7 @@ const LandingPage = () => {
       <SeoMeta
         title="Jaseci: The Home of the Jac Ecosystem"
         meta_title="Jaseci: The Home of the Jac Ecosystem"
-        description="One ecosystem for AI-native software. Jac, the full-stack AI programming language. JacHacks, the hackathon series. JacHammer, the browser IDE."
+        description="One ecosystem for AI-native software. Jac, the full-stack AI programming language. JacHacks, the hackathon series. JacHammer, the home for your Jac projects."
         image="/images/logo.png"
       />
       <div className="bg-dark-bg">
@@ -31,8 +31,8 @@ const LandingPage = () => {
               Start anywhere. It all runs on Jaseci.
             </h2>
             <p className="mt-3 text-sm sm:text-base text-dark-text/70 leading-relaxed">
-              Learn the language, join a hackathon, or start building in your
-              browser right now.
+              Learn the language, join a hackathon, or give your next creation
+              a home.
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-sm">
               <a
