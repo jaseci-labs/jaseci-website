@@ -76,7 +76,7 @@ def:pub EcosystemHero() -> JsxElement {
                 </p>
 
                 <h1
-                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight text-white text-balance leading-[1.05]"
+                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight text-white text-balance leading-[1.05] sm:leading-none"
                     style={{"animation": "heroFadeUp 0.6s ease-out 0.1s both"}}
                 >
                     One ecosystem for

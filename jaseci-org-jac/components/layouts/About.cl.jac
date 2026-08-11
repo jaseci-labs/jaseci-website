@@ -1,6 +1,7 @@
 """About layout - ports `layouts/About.js`."""
 
 import from ..MDXContent { MDXContent }
+import from ..Markdownify { Markdownify }
 import from ..Social { Social }
 
 sv import from ...server.content { Doc }
@@ -19,12 +20,10 @@ def:pub About(data: Doc) -> JsxElement {
                     />
                 </div>
             }}
-            <h1 className="h2">{unsafe_html(data.title_html)}</h1>
+            <Markdownify as_="h1" className="h2" html={data.title_html} />
             <Social source={data.frontmatter.social} className="social-icons-simple my-8" />
 
-            <div className="content">
-                <MDXContent html={data.html} />
-            </div>
+            <MDXContent className="content" html={data.html} />
         </div>
     </section>;
 }

@@ -9,6 +9,7 @@ jac-version = "==0.34.10"
 [dependencies]
 PyYAML = ">=6.0"
 Markdown = ">=3.5"
+pymdown-extensions = "~=11.0"
 
 [dependencies.npm]
 react = "^18.2.0"

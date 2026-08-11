@@ -1,5 +1,6 @@
 """Contact layout - ports `layouts/Contact.js`."""
 
+import from ..Markdownify { Markdownify }
 import from ...lib.site { CONTACT_FORM_ACTION }
 
 sv import from ...server.content { Doc }
@@ -7,7 +8,7 @@ sv import from ...server.content { Doc }
 def:pub Contact(data: Doc) -> JsxElement {
     return <section className="section">
         <div className="container max-w-[700px]">
-            <h1 className="h2 mb-8 text-center">{unsafe_html(data.title_html)}</h1>
+            <Markdownify as_="h1" className="h2 mb-8 text-center" html={data.title_html} />
             <form className="contact-form" method="POST" action={CONTACT_FORM_ACTION}>
                 <div className="mb-6">
                     <label className="mb-2 block" htmlFor="name">

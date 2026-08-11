@@ -2,6 +2,7 @@
 
 import from "@jac/runtime" { Link }
 import from ..MDXContent { MDXContent }
+import from ..Markdownify { Markdownify }
 import from ..Share { Share }
 import from ..SimilarPosts { SimilarPosts }
 import from ..Posts { authors_for }
@@ -17,7 +18,7 @@ def:pub PostSingle(post: Doc, authors: list[Doc], similar: list[Doc]) -> JsxElem
         <section className="section">
             <div className="container">
                 <article className="text-center">
-                    <h1 className="h2">{unsafe_html(post.title_html)}</h1>
+                    <Markdownify as_="h1" className="h2" html={post.title_html} />
                     <ul className="mb-8 mt-4 flex flex-wrap items-center justify-center space-x-3 text-text">
                         <li>
                             {for author in authors_for(post, authors) {
@@ -66,9 +67,7 @@ def:pub PostSingle(post: Doc, authors: list[Doc], similar: list[Doc]) -> JsxElem
                             className="rounded-lg"
                         />
                     }}
-                    <div className="content mb-16 text-justify">
-                        <MDXContent html={post.html} />
-                    </div>
+                    <MDXContent className="content mb-16 text-justify" html={post.html} />
                     <div className="flex flex-wrap items-center justify-between">
                         <ul className="mb-4 mr-4 space-x-3">
                             {for tag in fm.tags {

@@ -106,12 +106,33 @@ def:pub humanize(content: str) -> str {
     return spaced;
 }
 
+"""`pymdownx.tilde` supplies GFM strikethrough; `md_in_html` lets markdown
+inside raw HTML blocks render the way MDX did on the Next.js site."""
+glob BLOCK_EXTENSIONS: list[str] = ["extra", "sane_lists", "md_in_html", "pymdownx.tilde"];
+
+"""Containers whose children should still be parsed as markdown."""
+glob MD_CONTAINERS: str = "dl|ol|ul|div|section|article|aside|details|table|thead|tbody|tr";
+
+"""Leaves whose contents are inline markdown (no wrapping `<p>`)."""
+glob MD_LEAVES: str = "dt|dd|td|th|li|figcaption|summary|p";
+
+"""MDX parsed markdown inside raw HTML; Python-Markdown needs to be told to.
+
+`md_in_html` only descends into elements carrying a `markdown` attribute, so
+annotate block containers with `markdown="1"` and inline leaves with
+`markdown="span"` before conversion.
+"""
+def mark_html_blocks(text: str) -> str {
+    containers = re.sub(r"<(" + MD_CONTAINERS + r")(?=[\s>])", r'<\1 markdown="1"', text);
+    return re.sub(r"<(" + MD_LEAVES + r")(?=[\s>])", r'<\1 markdown="span"', containers);
+}
+
 """Block-level markdown -> HTML, with image paths pointed at `/assets`."""
 def render_block(text: str) -> str {
     if not text {
         return "";
     }
-    html = markdown.markdown(text, extensions=["extra", "sane_lists"]);
+    html = markdown.markdown(mark_html_blocks(text), extensions=BLOCK_EXTENSIONS);
     return html.replace('src="/images/', 'src="/assets/images/');
 }
 
@@ -120,7 +141,7 @@ def render_inline(text: str) -> str {
     if not text {
         return "";
     }
-    html = markdown.markdown(text, extensions=["extra"]).strip();
+    html = markdown.markdown(text, extensions=["extra", "pymdownx.tilde"]).strip();
     if html.startswith("<p>") and html.endswith("</p>") {
         return html[3:-4];
     }
@@ -200,7 +221,11 @@ def split_frontmatter(source: str) -> tuple[dict[str, any], str] {
         return ({}, source);
     }
     data = yaml.safe_load(parts[1]) or {};
-    return (data, parts[2].lstrip("\n"));
+    # gray-matter consumes only the newline that ends the closing `---` line,
+    # so the body keeps one leading newline - and that newline counts toward
+    # the 200-character post summaries.
+    body = parts[2][1:] if parts[2].startswith("\n") else parts[2];
+    return (data, body);
 }
 
 def build_social(raw: any) -> list[SocialLink] {

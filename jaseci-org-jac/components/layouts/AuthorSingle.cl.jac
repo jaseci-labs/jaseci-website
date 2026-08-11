@@ -1,6 +1,7 @@
 """Author profile layout - ports `layouts/AuthorSingle.js`."""
 
 import from ..MDXContent { MDXContent }
+import from ..Markdownify { Markdownify }
 import from ..Social { Social }
 import from ..SeoMeta { SeoMeta }
 
@@ -26,11 +27,9 @@ def:pub AuthorSingle(author: Doc) -> JsxElement {
                             />
                         </div>
                     }}
-                    <h1 className="h2 mb-8">{unsafe_html(author.title_html)}</h1>
+                    <Markdownify as_="h1" className="h2 mb-8" html={author.title_html} />
                     <Social source={fm.social} className="social-icons-simple" />
-                    <div className="content">
-                        <MDXContent html={author.html} />
-                    </div>
+                    <MDXContent className="content" html={author.html} />
                 </div>
             </div>
         </section>

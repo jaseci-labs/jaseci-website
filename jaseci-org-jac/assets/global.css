@@ -1,8 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 @import "tailwindcss";
+/* MDXContent.js imported this on the Next.js site; it supplies the code-block
+   padding/scroll behaviour on top of the token colours overridden below. */
+@import "highlight.js/styles/atom-one-dark.css";
 
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
+
+/* The v3 build had `container: { center, padding: "2rem" }` plus a
+   `.container { @apply max-w-[1000px] }` override in the components layer.
+   In v4 `container` is a real utility, so redefine it here - `@utility`
+   keeps `max-w-*` able to override it, exactly as before. */
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 2rem;
+  max-width: 1000px;
+}
 
 /* ------------------------------------------------------------------
    Design tokens - ported from config/theme.json + tailwind.config.js
@@ -70,6 +84,10 @@
   /* fonts */
   --font-primary: "Inter", sans-serif;
   --font-secondary: "Inter", sans-serif;
+  /* Pinned to the stack the v3 build resolved `font-sans` to, so body copy
+     renders with identical metrics. */
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* animations */
   --animate-gradient-border: gradient-border 4s ease infinite;
@@ -169,8 +187,11 @@
     scroll-behavior: smooth;
   }
 
+  /* base.scss set `font-primary`, but style.scss's later `@layer base` rule
+     re-applied `font-sans` - so body text is the system sans stack, and only
+     the headings below use Inter. */
   body {
-    @apply bg-[#1a1a1a] font-primary font-normal leading-relaxed text-white;
+    @apply bg-[#1a1a1a] font-sans font-normal leading-relaxed text-white;
   }
 
   h1,
@@ -179,7 +200,10 @@
   h4,
   h5,
   h6 {
-    @apply font-primary font-bold leading-tight;
+    @apply font-primary font-bold;
+    /* NOT `@apply leading-tight`: that sets --tw-leading, which every v4
+       `text-*` utility reads, overriding the size-paired line heights. */
+    line-height: 1.25;
   }
 
   h1,
@@ -238,14 +262,6 @@
   /* section style */
   .section {
     @apply pb-8 pt-8 md:pb-16 md:pt-32;
-  }
-
-  /* container (tailwind container: centered, 2rem padding, capped at 1000px) */
-  .container {
-    width: 100%;
-    margin-inline: auto;
-    padding-inline: 2rem;
-    max-width: 1000px;
   }
 
   /* bootstrap-style grid (replaces tailwind-bootstrap-grid) */

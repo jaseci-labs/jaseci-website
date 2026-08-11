@@ -4,8 +4,24 @@ import from "@jac/runtime" { useLocation }
 import from ..lib.site { META_AUTHOR, META_DESCRIPTION, META_IMAGE, SITE_BASE_URL, SITE_TITLE }
 import from ..lib.dom { create, doc, head, query }
 
-"""Strip markdown/HTML from a value destined for a meta tag."""
-def plainify(content: str) -> str {
+"""Inline emphasis markers `marked.parseInline` turns into tags, which the
+original `plainify()` then strips - so they disappear either way."""
+glob INLINE_MARKERS: list[str] = ["***", "___", "**", "__", "~~", "*", "_", "`"];
+
+glob HTML_ENTITIES: list[list[str]] = [
+    ["&nbsp;", " "], ["&lt;", "<"], ["&gt;", ">"],
+    ["&amp;", "&"], ["&quot;", '"'], ["&#39;", "'"]
+];
+
+def strip_markers(content: str) -> str {
+    out = content;
+    for marker in INLINE_MARKERS {
+        out = "".join(out.split(marker));
+    }
+    return out;
+}
+
+def strip_tags(content: str) -> str {
     out = "";
     inside_tag = False;
     for ch in content {
@@ -24,6 +40,39 @@ def plainify(content: str) -> str {
     return out;
 }
 
+"""Drop `[\\r\\n]\\s*[\\r\\n]` runs, the way the original regex did."""
+def collapse_blank_lines(content: str) -> str {
+    out = "";
+    index = 0;
+    length = len(content);
+    while index < length {
+        ch = content[index];
+        if ch == "\n" or ch == "\r" {
+            scan = index + 1;
+            while scan < length and content[scan].isspace() and content[scan] != "\n" and content[scan] != "\r" {
+                scan = scan + 1;
+            }
+            if scan < length and (content[scan] == "\n" or content[scan] == "\r") {
+                index = scan + 1;
+                continue;
+            }
+        }
+        out = out + ch;
+        index = index + 1;
+    }
+    return out;
+}
+
+"""Port of `plainify()` - inline-render, strip tags, collapse blank lines,
+decode entities."""
+def plainify(content: str) -> str {
+    out = collapse_blank_lines(strip_tags(strip_markers(content)));
+    for pair in HTML_ENTITIES {
+        out = pair[1].join(out.split(pair[0]));
+    }
+    return out;
+}
+
 def upsert_meta(attribute: str, key: str, value: str) -> None {
     selector = "meta[" + attribute + '="' + key + '"]';
     element = query(selector);
@@ -33,6 +82,27 @@ def upsert_meta(attribute: str, key: str, value: str) -> None {
         head().appendChild(element);
     }
     element.setAttribute("content", value);
+}
+
+"""Set a meta tag when `present`, otherwise remove it."""
+def upsert_meta_when(present: bool, attribute: str, key: str, value: str) -> None {
+    if present {
+        upsert_meta(attribute, key, value);
+        return;
+    }
+    element = query("meta[" + attribute + '="' + key + '"]');
+    if element {
+        element.remove();
+    }
+}
+
+"""JS `String.replace(str, "")` drops only the first match."""
+def drop_first_slash(path: str) -> str {
+    index = path.find("/");
+    if index < 0 {
+        return path;
+    }
+    return path[:index] + path[index + 1:];
 }
 
 def upsert_link(rel: str, href: str) -> None {
@@ -66,11 +136,14 @@ def:pub SeoMeta(
         resolved_title = plainify(meta_title if meta_title else (title if title else SITE_TITLE));
         resolved_description = plainify(description if description else META_DESCRIPTION);
         resolved_image = SITE_BASE_URL + (image if image else META_IMAGE);
-        page_url = SITE_BASE_URL + location.pathname.replace("/", "");
+        # `${base_url}/${pathname.replace("/", "")}` on the old site: JS replaces
+        # only the FIRST slash, and base_url is itself "/", so the value keeps
+        # the leading double slash.
+        page_url = SITE_BASE_URL + "/" + drop_first_slash(location.pathname);
 
         doc().title = resolved_title;
         upsert_link("canonical", canonical);
-        upsert_meta("name", "robots", "noindex,nofollow" if noindex else "index,follow");
+        upsert_meta_when(noindex, "name", "robots", "noindex,nofollow");
         upsert_meta("name", "description", resolved_description);
         upsert_meta("name", "author", META_AUTHOR);
         upsert_meta("property", "og:title", resolved_title);

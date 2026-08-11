@@ -253,7 +253,7 @@ def SectionHeader(eyebrow: str, title: str, description: str) -> JsxElement {
             </span>
             <span className="h-px w-8 bg-gradient-to-l from-transparent to-primary-orange/70"></span>
         </div>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight leading-[1.15] pb-2 bg-clip-text text-transparent drop-shadow-[0_2px_24px_rgba(0,0,0,0.4)] bg-gradient-to-b from-white via-orange-50 to-amber-200/90">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight leading-[1.15] md:leading-10 lg:leading-none pb-2 bg-clip-text text-transparent drop-shadow-[0_2px_24px_rgba(0,0,0,0.4)] bg-gradient-to-b from-white via-orange-50 to-amber-200/90">
             {title}
         </h2>
         <div className="h-0.5 mx-auto w-32 mb-5 bg-gradient-to-r from-transparent via-primary-orange to-transparent"></div>
@@ -607,7 +607,7 @@ def:pub BuiltWithJaseciView() -> JsxElement {
                         ✦ Showcase
                     </div>
 
-                    <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-[1.05] tracking-tight mb-6">
+                    <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-[1.05] sm:leading-none tracking-tight mb-6">
                         <span className="block bg-gradient-to-b from-white via-orange-50 to-amber-100/90 bg-clip-text text-transparent drop-shadow-[0_2px_30px_rgba(0,0,0,0.5)]">
                             Built with
                         </span>

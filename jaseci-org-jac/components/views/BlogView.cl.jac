@@ -7,7 +7,7 @@ import from ...lib.site { PAGINATION }
 
 sv import from ...server.content { Doc, list_authors, list_posts }
 
-def:pub BlogView(current_page: int = 1, heading: str = "") -> JsxElement {
+def:pub BlogView(current_page: int = 1, heading: str = "", title: str = "Blogs") -> JsxElement {
     has posts: list[Doc] = [],
         authors: list[Doc] = [];
 
@@ -22,7 +22,7 @@ def:pub BlogView(current_page: int = 1, heading: str = "") -> JsxElement {
     current_posts = posts[first_index:last_index];
 
     return <>
-        <SeoMeta title={heading if heading else "Blogs"} />
+        <SeoMeta title={title} />
         <section className="section">
             <div className="container">
                 {if heading {

@@ -1,6 +1,7 @@
 """Author grid - ports `layouts/partials/Authors.js`."""
 
 import from "@jac/runtime" { Link }
+import from .Markdownify { Markdownify }
 
 sv import from ..server.content { Doc }
 
@@ -24,7 +25,9 @@ def:pub Authors(authors: list[Doc]) -> JsxElement {
                         {author.frontmatter.title}
                     </Link>
                 </h3>
-                <p>{unsafe_html(author.excerpt_html)}</p>
+                {if author.content {
+                    <Markdownify key="excerpt" as_="p" html={author.excerpt_html} />
+                }}
             </div>
         }}
     </div>;

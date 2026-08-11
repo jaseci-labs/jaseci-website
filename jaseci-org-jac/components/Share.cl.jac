@@ -3,6 +3,10 @@
 import from "react-icons/io5" { IoLogoFacebook, IoLogoLinkedin, IoLogoPinterest, IoLogoTwitter }
 import from ..lib.site { SITE_BASE_URL }
 
+"""The original's template literal spelled this separator `&amp;`, which JS
+leaves as literal text in the URL. Kept verbatim so the share link matches."""
+glob TWITTER_AMP: str = "&amp;";
+
 def:pub Share(title: str, description: str, slug: str, className: str = "") -> JsxElement {
     base = SITE_BASE_URL;
     return <ul className={className}>
@@ -19,7 +23,7 @@ def:pub Share(title: str, description: str, slug: str, className: str = "") -> J
         <li className="inline-block">
             <a
                 aria-label="twitter share button"
-                href={"https://twitter.com/intent/tweet/?text=" + title + "&url=" + base + "/" + slug}
+                href={"https://twitter.com/intent/tweet/?text=" + title + TWITTER_AMP + "url=" + base + "/" + slug}
                 target="_blank"
                 rel="noreferrer noopener"
             >
