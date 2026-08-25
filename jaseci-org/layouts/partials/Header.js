@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
+import { FaGithub, FaStar, FaCodeFork } from "react-icons/fa6";
 
 // Global cache to prevent multiple components from making simultaneous requests
 let globalStatsCache = null;
@@ -99,15 +100,21 @@ const Header = () => {
             <span className="font-medium leading-tight">The Jac Programming Language and Jaseci Stack</span>
           </div>
           <div className="flex items-center gap-3">
-            <a 
-              href="https://github.com/jaseci-labs/jaseci" 
-              className="flex items-center gap-2 hover:text-primary-orange transition-colors" 
-              target="_blank" 
+            <a
+              href="https://github.com/jaseci-labs/jaseci"
+              className="group flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] py-1 pl-3 pr-1.5 transition-all duration-300 hover:border-primary-orange/50 hover:bg-white/10"
+              target="_blank"
               rel="noopener noreferrer"
             >
-              <span>GitHub</span>
-              <span className="text-xs opacity-80">
-                ⭐ {stats.stars} 🍴 {stats.forks}
+              <FaGithub className="w-4 h-4 shrink-0" />
+              <span className="font-semibold mr-1">GitHub</span>
+              <span className="flex items-center gap-1 rounded-full bg-black/40 px-2 py-0.5 text-xs">
+                <FaStar className="w-3 h-3 text-yellow-400" />
+                <span className="font-mono">{stats.stars}</span>
+              </span>
+              <span className="flex items-center gap-1 rounded-full bg-black/40 px-2 py-0.5 text-xs">
+                <FaCodeFork className="w-3 h-3 text-gray-300" />
+                <span className="font-mono">{stats.forks}</span>
               </span>
             </a>
           </div>
