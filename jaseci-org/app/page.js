@@ -5,6 +5,7 @@ import EcosystemHero from "@layouts/components/landing/EcosystemHero";
 import JaclangSection from "@layouts/components/landing/JaclangSection";
 import JachacksSection from "@layouts/components/landing/JachacksSection";
 import JachammerSection from "@layouts/components/landing/JachammerSection";
+import TestimonialsSection from "@layouts/components/landing/TestimonialsSection";
 
 const LandingPage = () => {
   return (
@@ -20,6 +21,7 @@ const LandingPage = () => {
         <JaclangSection />
         <JachacksSection />
         <JachammerSection />
+        <TestimonialsSection />
 
         {/* Closing band */}
         <section className="relative border-t border-white/10 bg-dark-bg py-16 sm:py-20 overflow-hidden">
