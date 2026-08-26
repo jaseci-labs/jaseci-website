@@ -1,0 +1,210 @@
+/* Manifesto accordion — topic boxes with a +/− expand button.
+   Stark B&W, hairline borders, accent on hover, body height animated. */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.box {
+  border: 1px solid var(--border);
+  background: var(--background);
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+/* hover → fill the box orange and flip its text to white */
+.box:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.box:hover .headline {
+  color: #fff;
+}
+.box:hover .body {
+  color: #fff;
+  border-top-color: rgba(255, 255, 255, 0.5);
+}
+
+/* open (clicked) → lock the box into a solid black state with white text:
+   distinct from the transient orange hover, and it holds when you hover away —
+   until the +/− is clicked again. Equal specificity to :hover but declared
+   later, so the lock wins whenever a box is both open and hovered. */
+.box[data-open="true"] {
+  background: var(--foreground);
+  border-color: var(--foreground);
+}
+.box[data-open="true"] .headline {
+  color: var(--background);
+}
+.box[data-open="true"] .body {
+  color: var(--background);
+  border-top-color: color-mix(in srgb, var(--background) 50%, transparent);
+}
+
+/* clickable header row */
+.head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 18px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.headline {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+/* expand button — a plus that becomes a minus when open */
+.icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--border);
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+.icon::before,
+.icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--foreground);
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease, background 0.18s ease;
+}
+.icon::before {
+  width: 11px;
+  height: 2px;
+}
+.icon::after {
+  width: 2px;
+  height: 11px;
+}
+/* open → collapse the vertical bar so the plus reads as a minus */
+.box[data-open="true"] .icon::after {
+  transform: translate(-50%, -50%) scaleY(0);
+}
+/* open state — the box is now black, so the +/− goes white (like hover) and
+   reads as a minus */
+.box[data-open="true"] .icon {
+  background: transparent;
+  border-color: var(--background);
+}
+.box[data-open="true"] .icon::before,
+.box[data-open="true"] .icon::after {
+  background: var(--background);
+}
+/* hover → box fills orange, so the button goes white to stay visible */
+.box:hover .icon {
+  background: transparent;
+  border-color: #fff;
+}
+.box:hover .icon::before,
+.box:hover .icon::after {
+  background: #fff;
+}
+/* hover also flips the + into a − to match the auto-revealed body */
+.box:hover .icon::after {
+  transform: translate(-50%, -50%) scaleY(0);
+}
+
+/* collapsible body (0fr → 1fr animates real height) */
+.bodyWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+/* open by click (data-open) OR by hover → animate the body to full height;
+   leaving the box collapses it again */
+.box[data-open="true"] .bodyWrap,
+.box:hover .bodyWrap {
+  grid-template-rows: 1fr;
+}
+.bodyInner {
+  overflow: hidden;
+}
+.body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--border);
+  padding: 14px 18px 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bodyWrap,
+  .icon::before,
+  .icon::after {
+    transition: none;
+  }
+}
+
+/* ─── tower variant ────────────────────────────────────────────────────────
+   Pairs the accordion with the BlockTower beside it. Each claim becomes a solid
+   3D block — the white front face plus an extruded right + bottom side face —
+   and the stack widens as it descends, like blocks settling onto a stable base.
+   Scoped to variant="tower", so the jar-section accordion stays flat. */
+.tower {
+  align-items: flex-start; /* let each box take its own, narrower width */
+  gap: 20px;
+  --w-top: 68; /*  % width of the top block    */
+  --w-bottom: 96; /* % width of the bottom block  */
+  --depth: 11px; /*  the extruded block thickness */
+  padding-right: var(--depth); /* room for the widest block's side face */
+}
+
+/* widen by index: top block --w-top%, bottom block --w-bottom%, linear between */
+.tower .box {
+  position: relative;
+  align-self: flex-start;
+  width: calc(
+    (
+        var(--w-top) + (var(--w-bottom) - var(--w-top)) * var(--i) /
+          (var(--n) - 1)
+      ) * 1%
+  );
+}
+
+/* the side faces — a solid plane offset down-right behind the block, so a strip
+   shows along its right and bottom edge: the block's thickness. Black, matching
+   the tower's hairline linework and its solid Python base. */
+.tower .box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--foreground);
+  transform: translate(var(--depth), var(--depth));
+  transition: background 0.18s ease;
+}
+
+/* hover → the whole block goes orange; the side face takes the darker accent so
+   it reads as a lit 3D block (bright front, shaded side), matching the tower. */
+.tower .box:hover::before {
+  background: var(--accent-hover);
+}
+
+/* open (clicked) → the block locks solid black; keep the side face black too so
+   it reads as one black monolith, not a black front with an orange side.
+   Declared after the hover rule so it wins when a block is open and hovered. */
+.tower .box[data-open="true"]::before {
+  background: var(--foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tower .box::before {
+    transition: none;
+  }
+}

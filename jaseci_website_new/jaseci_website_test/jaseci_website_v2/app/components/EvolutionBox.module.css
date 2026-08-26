@@ -1,0 +1,263 @@
+/* EvolutionBox — statement slab + interop terminal + orange story drawer.
+   One fixed-height hairline frame: big headline on the left, the animated
+   InteropTerminal filling a flush right panel (width --storyW, hairline
+   divider). Hovering the statement (or keyboard-focusing the frame) slides
+   the orange drawer in from the right edge over the terminal (width 0 →
+   --storyW), with its text pinned right so the wipe reveals it without any
+   rewrap. Fixed height means the page below never reflows. ≤900px it
+   stacks statement / terminal / story and stays open (no hover on touch),
+   with the story dark-on-white per the site's mobile pattern. */
+
+.frame {
+  /* the drawer's (and terminal panel's) width — fixed px so the wipe
+     never rewraps text and covers the terminal exactly */
+  --storyW: 480px;
+
+  position: relative;
+  height: 340px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  overflow: hidden;
+  outline: none;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+/* ── the statement (always visible) ──────────────────────────────────── */
+
+.statement {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 28px;
+  /* keep the headline clear of the drawer's landing zone */
+  padding-right: calc(var(--storyW) + 48px);
+}
+
+.headline {
+  margin: auto 0;
+  font-family: var(--font-sans);
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  max-width: 30ch;
+  /* honour the \n the page copy uses to control the break point */
+  white-space: pre-line;
+  transition: color 0.18s ease;
+}
+
+/* ── the interop terminal panel (under the drawer) ───────────────────── */
+
+/* flush right panel, same width as the drawer so the wipe covers it
+   exactly; hairline divider carries the bento-grid language */
+.demo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--storyW);
+  border-left: 1px solid var(--border);
+}
+
+/* ── the orange story drawer ─────────────────────────────────────────── */
+
+.story {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  overflow: hidden;
+  background: var(--accent);
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1), background 0.18s ease;
+}
+/* the drawer opens from the statement side (not the whole frame) so
+   hovering the terminal doesn't cover the very animation being watched;
+   .story:hover keeps it open once the pointer travels onto it */
+.statement:hover ~ .story,
+.story:hover,
+.frame:focus-visible .story,
+.frame[data-open="true"] .story {
+  width: var(--storyW);
+}
+
+/* ── clicked / frozen (data-open) → lock the slab into a solid black state
+      with white text: distinct from the transient orange hover preview, and
+      it holds even when you hover away — until the +/− is clicked again ──── */
+.frame[data-open="true"] {
+  background: var(--foreground);
+  border-color: var(--foreground);
+}
+.frame[data-open="true"] .headline {
+  color: var(--background);
+}
+.frame[data-open="true"] .story {
+  background: var(--foreground);
+}
+
+/* text pinned at final width to the right edge → clean wipe, no rewrap */
+.storyInner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--storyW);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 30px;
+}
+
+.storyText {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  /* on the orange hover drawer — stays white in both themes */
+  color: #fff;
+}
+
+/* frozen (data-open) the drawer is an ink slab, not orange — flip the copy
+   to paper so it stays legible in both themes */
+.frame[data-open="true"] .storyText {
+  color: var(--background);
+}
+
+/* ── the +/− affordance (rides above the drawer) ─────────────────────── */
+
+.icon {
+  position: absolute;
+  top: 20px;
+  /* pinned just left of the terminal seam, in the statement's gutter —
+     the spot the drawer slides out from */
+  right: calc(var(--storyW) + 20px);
+  z-index: 2;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.18s ease;
+}
+.icon::before,
+.icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--foreground);
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease, background 0.18s ease;
+}
+.icon::before {
+  width: 11px;
+  height: 2px;
+}
+.icon::after {
+  width: 2px;
+  height: 11px;
+}
+/* the icon sits over white in every state except the frozen black slab,
+   so only data-open flips it to white */
+.frame[data-open="true"] .icon {
+  border-color: var(--background);
+}
+.frame[data-open="true"] .icon::before,
+.frame[data-open="true"] .icon::after {
+  background: var(--background);
+}
+/* + → − while the drawer is out */
+.statement:hover ~ .icon::after,
+.story:hover ~ .icon::after,
+.frame:focus-visible .icon::after,
+.frame[data-open="true"] .icon::after {
+  transform: translate(-50%, -50%) scaleY(0);
+}
+
+/* visually hidden copy of the drawer text for screen readers */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── narrower desktops: slimmer drawer so the statement keeps room ───── */
+@media (max-width: 1200px) {
+  .frame {
+    --storyW: 420px;
+  }
+}
+@media (max-width: 1040px) {
+  .frame {
+    --storyW: 380px;
+  }
+}
+
+/* ── stacked / always-open below the desktop slab (no hover on touch) ── */
+@media (max-width: 900px) {
+  .frame {
+    height: auto;
+  }
+  /* no +/− affordance on touch: keep the stacked slab white with dark text
+     even if a frozen state somehow carried over from a wider layout */
+  .frame[data-open="true"] {
+    background: var(--background);
+    border-color: var(--border);
+  }
+  .frame[data-open="true"] .headline {
+    color: var(--foreground);
+  }
+  .frame[data-open="true"] .story {
+    background: var(--background);
+  }
+  .statement {
+    padding: 18px 20px;
+  }
+  /* terminal becomes a stacked band between statement and story — fixed
+     height so the animation keeps a stable stage */
+  .demo {
+    position: static;
+    width: auto;
+    height: 320px;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+  .icon {
+    display: none;
+  }
+  .story,
+  .frame:hover .story,
+  .frame:focus-visible .story,
+  .frame[data-open="true"] .story {
+    position: static;
+    width: auto;
+    background: var(--background);
+    border-top: 1px solid var(--border);
+  }
+  .storyInner {
+    position: static;
+    width: auto;
+    padding: 18px 20px;
+  }
+  .storyText,
+  .frame[data-open="true"] .storyText {
+    color: var(--ink-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story,
+  .icon::before,
+  .icon::after {
+    transition: none;
+  }
+}
