@@ -1,0 +1,55 @@
+[project]
+name = "jaseci-org-jac"
+version = "2.0.0"
+description = "Jac & Jaseci: The AI-First Programming Language - jaseci.org, written in Jac"
+entry-point = "main.jac"
+kind = "web-app"
+jac-version = "==0.37.1"
+
+[dependencies]
+PyYAML = ">=6.0"
+Markdown = ">=3.5"
+pymdown-extensions = "~=11.0"
+
+[dependencies.npm]
+react = "^18.2.0"
+react-dom = "^18.2.0"
+react-router-dom = "^6.22.0"
+react-error-boundary = "^5.0.0"
+"@tanstack/react-form" = "^1.33.0"
+zod = "^4.3.6"
+react-icons = "^5.3.0"
+"highlight.js" = "^11.11.1"
+clsx = "^2.1.1"
+tailwind-merge = "^2.5.4"
+
+[dependencies.npm.dev]
+vite = "^6.4.1"
+"@vitejs/plugin-react" = "4.7.0"
+typescript = "^5.3.3"
+"@types/react" = "^18.2.0"
+"@types/react-dom" = "^18.2.0"
+tailwindcss = "^4.1.0"
+"@tailwindcss/vite" = "^4.1.0"
+"@tailwindcss/typography" = "^0.5.15"
+"@tailwindcss/forms" = "^0.5.9"
+
+[dev-dependencies]
+watchdog = ">=3.0.0"
+
+[serve]
+base_route_app = "app"
+
+[client]
+
+[client.vite]
+plugins = ["tailwindcss()"]
+lib_imports = ["import tailwindcss from '@tailwindcss/vite'"]
+
+[client.app_meta_data]
+title = "Jac & Jaseci: The AI-First Programming Language"
+description = "The Jac programming language and Jaseci runtime stack replaces Python, JavaScript, and C/Zig/Rust with AI-first constructs, object spatial programming, and scale-native constructs - with full native compatibility for PyPI, npm, and C-ABI."
+author = "Jaseci Labs"
+theme_color = "#0A0A0A"
+icon = "/assets/images/favicon.ico"
+

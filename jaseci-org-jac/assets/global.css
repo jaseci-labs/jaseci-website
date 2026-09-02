@@ -1,0 +1,638 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import "tailwindcss";
+/* MDXContent.js imported this on the Next.js site; it supplies the code-block
+   padding/scroll behaviour on top of the token colours overridden below. */
+@import "highlight.js/styles/atom-one-dark.css";
+
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+/* The v3 build had `container: { center, padding: "2rem" }` plus a
+   `.container { @apply max-w-[1000px] }` override in the components layer.
+   In v4 `container` is a real utility, so redefine it here - `@utility`
+   keeps `max-w-*` able to override it, exactly as before. */
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 2rem;
+  max-width: 1000px;
+}
+
+/* ------------------------------------------------------------------
+   Design tokens - ported from config/theme.json + tailwind.config.js
+   ------------------------------------------------------------------ */
+@theme {
+  /* breakpoints (the v3 config overrode `sm`) */
+  --breakpoint-sm: 540px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* theme.json colors */
+  --color-text: #e4e4e7;
+  --color-light: #a1a1aa;
+  --color-dark: #fafafa;
+  --color-primary: #f97316;
+  --color-secondary: #fb923c;
+  --color-body: #0a0a0a;
+  --color-border: #27272a;
+  --color-theme-light: #18181b;
+  --color-theme-dark: #0a0a0a;
+
+  /* landing / shell palette */
+  --color-primary-orange: #ff6b35;
+  --color-primary-yellow: #f7931e;
+  --color-dark-bg: #1a1a1a;
+  --color-medium-bg: #2d2d2d;
+  --color-light-bg: #404040;
+  --color-dark-text: #cccccc;
+  --color-light-text: #ffffff;
+  --color-glass: rgba(45, 45, 45, 0.7);
+
+  /* about page palette */
+  --color-about-background: #09090b;
+  --color-about-foreground: #fafafa;
+  --color-about-card: #18181b;
+  --color-about-primary: #f97316;
+  --color-about-secondary: #3f3f46;
+  --color-about-accent: #fb923c;
+  --color-about-muted-foreground: #a1a1aa;
+  --color-about-border: #27272a;
+
+  /* community page palette */
+  --color-community-background: #09090b;
+  --color-community-card-bg: rgba(24, 24, 27, 0.55);
+  --color-community-card-bg-hover: #18181b;
+  --color-community-border: #27272a;
+  --color-community-text: #e7e7ea;
+  --color-community-muted: #a1a1aa;
+  --color-community-primary: #f97316;
+
+  /* modular type scale: base 16px, scale 1.200 */
+  --text-base: 16px;
+  --text-h1: 2.48832rem;
+  --text-h1-sm: 1.990656rem;
+  --text-h2: 2.0736rem;
+  --text-h2-sm: 1.65888rem;
+  --text-h3: 1.728rem;
+  --text-h3-sm: 1.3824rem;
+  --text-h4: 1.44rem;
+  --text-h5: 1.2rem;
+  --text-h6: 1rem;
+
+  /* fonts */
+  --font-primary: "Inter", sans-serif;
+  --font-secondary: "Inter", sans-serif;
+  /* Pinned to the stack the v3 build resolved `font-sans` to, so body copy
+     renders with identical metrics. */
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* animations */
+  --animate-gradient-border: gradient-border 4s ease infinite;
+  --animate-bounce: bounce 0.6s ease;
+  --animate-pulse: pulse 1.5s infinite;
+  --animate-fade-in-line: fadeInLine 0.5s ease forwards;
+  --animate-blink: blink 1s infinite;
+  --animate-blob-pulse: blob-pulse 8s infinite alternate ease-in-out;
+
+  @keyframes blob-pulse {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    100% {
+      transform: scale(1.2) rotate(45deg);
+    }
+  }
+  @keyframes gradient-border {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  @keyframes bounce {
+    0%,
+    20%,
+    60%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    40% {
+      transform: translateY(-10px) scale(1.1);
+    }
+    80% {
+      transform: translateY(-5px) scale(1.05);
+    }
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+  }
+  @keyframes fadeInLine {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+/* CSS custom properties mirroring styles/style.scss :root */
+:root {
+  --color-primary-var: #ff6b35;
+  --color-secondary-var: #f7931e;
+  --body-color: #1a1a1a;
+  --border-color: #404040;
+  --theme-light: #2d2d2d;
+  --theme-dark: #1a1a1a;
+
+  --text-color: #cccccc;
+  --text-dark: #ffffff;
+  --text-light: #888888;
+
+  --font-primary-var: "Inter", sans-serif;
+  --font-secondary-var: "Inter", sans-serif;
+}
+
+/* ------------------------------------------------------------------
+   base - ported from styles/base.scss + style.scss
+   ------------------------------------------------------------------ */
+@layer base {
+  html {
+    @apply text-base;
+    scroll-behavior: smooth;
+  }
+
+  /* base.scss set `font-primary`, but style.scss's later `@layer base` rule
+     re-applied `font-sans` - so body text is the system sans stack, and only
+     the headings below use Inter. */
+  body {
+    @apply bg-[#1a1a1a] font-sans font-normal leading-relaxed text-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-primary font-bold;
+    /* NOT `@apply leading-tight`: that sets --tw-leading, which every v4
+       `text-*` utility reads, overriding the size-paired line heights. */
+    line-height: 1.25;
+  }
+
+  h1,
+  .h1 {
+    @apply text-h1-sm md:text-h1;
+  }
+
+  h2,
+  .h2 {
+    @apply text-h2-sm md:text-h2;
+  }
+
+  h3,
+  .h3 {
+    @apply text-h3-sm md:text-h3;
+  }
+
+  h4,
+  .h4 {
+    @apply text-h4;
+  }
+
+  h5,
+  .h5 {
+    @apply text-h5;
+  }
+
+  h6,
+  .h6 {
+    @apply text-h6;
+  }
+
+  .fancy-link {
+    @apply inline-flex items-center gap-2 text-[#ff6b35] no-underline;
+  }
+
+  .card-link {
+    @apply inline-flex items-center gap-2 font-semibold text-[#ff6b35] no-underline transition-colors duration-300;
+  }
+
+  .card-link:hover {
+    @apply text-[#f7931e];
+  }
+
+  .card-link::after {
+    content: "→";
+    font-size: 16px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   components - ported from styles/components.scss, navigation.scss,
+   buttons.scss and the tailwind-bootstrap-grid plugin
+   ------------------------------------------------------------------ */
+@layer components {
+  /* section style */
+  .section {
+    @apply pb-8 pt-8 md:pb-16 md:pt-32;
+  }
+
+  /* bootstrap-style grid (replaces tailwind-bootstrap-grid) */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+  }
+
+  .row > * {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .col-1 { flex: 0 0 auto; width: 8.333333%; }
+  .col-2 { flex: 0 0 auto; width: 16.666667%; }
+  .col-3 { flex: 0 0 auto; width: 25%; }
+  .col-4 { flex: 0 0 auto; width: 33.333333%; }
+  .col-5 { flex: 0 0 auto; width: 41.666667%; }
+  .col-6 { flex: 0 0 auto; width: 50%; }
+  .col-7 { flex: 0 0 auto; width: 58.333333%; }
+  .col-8 { flex: 0 0 auto; width: 66.666667%; }
+  .col-9 { flex: 0 0 auto; width: 75%; }
+  .col-10 { flex: 0 0 auto; width: 83.333333%; }
+  .col-11 { flex: 0 0 auto; width: 91.666667%; }
+  .col-12 { flex: 0 0 auto; width: 100%; }
+
+  @media (min-width: 540px) {
+    .sm\:col-1 { flex: 0 0 auto; width: 8.333333%; }
+    .sm\:col-2 { flex: 0 0 auto; width: 16.666667%; }
+    .sm\:col-3 { flex: 0 0 auto; width: 25%; }
+    .sm\:col-4 { flex: 0 0 auto; width: 33.333333%; }
+    .sm\:col-5 { flex: 0 0 auto; width: 41.666667%; }
+    .sm\:col-6 { flex: 0 0 auto; width: 50%; }
+    .sm\:col-7 { flex: 0 0 auto; width: 58.333333%; }
+    .sm\:col-8 { flex: 0 0 auto; width: 66.666667%; }
+    .sm\:col-9 { flex: 0 0 auto; width: 75%; }
+    .sm\:col-10 { flex: 0 0 auto; width: 83.333333%; }
+    .sm\:col-11 { flex: 0 0 auto; width: 91.666667%; }
+    .sm\:col-12 { flex: 0 0 auto; width: 100%; }
+  }
+
+  @media (min-width: 768px) {
+    .md\:col-1 { flex: 0 0 auto; width: 8.333333%; }
+    .md\:col-2 { flex: 0 0 auto; width: 16.666667%; }
+    .md\:col-3 { flex: 0 0 auto; width: 25%; }
+    .md\:col-4 { flex: 0 0 auto; width: 33.333333%; }
+    .md\:col-5 { flex: 0 0 auto; width: 41.666667%; }
+    .md\:col-6 { flex: 0 0 auto; width: 50%; }
+    .md\:col-7 { flex: 0 0 auto; width: 58.333333%; }
+    .md\:col-8 { flex: 0 0 auto; width: 66.666667%; }
+    .md\:col-9 { flex: 0 0 auto; width: 75%; }
+    .md\:col-10 { flex: 0 0 auto; width: 83.333333%; }
+    .md\:col-11 { flex: 0 0 auto; width: 91.666667%; }
+    .md\:col-12 { flex: 0 0 auto; width: 100%; }
+  }
+
+  /* image cover */
+  .img-cover {
+    @apply leading-none;
+  }
+  .img-cover img {
+    @apply object-cover;
+  }
+
+  /* author image */
+  .author-image {
+    @apply mr-2 align-top;
+  }
+  .author-image img {
+    @apply max-h-[25px] max-w-[25px] rounded-full;
+  }
+
+  /* social icon styles */
+  .social-icons {
+    @apply space-x-4;
+  }
+  .social-icons li {
+    @apply inline-block;
+  }
+  .social-icons li a {
+    @apply block h-12 w-12 rounded-lg border border-light bg-transparent text-center text-white transition hover:border-primary hover:bg-primary;
+  }
+  .social-icons li a svg {
+    @apply m-auto h-12 text-lg;
+  }
+
+  .social-icons-simple {
+    @apply space-x-2;
+  }
+  .social-icons-simple li {
+    @apply inline-block;
+  }
+  .social-icons-simple li a {
+    @apply block p-3 text-dark transition hover:text-primary;
+  }
+  .social-icons-simple li a svg {
+    @apply text-lg;
+  }
+
+  .social-share {
+    @apply space-x-2;
+  }
+  .social-share li {
+    @apply inline-block;
+  }
+  .social-share li a {
+    @apply block p-3 transition hover:text-primary;
+  }
+
+  /* form style */
+  .form-input,
+  .form-textarea {
+    @apply rounded-lg border-border text-text focus:border-primary focus:ring-transparent;
+  }
+
+  .form-inputs * {
+    @apply mb-5 leading-10;
+  }
+
+  /* long-form content */
+  .content {
+    @apply prose max-w-none prose-headings:font-bold prose-h1:mb-4 prose-h1:text-h1-sm prose-h2:mb-4 prose-h2:mt-4 prose-h2:text-h2-sm prose-h3:mt-4 prose-h3:text-h3-sm prose-h4:mt-4 prose-h5:mb-4 prose-h6:mb-6 prose-blockquote:border-primary prose-blockquote:bg-theme-light prose-blockquote:p-4 md:prose-h1:text-h1 md:prose-h2:text-h2 md:prose-h3:text-h3;
+  }
+
+  /* buttons */
+  .btn {
+    @apply inline-block rounded-lg border px-5 py-2 font-semibold transition;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white;
+  }
+
+  .btn-outline-primary {
+    @apply border-primary bg-transparent hover:bg-primary hover:text-white;
+  }
+
+  /* navigation */
+  .navbar {
+    @apply relative flex flex-wrap items-center justify-between;
+  }
+
+  .navbar-brand image {
+    @apply max-h-full max-w-full;
+  }
+
+  .navbar-nav {
+    @apply text-center md:flex md:items-center md:text-left;
+  }
+
+  .nav-item {
+    @apply mx-2;
+  }
+
+  .nav-link {
+    @apply rounded-full px-4 py-2 text-base font-medium text-dark transition hover:bg-gray-100 hover:text-primary;
+  }
+
+  .nav-dropdown {
+    @apply mr-0;
+  }
+
+  .nav-dropdown-list {
+    @apply z-10 rounded-lg bg-white p-4 shadow transition;
+  }
+
+  .nav-dropdown-item {
+    @apply mb-1;
+  }
+
+  .nav-dropdown-link {
+    @apply min-w-[150px] py-1 text-lg font-semibold text-dark transition hover:text-primary;
+  }
+
+  /* search modal (mobile-first, full-screen overlay) */
+  .search-modal {
+    @apply invisible fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4 opacity-0 transition-opacity duration-200 ease-out;
+  }
+
+  .search-modal .search-box {
+    @apply relative w-full max-w-md rounded-xl border border-light-bg/50 bg-medium-bg p-3 shadow-2xl backdrop-blur md:max-w-2xl md:p-5;
+  }
+
+  .search-modal .form-input {
+    @apply h-12 w-full rounded-lg border border-light-bg/40 bg-[#1f1f1f] px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary md:h-14;
+  }
+
+  .search-modal .search-close {
+    @apply absolute right-2 top-2 p-1.5 text-2xl text-white/80 hover:text-white md:right-3 md:top-3 md:p-2;
+  }
+
+  .search-modal.open {
+    @apply visible opacity-100;
+  }
+}
+
+/* ------------------------------------------------------------------
+   utilities - ported from styles/utilities.scss + inline styled-jsx
+   ------------------------------------------------------------------ */
+@layer utilities {
+  b,
+  strong {
+    @apply font-semibold;
+  }
+
+  .shadow {
+    box-shadow: 0 10px 30px rgb(22 28 45 / 10%);
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease-in-out infinite;
+  }
+}
+
+/* gradient background images used as `bg-gradient-primary` / `bg-gradient-border` */
+.bg-gradient-primary {
+  background-image: linear-gradient(90deg, #fb923c, #f97316);
+}
+
+.bg-gradient-border {
+  background-image: linear-gradient(90deg, #fb923c, #ea580c);
+}
+
+/* long-form content colour overrides (styles/style.scss) */
+.content p,
+.content li,
+.content td,
+.content a,
+.content th {
+  color: var(--text-color);
+}
+
+.content img {
+  width: 100%;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4 {
+  color: var(--text-dark);
+}
+
+/* keyframes previously declared with styled-jsx inside components */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* highlight.js theme overrides (styles/style.scss) */
+.hljs {
+  background: transparent !important;
+  color: #abb2bf !important;
+}
+
+.hljs-comment {
+  color: #5c6370 !important;
+}
+
+.hljs-keyword {
+  color: #c678dd !important;
+}
+
+.hljs-function .hljs-title,
+.hljs-title.function_ {
+  color: #61afef !important;
+}
+
+.hljs-params {
+  color: #d19a66 !important;
+}
+
+.hljs-type,
+.hljs-built_in {
+  color: #56b6c2 !important;
+}
+
+.hljs-punctuation,
+.hljs-operator {
+  color: #abb2bf !important;
+}
+
+.hljs-variable {
+  color: #d19a66 !important;
+}
+
+.hljs-string {
+  color: #98c379 !important;
+}
+
+.hljs-number {
+  color: #d19a66 !important;
+}
+
+#code-block::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+#code-block::-webkit-scrollbar-track {
+  background: #282c34;
+  border-radius: 4px;
+}
+
+#code-block::-webkit-scrollbar-thumb {
+  background: #5a5a5a;
+  border-radius: 4px;
+  border: 1px solid #3c4043;
+}
+
+#code-block::-webkit-scrollbar-thumb:hover {
+  background: #6a6a6a;
+}
+
+#code-block {
+  scrollbar-width: thin;
+  scrollbar-color: #5a5a5a #282c34;
+}
