@@ -78,13 +78,13 @@ def:pub JachammerSection() -> JsxElement {
                     <p className="font-mono text-xs tracking-[0.3em] uppercase text-amber-500 mb-5">
                         03 / jachammer.ai
                     </p>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white text-balance leading-tight">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white text-balance leading-tight sm:leading-10 lg:leading-none">
                         A home for your
                         <span className="block bg-gradient-to-r from-amber-400 to-orange-600 bg-clip-text text-transparent pb-1">
                             Jac creations.
                         </span>
                     </h2>
-                    <p className="mt-5 text-base sm:text-lg text-dark-text/90 leading-relaxed max-w-xl">
+                    <p className="mt-5 text-base sm:text-lg text-dark-text/90 leading-relaxed sm:leading-7 max-w-xl">
                         JacHammer is where your Jac projects live. Host and deploy your
                         creations at scale, share them with a link, and take an idea
                         from prototype to production without ever moving it.

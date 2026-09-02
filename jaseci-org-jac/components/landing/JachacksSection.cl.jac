@@ -63,7 +63,7 @@ def:pub JachacksSection() -> JsxElement {
                                 v3.0
                             </span>
                         </div>
-                        <div className="p-5 sm:p-6 font-mono text-[0.8rem] sm:text-sm leading-relaxed">
+                        <div className="p-5 sm:p-6 font-mono text-[0.8rem] sm:text-sm leading-relaxed sm:leading-5">
                             <p className="text-gray-500">
                                 <span className="text-white">$</span>{" jachacks --list"}
                             </p>
@@ -104,7 +104,7 @@ def:pub JachacksSection() -> JsxElement {
                     <p className="font-mono text-xs tracking-[0.3em] uppercase text-gray-400 mb-5">
                         02 / jachacks.org
                     </p>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white text-balance leading-tight">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white text-balance leading-tight sm:leading-10 lg:leading-none">
                         Where the Jac
                         <br />
                         {"community "}
@@ -113,7 +113,7 @@ def:pub JachacksSection() -> JsxElement {
                             <span className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-white via-gray-500 to-transparent"></span>
                         </span>
                     </h2>
-                    <p className="mt-5 text-base sm:text-lg text-gray-400 leading-relaxed max-w-xl">
+                    <p className="mt-5 text-base sm:text-lg text-gray-400 leading-relaxed sm:leading-7 max-w-xl">
                         JacHacks is the hackathon series powering the future of AI
                         programming. Form a team, learn the stack in a morning, and demo
                         a working AI-native app by night. In person and online, from San

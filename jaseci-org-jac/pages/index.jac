@@ -5,6 +5,7 @@ import from ..components.landing.EcosystemHero { EcosystemHero }
 import from ..components.landing.JaclangSection { JaclangSection }
 import from ..components.landing.JachacksSection { JachacksSection }
 import from ..components.landing.JachammerSection { JachammerSection }
+import from ..components.landing.TestimonialsSection { TestimonialsSection }
 
 def:pub LandingPage() -> JsxPage {
     return <>
@@ -19,6 +20,7 @@ def:pub LandingPage() -> JsxPage {
             <JaclangSection />
             <JachacksSection />
             <JachammerSection />
+            <TestimonialsSection />
 
             {#* Closing band *#}
             <section className="relative border-t border-white/10 bg-dark-bg py-16 sm:py-20 overflow-hidden">
@@ -29,7 +31,7 @@ def:pub LandingPage() -> JsxPage {
                     <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white text-balance">
                         Start anywhere. It all runs on Jaseci.
                     </h2>
-                    <p className="mt-3 text-sm sm:text-base text-dark-text/70 leading-relaxed">
+                    <p className="mt-3 text-sm sm:text-base text-dark-text/70 leading-relaxed sm:leading-6">
                         Learn the language, join a hackathon, or give your next creation
                         a home.
                     </p>

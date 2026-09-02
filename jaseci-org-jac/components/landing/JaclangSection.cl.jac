@@ -48,7 +48,7 @@ def:pub JaclangSection() -> JsxElement {
                     <p className="font-mono text-xs tracking-[0.3em] uppercase text-primary-orange mb-5">
                         01 / jaclang.org
                     </p>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white text-balance leading-tight">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white text-balance leading-tight sm:leading-10 lg:leading-none">
                         One language.
                         <br />
                         One compiler.
@@ -56,7 +56,7 @@ def:pub JaclangSection() -> JsxElement {
                             The whole stack.
                         </span>
                     </h2>
-                    <p className="mt-5 text-base sm:text-lg text-dark-text/90 leading-relaxed max-w-xl">
+                    <p className="mt-5 text-base sm:text-lg text-dark-text/90 leading-relaxed sm:leading-7 max-w-xl">
                         Jac builds AI, graphs, persistence, APIs, UIs, and cloud
                         deployment directly into the language, as a native superset of
                         Python with the PyPI and npm ecosystems at your fingertips.
@@ -117,7 +117,7 @@ def:pub JaclangSection() -> JsxElement {
                                 feed.jac
                             </span>
                         </div>
-                        <pre className="p-5 sm:p-6 text-[0.8rem] sm:text-sm leading-relaxed font-mono text-gray-200 overflow-x-auto">
+                        <pre className="p-5 sm:p-6 text-[0.8rem] sm:text-sm leading-relaxed sm:leading-5 font-mono text-gray-200 overflow-x-auto">
                             <code>
                                 <span className={KW}>import from</span>{" mtllm { "}<span className={TYP}>Model</span>{" }"}{"\n"}
                                 <span className={KW}>glob</span>{" llm = "}<span className={TYP}>Model</span>{"(model_name="}<span className={STR}>"gpt-5"</span>{");"}{"\n"}

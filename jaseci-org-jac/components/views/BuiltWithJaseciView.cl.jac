@@ -44,7 +44,8 @@ glob COMPANIES: list[Company] = [
         name="Pocketnest",
         logo="/assets/images/assets/partners/pocketnest.png",
         href="https://pocketnest.com/",
-        blurb="Personal finance platform"
+        blurb="Personal finance platform",
+        case_study_url="https://blogs.jaseci.org/blog/posts/pocketnest-birdie-case-study"
     )
 ];
 
@@ -257,7 +258,7 @@ def SectionHeader(eyebrow: str, title: str, description: str) -> JsxElement {
             {title}
         </h2>
         <div className="h-0.5 mx-auto w-32 mb-5 bg-gradient-to-r from-transparent via-primary-orange to-transparent"></div>
-        <p className="text-base md:text-lg text-orange-50/80 leading-relaxed">
+        <p className="text-base md:text-lg text-orange-50/80 leading-relaxed md:leading-7">
             {description}
         </p>
     </div>;
@@ -616,7 +617,7 @@ def:pub BuiltWithJaseciView() -> JsxElement {
                         </span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-orange-50/85 leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-lg md:text-xl text-orange-50/85 leading-relaxed md:leading-7 max-w-2xl mx-auto">
                         From idea to production, all in Jac. Meet the companies and projects
                         shipping AI-native applications with Jac and the Jaseci stack.
                     </p>

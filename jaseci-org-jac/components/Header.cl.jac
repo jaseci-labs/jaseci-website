@@ -3,6 +3,7 @@
 import from react { useEffect }
 import from "@jac/runtime" { Link, useLocation }
 import from "react-icons/io5" { IoSearch }
+import from "react-icons/fa6" { FaCodeFork, FaGithub, FaStar }
 
 import from .Logo { Logo }
 import from .SearchModal { SearchModal }
@@ -55,13 +56,19 @@ def:pub Header() -> JsxElement {
                 <div className="flex items-center gap-3">
                     <a
                         href="https://github.com/jaseci-labs/jaseci"
-                        className="flex items-center gap-2 hover:text-primary-orange transition-colors"
+                        className="group flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] py-1 pl-3 pr-1.5 transition-all duration-300 hover:border-primary-orange/50 hover:bg-white/10"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <span>GitHub</span>
-                        <span className="text-xs opacity-80">
-                            {"⭐ " + stars + " 🍴 " + forks}
+                        <FaGithub className="w-4 h-4 shrink-0" />
+                        <span className="font-semibold mr-1">GitHub</span>
+                        <span className="flex items-center gap-1 rounded-full bg-black/40 px-2 py-0.5 text-xs">
+                            <FaStar className="w-3 h-3 text-yellow-400" />
+                            <span className="font-mono">{stars}</span>
+                        </span>
+                        <span className="flex items-center gap-1 rounded-full bg-black/40 px-2 py-0.5 text-xs">
+                            <FaCodeFork className="w-3 h-3 text-gray-300" />
+                            <span className="font-mono">{forks}</span>
                         </span>
                     </a>
                 </div>

@@ -86,7 +86,7 @@ def:pub EcosystemHero() -> JsxElement {
                 </h1>
 
                 <p
-                    className="mt-6 text-base sm:text-lg lg:text-xl text-dark-text/90 leading-relaxed max-w-2xl mx-auto"
+                    className="mt-6 text-base sm:text-lg lg:text-xl text-dark-text/90 leading-relaxed sm:leading-7 max-w-2xl mx-auto"
                     style={{"animation": "heroFadeUp 0.6s ease-out 0.2s both"}}
                 >
                     Jaseci is the home of Jac: a full-stack programming language with AI
