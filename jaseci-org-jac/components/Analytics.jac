@@ -15,7 +15,7 @@ def:pub Analytics() -> JsxElement {
         if not by_id("gtag-loader") {
             loader = create("script");
             loader.id = "gtag-loader";
-            loader.async = True;
+            loader.`async = True;
             loader.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_TAG_ID;
             head().appendChild(loader);
 

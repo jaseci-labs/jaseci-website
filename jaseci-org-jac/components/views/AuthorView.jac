@@ -3,7 +3,7 @@
 import from "@jac/runtime" { useParams }
 import from ..layouts.AuthorSingle { AuthorSingle }
 
-sv import from ...server.content { Doc, get_author }
+import from content { Doc, get_author }
 
 def:pub AuthorView() -> JsxElement {
     has author: Doc | None = None,
@@ -20,15 +20,16 @@ def:pub AuthorView() -> JsxElement {
         loaded = True;
     }
 
-    return <>
-        {if author is not None {
-            <AuthorSingle key="author" author={author} />
-        } elif loaded {
-            <section key="missing" className="section">
-                <div className="container text-center">
-                    <h1 className="h2">Author not found</h1>
-                </div>
-            </section>
-        }}
-    </>;
+    return
+        <>
+            {if author is not None {
+                <AuthorSingle key="author" author={author}/>
+            } elif loaded {
+                <section key="missing" className="section">
+                    <div className="container text-center">
+                        <h1 className="h2">Author not found</h1>
+                    </div>
+                </section>
+            } }
+        </>;
 }

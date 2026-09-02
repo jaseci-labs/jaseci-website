@@ -5,7 +5,7 @@ import from "@jac/runtime" { useParams }
 import from ..Posts { Posts }
 import from ..SeoMeta { SeoMeta }
 
-sv import from ...server.content { Doc, list_authors, posts_by_taxonomy }
+import from content { Doc, list_authors, posts_by_taxonomy }
 
 def:pub TaxonomyPostsView(name: str, param: str, noun: str) -> JsxElement {
     has posts: list[Doc] = [],
@@ -22,17 +22,18 @@ def:pub TaxonomyPostsView(name: str, param: str, noun: str) -> JsxElement {
         authors = await list_authors();
     }
 
-    return <>
-        <SeoMeta title={term} />
-        <div className="section">
-            <div className="container">
-                <h1 className="h2 mb-8 text-center">
-                    {"Showing posts from "}
-                    <span className="text-primary">{term}</span>
-                    {" " + noun}
-                </h1>
-                <Posts posts={posts} authors={authors} />
+    return
+        <>
+            <SeoMeta title={term}/>
+            <div className="section">
+                <div className="container">
+                    <h1 className="h2 mb-8 text-center">
+                        {"Showing posts from "}
+                        <span className="text-primary">{term}</span>
+                        {" " + noun}
+                    </h1>
+                    <Posts posts={posts} authors={authors}/>
+                </div>
             </div>
-        </div>
-    </>;
+        </>;
 }

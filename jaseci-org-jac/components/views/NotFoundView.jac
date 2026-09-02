@@ -3,7 +3,7 @@
 import from ..SeoMeta { SeoMeta }
 import from ..layouts.NotFound { NotFound }
 
-sv import from ...server.content { Doc, not_found_page }
+import from content { Doc, not_found_page }
 
 def:pub NotFoundView() -> JsxElement {
     has page: Doc | None = None;
@@ -12,10 +12,11 @@ def:pub NotFoundView() -> JsxElement {
         page = await not_found_page();
     }
 
-    return <>
-        <SeoMeta />
-        {if page is not None {
-            <NotFound key="notfound" data={page} />
-        }}
-    </>;
+    return
+        <>
+            <SeoMeta/>
+            {if page is not None {
+                <NotFound key="notfound" data={page}/>
+            }}
+        </>;
 }

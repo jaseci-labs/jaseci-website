@@ -21,7 +21,7 @@ import from zoneinfo { ZoneInfo }
 glob BLOG_FOLDER: str = "posts";
 glob SUMMARY_LENGTH: int = 200;
 
-glob PROJECT_ROOT: str = os.path.dirname(os.path.dirname(os.path.abspath(__file__)));
+glob PROJECT_ROOT: str = os.path.dirname(os.path.abspath(__file__));
 glob CONTENT_ROOT: str = os.path.join(PROJECT_ROOT, "content");
 
 """github-slugger strips this punctuation class before hyphenating spaces."""

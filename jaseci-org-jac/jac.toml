@@ -4,7 +4,7 @@ version = "2.0.0"
 description = "Jac & Jaseci: The AI-First Programming Language - jaseci.org, written in Jac"
 entry-point = "main.jac"
 kind = "web-app"
-jac-version = "==0.34.10"
+jac-version = "==0.37.1"
 
 [dependencies]
 PyYAML = ">=6.0"
@@ -52,3 +52,4 @@ description = "The Jac programming language and Jaseci runtime stack replaces Py
 author = "Jaseci Labs"
 theme_color = "#0A0A0A"
 icon = "/assets/images/favicon.ico"
+
