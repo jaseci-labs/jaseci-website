@@ -36,6 +36,8 @@ const companies = [
     logo: "/images/assets/partners/pocketnest.png",
     href: "https://pocketnest.com/",
     blurb: "Personal finance platform",
+    caseStudyUrl:
+      "https://blogs.jaseci.org/blog/posts/pocketnest-birdie-case-study",
   },
 ];
 
