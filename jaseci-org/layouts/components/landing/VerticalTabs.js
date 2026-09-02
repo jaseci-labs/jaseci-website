@@ -171,10 +171,10 @@ const VerticalTabs = () => {
 
         {/* Side by Side Code Comparison */}
         <div
-          className="bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-light-bg/20 overflow-hidden shadow-2xl hover:border-primary-orange/30 transition-all duration-500 mx-2 sm:mx-0"
+          className="bg-gradient-to-br from-dark-bg/80 via-dark-bg/60 to-dark-bg/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-light-bg/20 overflow-x-auto shadow-2xl hover:border-primary-orange/30 transition-all duration-500 mx-2 sm:mx-0"
           style={isVisible ? { animation: `fadeInUp 1s ease-out 0.45s both` } : { opacity: 0, transform: 'translateY(30px)' }}
         >
-          <div className="grid lg:grid-cols-2 min-h-[500px]">
+          <div className="grid lg:grid-cols-2 min-h-[500px] min-w-max">
 
             {/* Jac Code */}
             <div className="flex flex-col border-b lg:border-b-0 lg:border-r border-light-bg/20">
@@ -187,10 +187,10 @@ const VerticalTabs = () => {
                   Jac Programming
                 </h3>
               </div>
-              <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
+              <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-x-auto">
                 <div 
                   style={getChildAnimationStyle(1)} 
-                  className={`h-[420px] ${lineCountJac > 21 ? 'overflow-auto custom-scrollbar-orange' : ''}`}
+                  className={`h-[420px] md:overflow-auto custom-scrollbar-orange`}
                 >
                   <div className="flex min-w-full">
                     {/* Line Numbers - Fixed positioning */}
@@ -225,10 +225,10 @@ const VerticalTabs = () => {
                   Traditional Programming
                 </h3>
               </div>
-              <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-hidden">
+              <div className="flex-1 bg-gradient-to-br from-[#0d1117] to-[#161b22] overflow-x-auto">
                 <div 
                   style={getChildAnimationStyle(1)} 
-                  className={`h-[420px] ${lineCountPython > 21 ? 'overflow-auto custom-scrollbar-blue' : ''}`}
+                  className={`h-[420px] md:overflow-auto custom-scrollbar-blue`}
                 >
                   <div className="flex min-w-full">
                     {/* Line Numbers - Fixed positioning */}

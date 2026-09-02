@@ -47,14 +47,14 @@ export const CodeBlock = ({
   if (language === 'jac') {
     // Use custom Jac syntax highlighting
     return (
-      <div className={`relative group ${className}`}>
-        <pre className="jac-code overflow-x-auto" style={{ margin: 0, padding: 0, background: 'transparent' }}>
+      <div className={`relative group overflow-x-auto ${className}`}>
+        <pre className="jac-code overflow-visible whitespace-nowrap" style={{ margin: 0, padding: 0, background: 'transparent' }}>
           <code
-            className="jac-code-block font-mono"
+            className="jac-code-block font-mono whitespace-nowrap"
             style={{
               fontSize: '0.8rem',
               lineHeight: '1.4',
-              display: 'block',
+              display: 'inline-block',
               padding: 0,
               margin: 0,
               background: 'transparent'
@@ -68,7 +68,7 @@ export const CodeBlock = ({
 
   // Use PrismJS for Python and other languages
   return (
-    <div className={`relative group ${className}`}>
+    <div className={`relative group overflow-x-auto ${className}`}>
       <pre 
         className="font-mono" 
         style={{ 

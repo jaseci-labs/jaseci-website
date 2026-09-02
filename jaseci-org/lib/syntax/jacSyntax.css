@@ -52,7 +52,7 @@ code[class*="language-"], .jac-code-block {
   padding: 0 !important;
   margin: 0 !important;
   background: transparent !important;
-  overflow: visible !important;
+  overflow-x: visible !important;
   white-space: pre !important;
 }
 
@@ -76,6 +76,7 @@ pre[class*="language-"] {
   border-radius: 0;
   overflow-x: visible;
   background: transparent;
+  min-width: min-content;
 }
 
 .jac-code-block {
