@@ -1,40 +1,27 @@
 "use client";
 
 import SeoMeta from "@layouts/partials/SeoMeta";
-import Hero from "@layouts/components/landing/Hero";
-import JacSuperset from "@layouts/components/landing/JacSuperset";
-import JacClient from "@layouts/components/landing/JacClient";
-import JacScale from "@layouts/components/landing/JacScale";
-import Carousel from "@layouts/components/landing/Carousel";
-import {
-  gettingStartedSlides,
-} from "@lib/landing-page-content";
-import VerticalTabs from "@layouts/components/landing/VerticalTabs";
-import WhyWeBuilt from '@layouts/components/landing/WhyWeBuilt';
+import EcosystemHero from "@layouts/components/landing/EcosystemHero";
+import JaclangSection from "@layouts/components/landing/JaclangSection";
+import JachacksSection from "@layouts/components/landing/JachacksSection";
+import JachammerSection from "@layouts/components/landing/JachammerSection";
+import TestimonialsSection from "@layouts/components/landing/TestimonialsSection";
 
 const LandingPage = () => {
   return (
     <>
       <SeoMeta
-        title="Jac & Jaseci: One Language for AI-Native Full-Stack Development"
-        meta_title="Jac & Jaseci: One Language for AI-Native Full-Stack Development"
-        description="Build complete applications with backend, frontend, and AI in one unified language. Access PyPI and npm ecosystems, deploy from laptop to cloud with zero code changes."
+        title="Jaseci: The Home of the Jac Ecosystem"
+        meta_title="Jaseci: The Home of the Jac Ecosystem"
+        description="One ecosystem for AI-native software. Jac, the full-stack AI programming language. JacHacks, the hackathon series. JacHammer, the home for your Jac projects."
         image="/images/logo.png"
       />
-      <div className="bg-dark-bg pt-16 md:pt-20">
-        <main className="max-w-none mx-auto px-5">
-          <Hero />
-        </main>
-        <WhyWeBuilt />
-        <JacSuperset />
-        <JacClient />
-        <JacScale />
-        <VerticalTabs />
-        <Carousel
-          slides={gettingStartedSlides}
-          title="The Jaseci Stack"
-          sectionId="learn"
-        />
+      <div className="bg-dark-bg">
+        <EcosystemHero />
+        <JaclangSection />
+        <JachacksSection />
+        <JachammerSection />
+        <TestimonialsSection />
 
         {/* References */}
         <section id="ref-1" className="py-8 bg-dark-bg pb-16 overflow-x-hidden">
@@ -63,6 +50,44 @@ const LandingPage = () => {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Closing band */}
+        <section className="relative border-t border-white/10 bg-dark-bg py-16 sm:py-20 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none opacity-40">
+            <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-t from-primary-orange/15 to-transparent rounded-full blur-3xl"></div>
+          </div>
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white text-balance">
+              Start anywhere. It all runs on Jaseci.
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-dark-text/70 leading-relaxed">
+              Learn the language, join a hackathon, or give your next creation
+              a home.
+            </p>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-sm">
+              <a
+                href="https://jaclang.org"
+                className="text-dark-text/80 hover:text-primary-orange transition-colors"
+              >
+                jaclang.org
+              </a>
+              <span className="hidden sm:inline text-white/15 select-none">/</span>
+              <a
+                href="https://jachacks.org"
+                className="text-dark-text/80 hover:text-white transition-colors"
+              >
+                jachacks.org
+              </a>
+              <span className="hidden sm:inline text-white/15 select-none">/</span>
+              <a
+                href="https://jachammer.ai"
+                className="text-dark-text/80 hover:text-amber-400 transition-colors"
+              >
+                jachammer.ai
+              </a>
             </div>
           </div>
         </section>

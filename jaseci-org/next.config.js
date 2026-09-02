@@ -12,6 +12,14 @@ const nextConfig = {
         port: "",
         pathname: "/wp-content/uploads/**", // This is optional but recommended for security
       },
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
+      },
+      {
+        protocol: "https",
+        hostname: "i.ytimg.com",
+      },
     ],
   },
 };

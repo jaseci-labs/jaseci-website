@@ -68,8 +68,8 @@ const WhyWeBuilt = () => {
     {
       title: "Full Stack in One File",
       link: "#jac-client",
-      subtitle: (<>A superset of Python with full access to both PyPI and npm — backend, frontend, and AI in one language.</>),
-      subtext: (<>Jac supersets Python the way TypeScript supersets JavaScript. All your existing Python code and libraries just work. But now you can also write React components, call npm packages, and integrate AI: all in the same file. No more juggling three languages across three codebases.</>),
+      subtitle: (<>Replaces Python, JavaScript, and C/Zig/Rust with full access to PyPI, npm, and C-ABI — backend, frontend, and AI in one language.</>),
+      subtext: (<>Jac replaces the need for Python, JavaScript, and C/Zig/Rust while maintaining full native compatibility. Import any PyPI package, use any npm package, and link with any C-ABI library. Write React components, backend logic, and AI integrations all in the same file. No more juggling three languages across three codebases.</>),
       gradient: "from-orange-400 to-orange-500",
       borderColor: "border-orange-400/30",
       hoverBorder: "hover:border-orange-400/50",

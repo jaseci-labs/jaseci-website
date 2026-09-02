@@ -2,11 +2,15 @@
   "main": [
     {
       "name": "Docs",
-      "url": "https://docs.jaseci.org/learn/tour/"
+      "url": "https://jaclang.org/"
     },
     {
       "name": "Community",
       "url": "/community"
+    },
+    {
+      "name": "Built with Jaseci",
+      "url": "/built-with-jaseci"
     },
     {
       "name": "About Us",
